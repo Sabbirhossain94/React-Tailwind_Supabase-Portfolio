@@ -9,7 +9,6 @@ export default function Navigation() {
 
             color: isActive ? "blue" : "gray",
 
-
         }
     }
     const [dark, setDark] = useState(true);
