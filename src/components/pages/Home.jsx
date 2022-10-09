@@ -5,17 +5,18 @@ import Projects from "./Projects"
 import Contact from './Contact'
 import Navigation from '../Navigation'
 import Sign from './Sign'
+import Dashboard from './Dashboard'
 
 export default function Home() {
     return (
         <Router>
-            <Navigation/>
+            <Navigation/>          
             <Routes>          
                 <Route exact path="/" element={<App />} />
-                <Route exact path="/projects" element={<Projects />} />
-                <Route exact path="/contact" element={<Contact />} />
-                <Route exact path="/sign" element={<Sign />} />
-
+                <Route  path="/projects" element={<Projects />} />
+                <Route  path="/contact" element={<Contact />} />
+                <Route  path="/sign" element={<Sign />} />
+                <Route  path="/dashboard" element={<Dashboard />} />
             </Routes>
         </Router>
 

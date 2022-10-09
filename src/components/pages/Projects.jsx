@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ProjectsDetails from '../ProjectsDetails';
 import { supabase } from '../../supabaseClient';
 
@@ -18,9 +18,9 @@ export default function Projects() {
             setAllProjects(data)
         }
     }
-    useEffect(()=>{  
+    useEffect(() => {
         getProjects()
-    },[])
+    }, [])
 
     return (
         <div>
@@ -196,7 +196,7 @@ export default function Projects() {
                                         {allprojects.map((item) =>
                                             <li onClick={() => setShowModal(true)} className="group relative flex flex-col items-start">
                                                 <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-                                                    <img alt="" src="https://spotlight.tailwindui.com/_next/static/media/planetaria.ecd81ade.svg" width="32" height="32" decoding="async" data-nimg="future" className="h-8 w-8" loading="lazy" style={{ color: "transparent" }} />
+                                                    <img alt="" src={item.image} width="32" height="32" decoding="async" data-nimg="future" className="h-8 w-8" loading="lazy" style={{ color: "transparent" }} />
                                                 </div>
                                                 <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
                                                     <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl">
