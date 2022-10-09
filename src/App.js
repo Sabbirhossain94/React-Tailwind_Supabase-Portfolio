@@ -24,7 +24,7 @@ function App() {
                         ></div>
                         <a aria-label="Home" class="block h-16 w-16 origin-left pointer-events-auto" style={{transform: "var(--avatar-image-transform)"}} href="/">
                           <img
-                            alt=""
+                            alt=""gits
                             sizes="4rem"
                             srcset="
                                                 /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar.51a13c67.jpg&amp;w=16&amp;q=75     16w,
