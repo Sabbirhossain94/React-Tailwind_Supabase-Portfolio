@@ -20,7 +20,6 @@ export default function Projects() {
                                     <h1 className="text-4xl font-bold tracking-tight text-zinc-700 dark:text-zinc-500 sm:text-5xl">Things I've made trying to put my dent in the universe.</h1>
                                     <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">I've worked on tons of little projects over the years but these are the ones that I'm most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved.</p>
                                 </header>
-
                                 <div className="mt-16 sm:mt-20">
                                     <ul role="list" className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
                                         <li onClick={() => setShowModal(true)} className="group relative flex flex-col items-start">
@@ -29,7 +28,6 @@ export default function Projects() {
                                             </div>
                                             <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
                                                 <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl">
-
                                                 </div>
                                                 <a href="/projects#">
                                                     <span className="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl">
