@@ -10,9 +10,9 @@ export default function Home() {
         <Router>
             <Navigation/>
             <Routes>          
-                <Route path="/" element={<App />} />
-                <Route path="/projects" element={<Projects />} />
-                <Route path="/calendar" element={<Calendar />} />
+                <Route exact path="/" element={<App />} />
+                <Route exact path="/projects" element={<Projects />} />
+                <Route exact path="/calendar" element={<Calendar />} />
             </Routes>
         </Router>
 
