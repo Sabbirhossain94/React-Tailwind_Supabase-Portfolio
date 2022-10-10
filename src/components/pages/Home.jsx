@@ -36,7 +36,7 @@ export default function Home() {
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/sign" element={<Sign />} />
-                <Route path="/dashboard" element={<Dashboard session={session} funcNav={setShowNav}/>} />
+                <Route exact path="/dashboard" element={<Dashboard session={session} funcNav={setShowNav}/>} />
                 <Route path="/account" element={<Account session={session} />} />
             </Routes>
         </Router>

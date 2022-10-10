@@ -55,7 +55,7 @@ export default function Dashboard({ session, funcNav }) {
                     <div className="w-14 flex-shrink-0"></div>
                 </div>
             </div>
-            {/* sidebar from md to lg screen */}
+           {/* sidebar from md to lg screen */}
             <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
                 <div className="flex min-h-0 flex-1 flex-col bg-gray-800">
                     <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
@@ -84,7 +84,7 @@ export default function Dashboard({ session, funcNav }) {
                                     <img className="inline-block h-9 w-9 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
                                 </div>
                                 <div className="ml-3">
-                                    <p className="text-sm font-medium text-white">Tom Cook</p>
+                                 <p className="text-sm font-medium text-white">Tom</p>
                                     <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200">View profile</p>
                                 </div>
                             </div>
