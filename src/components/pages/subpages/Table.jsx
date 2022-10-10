@@ -48,7 +48,7 @@ export default function Table() {
                                             <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-200 sm:pl-6">
                                                 <a href="#" className="group inline-flex">
                                                     Title
-                                                    <span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible">
+                                                    <span className="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible">
                                                         <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                             <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
                                                         </svg>
@@ -76,12 +76,12 @@ export default function Table() {
                                                     Link
                                                     <span className="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible">
                                                         <svg className="invisible ml-2 h-5 w-5 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                                                            <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
                                                         </svg>
                                                     </span>
                                                 </a>
                                             </th>
-                                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                            <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
                                                 <span className="sr-only">Edit</span>
                                             </th>
                                         </tr>
@@ -94,8 +94,8 @@ export default function Table() {
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-200">{item.description}</td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-200">{item.link}</td>
                                                 <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                    <button  onClick={() => deleteProject(item.id)} class="text-red-600 hover:text-red-900">Delete<span class="sr-only">, Lindsay Walton</span></button>
-                                                    <button  class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></button>
+                                                    <button  onClick={() => deleteProject(item.id)} className="text-red-600 hover:text-red-900">Delete<span className="sr-only">, Lindsay Walton</span></button>
+                                                    <button  className="text-indigo-600 hover:text-indigo-900">Edit<span className="sr-only">, Lindsay Walton</span></button>
                                                 </td>
                                             </tr>
                                         ))}
