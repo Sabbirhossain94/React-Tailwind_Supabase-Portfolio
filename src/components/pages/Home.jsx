@@ -8,6 +8,7 @@ import Contact from './Contact'
 import Navigation from '../Navigation'
 import Sign from './Sign'
 import Dashboard from './Dashboard'
+import Account from '../../Account'
 
 export default function Home() {
 
@@ -32,7 +33,8 @@ export default function Home() {
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/sign" element={<Sign />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard session={session}/>} />
+                <Route path="/account" element={<Account session={session}/>} />
             </Routes>
         </Router>
 

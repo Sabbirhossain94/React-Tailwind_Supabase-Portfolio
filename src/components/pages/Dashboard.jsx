@@ -1,7 +1,7 @@
 import React from 'react'
 import Table from './subpages/Table'
 
-export default function Dashboard() {
+export default function Dashboard({ session }) {
     return (
         <div>
             <div className="mt-[100px] relative z-40 md:hidden" role="dialog" aria-modal="true">
@@ -119,7 +119,7 @@ export default function Dashboard() {
                 </div>
             </div>
             {/*insert table here */}
-            <Table />
+            <Table session={session} />
 
 
         </div>

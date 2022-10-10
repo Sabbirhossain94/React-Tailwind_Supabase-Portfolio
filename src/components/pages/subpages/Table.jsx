@@ -1,11 +1,27 @@
 import React from 'react'
 import { supabase } from '../../../supabaseClient'
 import { useState, useEffect } from 'react';
+import "../../../../src/animation.css"
 
-
-export default function Table() {
+export default function Table({session}) {
 
     const [allprojects, setAllProjects] = useState([])
+    const [showProjectForm, setShowProjectForm] = useState(false)
+    const [title, setTitle] = useState("")
+    const [imageUrl, setImageUrl] = useState("")
+    const [description, setDescription] = useState(" ")
+    const [link, setLink] = useState("")
+
+   
+    const createProjects = async (e) => {
+        e.preventDefault()
+        const { data, error } = await supabase
+            .from('projects')
+            .insert(
+                { user_id: session.user.id, title: title, image: imageUrl, description: description, link: link }
+            )
+            .single()
+    }
 
     const getProjects = async (e) => {
         let { data, error } = await supabase
@@ -23,20 +39,51 @@ export default function Table() {
             .delete()
             .match({ id: id })
     }
+
     useEffect(() => {
         getProjects()
     }, [])
+
     
+
 
 
     return (
         <div>
             <div className="mt-[50px] w-4/5 ml-[300px] px-4 sm:px-6 lg:px-8">
-                <div className="sm:flex sm:items-center">
+                <div className="flex flex-col items-center sm:w-full md:w-full">
 
-                    <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                        <button type="button" className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add projects</button>
+                    <div className="sm:mt-0 sm:ml-16 sm:flex-none">
+                        <button type="button" onClick={() => setShowProjectForm(true)} className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add projects</button>
                     </div>
+                    {/*add projects here */}
+
+                    <div className={`ring-1 p-6 mt-[40px] rounded-lg w-1/2 md:w-1/2 ${showProjectForm ? "" : "hidden "}`}>
+                        <form onSubmit={(e) => createProjects(e)}>
+                            <div className="mb-6">
+                                <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
+                                <input type="text" id="text" value={title} onChange={(e)=> setTitle(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                            </div>
+                            <div className="mb-6">
+                                <label htmlFor="imageUrl" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Image URL</label>
+                                <input type="text" id="text" value={imageUrl} onChange={(e)=> setImageUrl(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                            </div>
+                            <div className="mb-6">
+                                <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Description</label>
+                                <input type="text" id="text" value={description} onChange={(e)=> setDescription(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                            </div>
+                            <div className="mb-6">
+                                <label htmlFor="link" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Link</label>
+                                <input type="text" id="text" value={link} onChange={(e)=> setLink(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                            </div>
+
+                            <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                            <button type="button" onClick={() => setShowProjectForm(false)} className="ml-[20px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Close</button>
+                        </form>
+                    </div>
+
+
+                    {/*add projects here */}
                 </div>
                 <div className="mt-8 flex flex-col">
                     <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -94,8 +141,8 @@ export default function Table() {
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-200">{item.description}</td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-200">{item.link}</td>
                                                 <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                    <button  onClick={() => deleteProject(item.id)} className="text-red-600 hover:text-red-900">Delete<span className="sr-only">, Lindsay Walton</span></button>
-                                                    <button  className="text-indigo-600 hover:text-indigo-900">Edit<span className="sr-only">, Lindsay Walton</span></button>
+                                                    <button onClick={() => deleteProject(item.id)} className="text-red-600 hover:text-red-900">Delete<span className="sr-only">, Lindsay Walton</span></button>
+                                                    <button className="text-indigo-600 hover:text-indigo-900">Edit<span className="sr-only">, Lindsay Walton</span></button>
                                                 </td>
                                             </tr>
                                         ))}
