@@ -30,7 +30,7 @@ export default function Home() {
     return (
         <Router>
             {showNav &&
-                <Navigation />
+                <Navigation session={session}/>
             }
             <Routes>
                 <Route exact path="/" element={<App />} />

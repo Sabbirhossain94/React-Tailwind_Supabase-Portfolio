@@ -22,7 +22,7 @@ export default function Dashboard({ session, funcNav }) {
                                 <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
                             </div>
                             <nav className="mt-5 space-y-1 px-2">
-                                <a href="#" className="group flex items-center rounded-md bg-gray-900 px-2 py-2 text-base font-medium text-white">
+                                <a href="#" className="group flex items-center rounded-md px-2 py-2 text-base font-medium text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-3 h-6 w-6 flex-shrink-0 text-gray-300">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
                                     </svg>
@@ -55,7 +55,7 @@ export default function Dashboard({ session, funcNav }) {
                     <div className="w-14 flex-shrink-0"></div>
                 </div>
             </div>
-           {/* sidebar from md to lg screen */}
+            {/* sidebar from md to lg screen */}
             <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
                 <div className="flex min-h-0 flex-1 flex-col bg-gray-800">
                     <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
@@ -63,7 +63,7 @@ export default function Dashboard({ session, funcNav }) {
                             <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
                         </div>
                         <nav className="mt-5 flex-1 space-y-1 px-2">
-                            <a href="#" className="group flex items-center rounded-md bg-gray-900 px-2 py-2 text-sm font-medium text-white">
+                            <a href="#" className="group flex items-center rounded-md px-2 py-2 text-sm hover:bg-gray-700 font-medium text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-3 h-6 w-6 flex-shrink-0 text-gray-300">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
                                 </svg>
@@ -84,7 +84,7 @@ export default function Dashboard({ session, funcNav }) {
                                     <img className="inline-block h-9 w-9 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
                                 </div>
                                 <div className="ml-3">
-                                 <p className="text-sm font-medium text-white">Tom</p>
+                                    <p className="text-sm font-medium text-white">Tom</p>
                                     <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200">View profile</p>
                                 </div>
                             </div>
@@ -94,8 +94,6 @@ export default function Dashboard({ session, funcNav }) {
             </div>
             {/*insert table here */}
             <Table />
-
-
         </div>
     )
 }
