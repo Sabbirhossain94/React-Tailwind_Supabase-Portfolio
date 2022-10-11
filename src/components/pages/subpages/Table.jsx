@@ -2,26 +2,30 @@ import React from 'react'
 import { supabase } from '../../../supabaseClient'
 import { useState, useEffect } from 'react';
 import "../../../../src/animation.css"
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
+import AddProject from './AddProject';
 
-export default function Table({ session }) {
+export default function Table({ }) {
 
+    const params = useParams()
+    console.log(params.id)
     const [allprojects, setAllProjects] = useState([])
     const [showProjectForm, setShowProjectForm] = useState(false)
-    const [title, setTitle] = useState("")
-    const [imageUrl, setImageUrl] = useState("")
-    const [description, setDescription] = useState(" ")
-    const [link, setLink] = useState("")
-    const date = new Date().toLocaleDateString()
 
-    const createProjects = async (e) => {
-        e.preventDefault()
-        const { data, error } = await supabase
-            .from('projects')
-            .insert(
-                { user_id: session.user.id, title: title, image: imageUrl, description: description, link: link, inserted_at: date }
-            )
-            .single()
-    }
+
+    // const handleSubmit = aysnc(e) => {
+    //     e.preventDefault();
+    //     if (params.id) {
+
+    //         updateBlogContent(e)
+    //     }
+    //     else {
+
+    //         createBlog(e)
+    //     }
+    // }
+
 
     const getProjects = async (e) => {
         let { data, error } = await supabase
@@ -33,14 +37,7 @@ export default function Table({ session }) {
             setAllProjects(data)
         }
     }
-    const updateProject = async (id) => {
-        const item_id=id
-        const { data, error } = await supabase
-            .from('projects')
-            .update({ user_id: session.user.id, title: title, image: imageUrl, description: description, link: link, inserted_at: date })
-            .match({ id: item_id })
 
-    }
     const deleteProject = async (id) => {
         const { data, error } = await supabase
             .from('projects')
@@ -55,40 +52,21 @@ export default function Table({ session }) {
 
     return (
         <div>
+            {showProjectForm && <AddProject
+                showProjectForm={showProjectForm}
+                setShowProjectForm={setShowProjectForm}
+
+            />}
+
             <div className="mt-[50px] w-4/5 ml-[300px] px-4 sm:px-6 lg:px-8 ">
                 <div className="flex flex-col  items-end sm:w-full md:w-full">
 
                     <div className="sm:mt-0 sm:ml-16 sm:flex-none">
-                        <button type="button" onClick={() => setShowProjectForm(true)} className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add projects</button>
+                        <Link to="/dashboard/addproject">
+                            <button type="button" onClick={() => setShowProjectForm(true)} className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add projects</button>
+                        </Link>
                     </div>
-                    {/*add projects here */}
 
-                    <div className={`ring-1 p-6 mt-[40px] rounded-lg w-1/2 md:w-1/2 ${showProjectForm ? "" : "hidden "}`}>
-                        <form onSubmit={(e) => createProjects(e)}>
-                            <div className="mb-6">
-                                <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
-                                <input type="text" id="text" value={title} onChange={(e) => setTitle(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                            </div>
-                            <div className="mb-6">
-                                <label htmlFor="imageUrl" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Image URL</label>
-                                <input type="text" id="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                            </div>
-                            <div className="mb-6">
-                                <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Description</label>
-                                <input type="text" id="text" value={description} onChange={(e) => setDescription(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                            </div>
-                            <div className="mb-6">
-                                <label htmlFor="link" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Link</label>
-                                <input type="text" id="text" value={link} onChange={(e) => setLink(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                            </div>
-                            <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-                            <button type="button" onClick={() => setShowProjectForm(false)} className="ml-[20px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Close</button>
-                        </form>
-                    </div>
-                    
-
-
-                    {/*add projects here */}
                 </div>
                 <div className="mt-8 flex flex-col">
                     <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -147,7 +125,7 @@ export default function Table({ session }) {
                                                         </svg>
                                                         <span className="sr-only">, Lindsay Walton</span>
                                                     </button>
-                                                    <button onClick={() => updateProject(item.id)} className="text-indigo-600 hover:text-indigo-900">
+                                                    <button className="text-indigo-600 hover:text-indigo-900">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                                                             <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                                         </svg>

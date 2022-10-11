@@ -93,7 +93,7 @@ export default function Dashboard({ session, funcNav }) {
                 </div>
             </div>
             {/*insert table here */}
-            <Table session={session} />
+            <Table />
 
 
         </div>
