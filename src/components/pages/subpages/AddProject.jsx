@@ -8,7 +8,6 @@ export default function AddProject({ session, funcNav }) {
 
     funcNav(false)
     const params = useParams();
-    console.log(params)
     const [title, setTitle] = useState("")
     const [imageUrl, setImageUrl] = useState("")
     const [description, setDescription] = useState(" ")
