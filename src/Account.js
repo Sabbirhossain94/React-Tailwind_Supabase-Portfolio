@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { supabase } from './supabaseClient'
+import { superBlogClient } from './superBlogClient'
 
 const Account = ({ session }) => {
     const [loading, setLoading] = useState(true)
@@ -16,7 +16,7 @@ const Account = ({ session }) => {
             setLoading(true)
             const { user } = session
 
-            let { data, error, status } = await supabase
+            let { data, error, status } = await superBlogClient
                 .from('profiles')
                 .select(`username, website, avatar_url`)
                 .eq('id', user.id)
@@ -53,7 +53,7 @@ const Account = ({ session }) => {
                 updated_at: new Date(),
             }
 
-            let { error } = await supabase.from('profiles').upsert(updates)
+            let { error } = await superBlogClient.from('profiles').upsert(updates)
 
             if (error) {
                 throw error
@@ -111,7 +111,7 @@ const Account = ({ session }) => {
                         <button
                             type="button"
                             className="flex w-11/12 justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                            onClick={() => supabase.auth.signOut()}
+                            onClick={() => superBlogClient.auth.signOut()}
                         >
                             Sign Out
                         </button></div>

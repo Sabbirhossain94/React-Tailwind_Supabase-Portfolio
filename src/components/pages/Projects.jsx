@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import ProjectsDetails from '../ProjectsDetails';
-import { supabase } from '../../supabaseClient';
+import { superBlogClient } from '../../superBlogClient';
 
 export default function Projects() {
 
@@ -9,7 +9,7 @@ export default function Projects() {
     const [allprojects, setAllProjects] = useState([])
 
     const getProjects = async (e) => {
-        let { data, error } = await supabase
+        let { data, error } = await superBlogClient
             .from('projects')
             .select('*')
         if (error) {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { supabase } from '../../supabaseClient'
+import { superBlogClient } from '../../superBlogClient'
 
 export default function Sign() {
     const [loading, setLoading] = useState(false)
@@ -9,7 +9,7 @@ export default function Sign() {
     const handleLogin = async (e) => {
         e.preventDefault()
         setLoading(true)
-        const { error } = await supabase.auth.signInWithOtp({ email })
+        const { error } = await superBlogClient.auth.signInWithOtp({ email })
         if (error) {
             console.log(error)
         }

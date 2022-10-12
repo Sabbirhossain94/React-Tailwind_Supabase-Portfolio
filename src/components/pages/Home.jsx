@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import App from '../../App'
-import { supabase } from '../../supabaseClient'
+import { superBlogClient } from '../../superBlogClient'
 import Projects from "./Projects"
 import Contact from './Contact'
 import Navigation from '../Navigation'
@@ -17,11 +17,11 @@ export default function Home() {
     const [showNav, setShowNav] = useState(true);
     useEffect(() => {
 
-        supabase.auth.getSession().then(({ data: { session } }) => {
+        superBlogClient.auth.getSession().then(({ data: { session } }) => {
             setSession(session)
         })
 
-        supabase.auth.onAuthStateChange((_event, session) => {
+        superBlogClient.auth.onAuthStateChange((_event, session) => {
             setSession(session)
         })
 

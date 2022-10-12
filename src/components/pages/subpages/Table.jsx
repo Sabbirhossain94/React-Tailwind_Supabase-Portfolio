@@ -1,5 +1,5 @@
 import React from 'react'
-import { supabase } from '../../../supabaseClient'
+import { superBlogClient } from '../../../superBlogClient';
 import { useState, useEffect } from 'react';
 import "../../../../src/animation.css"
 import { Link } from 'react-router-dom';
@@ -13,7 +13,7 @@ export default function Table({ }) {
 
 
     const getProjects = async (e) => {
-        let { data, error } = await supabase
+        let { data, error } = await superBlogClient
             .from('projects')
             .select('*')
         if (error) {
@@ -24,7 +24,7 @@ export default function Table({ }) {
     }
 
     const deleteProject = async (id) => {
-        const { data, error } = await supabase
+        const { data, error } = await superBlogClient
             .from('projects')
             .delete()
             .match({ id: id })
