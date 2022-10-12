@@ -7,7 +7,7 @@ function App() {
   return (
 
     <div>
-      <div id="__next">
+      <div >
         <div className="relative">
           <header className="pointer-events-none relative z-50 flex flex-col" style={{ height: "var(--header-height)", marginBottom: "var(--header-mb)" }}>
             <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"></div>

@@ -5,22 +5,9 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 export default function BlogFeed() {
 
-    const [session, setSession] = useState(null);
     const [isVisible, setIsVisible] = useState(false)
     const [showMoreblogs, setShowMoreblogs] = useState(2)
     const [allBlog, setAllBlog] = useState([]);
-
-    useEffect(() => {
-
-        superBlogClient.auth.getSession().then(({ data: { session } }) => {
-            setSession(session)
-        })
-
-        superBlogClient.auth.onAuthStateChange((_event, session) => {
-            setSession(session)
-        })
-
-    }, [])
 
     const fetchMoreBlogs = () => {
         setShowMoreblogs(prevState => prevState + 3)

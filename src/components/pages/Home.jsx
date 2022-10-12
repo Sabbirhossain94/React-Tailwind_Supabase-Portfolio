@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import App from '../../App'
-import { superBlogClient } from '../../superBlogClient'
+import { portfolioClient } from '../../portfolioClient'
 import Projects from "./Projects"
 import Contact from './Contact'
 import Navigation from '../Navigation'
@@ -10,6 +10,7 @@ import Sign from './Sign'
 import Dashboard from './Dashboard'
 import Account from '../../Account'
 import AddProject from './subpages/AddProject'
+import { superBlogClient } from '../../superBlogClient'
 
 export default function Home() {
 

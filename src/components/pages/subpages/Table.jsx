@@ -1,9 +1,8 @@
 import React from 'react'
-import { superBlogClient } from '../../../superBlogClient';
+import { portfolioClient } from '../../../portfolioClient';
 import { useState, useEffect } from 'react';
 import "../../../../src/animation.css"
 import { Link } from 'react-router-dom';
-//import { useParams } from 'react-router-dom'
 import AddProject from './AddProject';
 
 export default function Table({ }) {
@@ -13,7 +12,7 @@ export default function Table({ }) {
 
 
     const getProjects = async (e) => {
-        let { data, error } = await superBlogClient
+        let { data, error } = await portfolioClient
             .from('projects')
             .select('*')
         if (error) {
@@ -24,7 +23,7 @@ export default function Table({ }) {
     }
 
     const deleteProject = async (id) => {
-        const { data, error } = await superBlogClient
+        const { data, error } = await portfolioClient
             .from('projects')
             .delete()
             .match({ id: id })

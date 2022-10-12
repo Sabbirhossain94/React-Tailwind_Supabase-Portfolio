@@ -1,5 +1,6 @@
 import React from 'react'
 import Table from './subpages/Table'
+import { portfolioClient } from '../../portfolioClient'
 
 export default function Dashboard({ session, funcNav }) {
     funcNav(false)

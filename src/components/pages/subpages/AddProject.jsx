@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { superBlogClient } from '../../../superBlogClient';
+import { portfolioClient } from '../../../portfolioClient';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
 
@@ -27,7 +27,7 @@ export default function AddProject({ session, funcNav }) {
 
     const createProjects = async (e) => {
         e.preventDefault()
-        const { data, error } = await superBlogClient
+        const { data, error } = await portfolioClient
             .from('projects')
             .insert(
                 { user_id: session.user.id, title: title, image: imageUrl, description: description, link: link, inserted_at: date }
@@ -37,7 +37,7 @@ export default function AddProject({ session, funcNav }) {
 
     const loadBlogContent = async (e) => {
 
-        let { data, error } = await superBlogClient
+        let { data, error } = await portfolioClient
             .from('projects')
             .select('*')
             .match({ id: params.id })
@@ -55,7 +55,7 @@ export default function AddProject({ session, funcNav }) {
 
     const updateProject = async (e) => {
 
-        const { data, error } = await superBlogClient
+        const { data, error } = await portfolioClient
             .from('projects')
             .update({ user_id: session.user.id, title: title, image: imageUrl, description: description, link: link, inserted_at: date })
             .match({ id: params.id })
