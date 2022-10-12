@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 export default function BlogFeed() {
 
     const [session, setSession] = useState(null);
-
+    const [showMoreblogs, setShowMoreblogs] = useState(2)
     const [allBlog, setAllBlog] = useState([]);
 
     useEffect(() => {
@@ -19,30 +19,35 @@ export default function BlogFeed() {
 
     }, [])
 
+    const fetchMoreBlogs = () => {
+        setShowMoreblogs(prevState => prevState + 3)
+
+    }
+
     const getAllBlogs = async (e) => {
 
         let { data, error } = await superBlogClient
             .from('blogs')
             .select('*')
-            .range(0, 2)
+            .range(0, showMoreblogs)
         if (error) {
             console.log(error)
         } else {
-            
+
             setAllBlog(data);
         }
     }
 
     useEffect(() => {
         getAllBlogs()
-    }, [])
+    }, [showMoreblogs])
 
     return (
         <div>
             <div className="flex flex-col gap-16">
                 {allBlog.map((item) => (
 
-                  <li key={item.id} className="list-none"><article className="group relative flex flex-col items-start">
+                    <li key={item.id} className="list-none"><article className="group relative flex flex-col items-start">
                         <h2 className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
                             <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"></div>
                             <a href="#">
@@ -57,9 +62,7 @@ export default function BlogFeed() {
                                 </span>
                             </span>{item.inserted_at}
                         </time>
-                        <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                            {item.content}
-                        </p>
+                        <div className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400" dangerouslySetInnerHTML={{ __html: item.content }} />
                         <div aria-hidden="true" className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500">
                             Read article
                             <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="ml-1 h-4 w-4 stroke-current">
@@ -69,14 +72,14 @@ export default function BlogFeed() {
                             </svg>
                         </div>
                     </article>
-                    </li> 
+                    </li>
 
                 ))}
-                <a className="inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none bg-zinc-50 font-medium text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-6 w-full" href="/#">Download CV<svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50">
+                <button onClick={fetchMoreBlogs} className="inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none bg-zinc-50 font-medium text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-6 w-full" href="/#">Show More<svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50">
                     <path d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     </path>
                 </svg>
-                </a>
+                </button>
             </div>
         </div>
     )
