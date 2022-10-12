@@ -1,7 +1,6 @@
 import './App.css';
-//import Navigation from './components/Navigation';
-//import Projects from './components/pages/Projects';
 import BlogFeed from './components/BlogFeed';
+import Scroll_to_top from "./components/sub-components/Scroll_to_top"
 
 function App() {
 
@@ -286,7 +285,7 @@ function App() {
                     <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
 
                       <BlogFeed />
-                     
+
                       <div className="space-y-10 lg:pl-16 xl:pl-24">
                         <form action="/thank-you" className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
                           <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
@@ -421,6 +420,9 @@ function App() {
                 </div>
               </div>
             </div>
+            {/*scroll to top button */}
+          <Scroll_to_top />
+            {/**/}
           </main>
           <footer className="mt-32">
             <div className="sm:px-8">
