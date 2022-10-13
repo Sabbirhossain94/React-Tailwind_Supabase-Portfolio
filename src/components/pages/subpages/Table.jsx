@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import AddProject from './AddProject';
 
-export default function Table({session }) {
+export default function Table({ session }) {
 
     const [allprojects, setAllProjects] = useState([])
     const [showProjectForm, setShowProjectForm] = useState(false)
@@ -61,34 +61,34 @@ export default function Table({session }) {
                                     <thead className="bg-slate-700">
                                         <tr>
                                             <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-200 sm:pl-6">
-                                                <a href="#" className="group inline-flex">
+                                                <p href="#" className="group inline-flex">
                                                     Title
 
-                                                </a>
+                                                </p>
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">
-                                                <a href="#" className="group inline-flex">
+                                                <p href="#" className="group inline-flex">
                                                     Image
 
-                                                </a>
+                                                </p>
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">
-                                                <a href="#" className="group inline-flex">
+                                                <p href="#" className="group inline-flex">
                                                     Description
 
-                                                </a>
+                                                </p>
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">
-                                                <a href="#" className="group inline-flex">
+                                                <p href="#" className="group inline-flex">
                                                     Link
 
-                                                </a>
+                                                </p>
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-200">
-                                                <a href="#" className="group inline-flex">
+                                                <p href="#" className="group inline-flex">
                                                     Inserted at
 
-                                                </a>
+                                                </p>
                                             </th>
                                             <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
                                                 <span className="sr-only">Edit</span>

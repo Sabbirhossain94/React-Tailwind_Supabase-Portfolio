@@ -1,16 +1,16 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 
 export default function Navigation() {
 
-    const navLinkStyles = ({ isActive }) => {
-        return {
+    // const navLinkStyles = ({ isActive }) => {
+    //     return {
 
-            color: isActive ? "blue" : "gray",
+    //         color: isActive ? "blue" : "gray",
 
-        }
-    }
+    //     }
+    // }
     const [dark, setDark] = useState(true);
     useEffect(() => {
         if (dark) {

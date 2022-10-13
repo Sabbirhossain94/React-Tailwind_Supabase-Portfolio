@@ -35,7 +35,7 @@ export default function BlogFeed({session}) {
 
     useEffect(() => {
         getAllBlogs()
-    }, [showMoreblogs])
+    }, [allBlog])
 
     return (
         <div>
@@ -47,7 +47,7 @@ export default function BlogFeed({session}) {
                         in={isVisible}
                         classNames="slide"
                         timeout={300}
-                        unmountOnExit={true}
+                        
                     >
                         <li key={item.id} className="list-none"><article className=" group relative flex flex-col items-start">
                             <h2 className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">

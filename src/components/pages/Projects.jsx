@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import ProjectsDetails from '../ProjectsDetails';
-//import { supabase } from '../../supabaseClient';
 import { portfolioClient } from '../../portfolioClient';
 
 export default function Projects() {
