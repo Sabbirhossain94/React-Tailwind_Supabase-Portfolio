@@ -10,12 +10,6 @@ export default function BlogFeed({session}) {
     const [showMoreblogs, setShowMoreblogs] = useState(2)
     const [allBlog, setAllBlog] = useState([]);
 
-    useEffect(() => {
-
-   
-
-    }, [])
-
     const fetchMoreBlogs = () => {
         setShowMoreblogs(prevState => prevState + 3)
 

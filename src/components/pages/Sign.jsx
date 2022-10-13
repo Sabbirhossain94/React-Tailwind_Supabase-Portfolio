@@ -1,7 +1,7 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
-import { supabase } from '../../supabaseClient'
+import { useState } from 'react'
 import { portfolioClient } from '../../portfolioClient'
+
 export default function Sign() {
     const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState('')

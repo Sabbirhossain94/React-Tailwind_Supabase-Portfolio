@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import ProjectsDetails from '../ProjectsDetails';
-import { supabase } from '../../supabaseClient';
+//import { supabase } from '../../supabaseClient';
+import { portfolioClient } from '../../portfolioClient';
 
 export default function Projects() {
 
@@ -9,7 +10,7 @@ export default function Projects() {
     const [allprojects, setAllProjects] = useState([])
 
     const getProjects = async (e) => {
-        let { data, error } = await supabase
+        let { data, error } = await portfolioClient
             .from('projects')
             .select('*')
         if (error) {
