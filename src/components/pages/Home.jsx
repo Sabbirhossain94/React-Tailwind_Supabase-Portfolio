@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import App from '../../App'
-import { supabase } from '../../supabaseClient'
+import { portfolioClient } from '../../portfolioClient'
 import Projects from "./Projects"
 import Contact from './Contact'
 import Navigation from '../Navigation'
@@ -10,6 +10,8 @@ import Sign from './Sign'
 import Dashboard from './Dashboard'
 import Account from '../../Account'
 import AddProject from './subpages/AddProject'
+//import { superBlogClient } from '../../superBlogClient'
+
 
 export default function Home() {
 
@@ -17,11 +19,11 @@ export default function Home() {
     const [showNav, setShowNav] = useState(true);
     useEffect(() => {
 
-        supabase.auth.getSession().then(({ data: { session } }) => {
+        portfolioClient.auth.getSession().then(({ data: { session } }) => {
             setSession(session)
         })
 
-        supabase.auth.onAuthStateChange((_event, session) => {
+        portfolioClient.auth.onAuthStateChange((_event, session) => {
             setSession(session)
         })
 
@@ -30,10 +32,10 @@ export default function Home() {
     return (
         <Router>
             {showNav &&
-                <Navigation />
+                <Navigation session={session}/>
             }
             <Routes>
-                <Route exact path="/" element={<App />} />
+                <Route exact path="/" element={<App session={session}/>} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/sign" element={<Sign />} />

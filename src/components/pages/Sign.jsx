@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { supabase } from '../../supabaseClient'
-
+import { portfolioClient } from '../../portfolioClient'
 export default function Sign() {
     const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState('')
@@ -9,7 +9,7 @@ export default function Sign() {
     const handleLogin = async (e) => {
         e.preventDefault()
         setLoading(true)
-        const { error } = await supabase.auth.signInWithOtp({ email })
+        const { error } = await portfolioClient.auth.signInWithOtp({ email })
         if (error) {
             console.log(error)
         }
