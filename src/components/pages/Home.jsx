@@ -10,13 +10,16 @@ import Sign from './Sign'
 import Dashboard from './Dashboard'
 import Account from '../../Account'
 import AddProject from './subpages/AddProject'
-
+import Sidebar from './subpages/Sidebar'
+import Table from './subpages/Table'
+import Gallery from './subpages/Gallery'
 
 
 export default function Home() {
 
     const [session, setSession] = useState(null);
     const [showNav, setShowNav] = useState(true);
+    const [showSideNav, setShowSideNav] = useState(false);
     useEffect(() => {
 
         portfolioClient.auth.getSession().then(({ data: { session } }) => {
@@ -32,14 +35,20 @@ export default function Home() {
     return (
         <Router>
             {showNav &&
-                <Navigation session={session}/>
+                <Navigation session={session} />
             }
+            {showSideNav &&
+                <Sidebar session={session} />
+            }
+
             <Routes>
-                <Route exact path="/" element={<App session={session}/>} />
+                <Route exact path="/" element={<App session={session} />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/sign" element={<Sign />} />
-                <Route path="/dashboard" element={<Dashboard session={session} funcNav={setShowNav} />} />
+                <Route path="/dashboard" element={<Dashboard session={session} funcNav={setShowNav} funcSideNav={setShowSideNav} />} />
+                <Route path="/dashboard/projects" element={<Table session={session} funcSideNav={setShowSideNav} />} />
+                <Route path="/dashboard/gallery" element={<Gallery session={session} funcSideNav={setShowSideNav} />} />
                 <Route path="/dashboard/:id" element={<AddProject session={session} funcNav={setShowNav} />} />
                 <Route path="/dashboard/:id/update" element={<AddProject session={session} funcNav={setShowNav} />} />
                 <Route path="/account" element={<Account session={session} />} />

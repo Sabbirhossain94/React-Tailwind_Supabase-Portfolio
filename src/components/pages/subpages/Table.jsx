@@ -3,7 +3,6 @@ import { portfolioClient } from '../../../portfolioClient';
 import { useState, useEffect } from 'react';
 import "../../../../src/animation.css"
 import { Link } from 'react-router-dom';
-
 import AddProject from './AddProject';
 
 export default function Table({ session }) {
@@ -37,6 +36,7 @@ export default function Table({ session }) {
 
     return (
         <div>
+            
             {showProjectForm && <AddProject
                 showProjectForm={showProjectForm}
                 setShowProjectForm={setShowProjectForm}
