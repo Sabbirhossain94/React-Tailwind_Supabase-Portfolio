@@ -69,7 +69,7 @@ const Account = ({ session }) => {
         <div>
             <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8 sm:w-3/4 sm:mx-auto">
                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                    <h3 className="text-center text-xl font-bold tracking-tight text-white">Update your profile</h3>
+                    <h3 className="text-center text-xl font-bold tracking-tight dark:text-white">Update your profile</h3>
                 </div>
                 <div className="ring-1 rounded mt-4 sm:mx-auto sm:w-full sm:max-w-md">
                     
@@ -78,11 +78,11 @@ const Account = ({ session }) => {
                             'Saving ...'
                         ) : (
                             <form onSubmit={updateProfile} className="space-y-6 p-5">
-                                <div className="ring-1 inputField block w-full appearance-none rounded-md border  px-3 py-2 text-white shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" >Email: {session.user.email}</div>
+                                <div className="ring-1 inputField block w-full appearance-none rounded-md border  px-3 py-2 dark:text-white shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" >Email: {session.user.email}</div>
                                 <div>
-                                    <label htmlFor="username" className="block text-sm font-medium text-white">Name</label>
+                                    <label htmlFor="username" className="block text-sm font-medium dark:text-white">Name</label>
                                     <input
-                                        className="ring-1 inputField bg-slate-800 block w-full text-white appearance-none rounded-md border border-slate-800 px-3 py-2  shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                        className="ring-1 inputField dark:bg-slate-800 block w-full text-white appearance-none rounded-md border  px-3 py-2  shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                         id="username"
                                         type="text"
                                         placeholder="username"
@@ -91,11 +91,12 @@ const Account = ({ session }) => {
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="website" className="block text-sm font-medium text-white">Website</label>
+                                    <label htmlFor="website" className="block text-sm font-medium dark:text-white">Website</label>
                                     <input
-                                        className="ring-1 inputField bg-slate-800 block w-full text-white appearance-none rounded-md border border-slate-800 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                        className="ring-1 inputField dark:bg-slate-800 block w-full text-white appearance-none rounded-md border  px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                         id="website"
                                         type="url"
+                                        placeholder='https://'
                                         value={website || ''}
                                         onChange={(e) => setWebsite(e.target.value)}
                                     />

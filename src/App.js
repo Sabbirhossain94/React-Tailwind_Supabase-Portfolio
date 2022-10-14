@@ -1,13 +1,13 @@
 import './App.css';
 import BlogFeed from './components/BlogFeed';
-
+import Scroll_to_top from "./components/sub-components/Scroll_to_top"
 
 function App({session}) {
 
   return (
 
     <div>
-      <div id="__next">
+      <div>
         <div className="relative">
           <header className="pointer-events-none relative z-50 flex flex-col" style={{ height: "var(--header-height)", marginBottom: "var(--header-mb)" }}>
             <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"></div>
@@ -419,6 +419,7 @@ function App({session}) {
               </div>
             </div>
           </main>
+          <Scroll_to_top/>
           <footer className="mt-32">
             <div className="sm:px-8">
               <div className="mx-auto max-w-7xl lg:px-8">
