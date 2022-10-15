@@ -103,6 +103,7 @@ export default function Gallery() {
                     onChange={uploadImage}
                 ></input>
             </div>
+            
         </div>
     )
 }
