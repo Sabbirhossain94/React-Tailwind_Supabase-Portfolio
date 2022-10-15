@@ -44,7 +44,7 @@ export default function Gallery() {
         } catch (error) {
             alert(error.message)
         } finally {
-          console.log("successfully uploaded the file")
+            console.log("successfully uploaded the file")
         }
     }
     useEffect(() => {
