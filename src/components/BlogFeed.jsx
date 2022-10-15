@@ -39,10 +39,10 @@ export default function BlogFeed({ session }) {
 
     return (
         <div>
-                    <h3 class="text-2xl font-bold mb-12  tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-3xl">Recent Blogs</h3>
+            <h3 className="text-2xl font-bold mb-12  tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-3xl">Recent Blogs</h3>
 
             <TransitionGroup className="flex flex-col gap-16">
-                {/* <div className=""> */}
+
                 {allBlog.map((item) => (
                     <CSSTransition
                         key={item.id}

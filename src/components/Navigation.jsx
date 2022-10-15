@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function Navigation() {
 
@@ -27,11 +27,11 @@ export default function Navigation() {
             <nav className=" bg-slate-900">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between">
-                        <div className="flex items-center">
-                            <div className="flex-shrink-0">
+                        <div className="flex items-center md:ml-[80px]">
+                            {/* <div className="flex-shrink-0">
                                 <img className="block h-8 w-auto lg:hidden" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
                                 <img className="hidden h-8 w-auto lg:block" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
-                            </div>
+                            </div> */}
                             <div className="hidden sm:ml-6 sm:block">
                                 <div className="flex space-x-4">
                                     <NavLink to="/" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</NavLink>
