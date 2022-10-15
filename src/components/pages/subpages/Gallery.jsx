@@ -96,7 +96,7 @@ export default function Gallery() {
                 </div>
             </section>
             <div className='w-1/5 flex flex-col mx-auto mt-[100px]'>
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 bg-blu" for="file_input">Upload file</label>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 bg-blu" htmlFor="file_input">Upload file</label>
                 <input className="block w-full text-sm text-gray-900 bg-blue-500 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     id="file_input"
                     type="file"

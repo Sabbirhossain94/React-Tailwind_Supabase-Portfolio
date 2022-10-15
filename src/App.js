@@ -3,7 +3,9 @@ import BlogFeed from './components/BlogFeed';
 import Scroll_to_top from "./components/sub-components/Scroll_to_top"
 import { portfolioClient } from './portfolioClient';
 
-function App({ session }) {
+function App({ session ,funcTopNav,funcSideNav}) {
+  funcTopNav(true)
+  funcSideNav(false)
 
   const getImages = async (e) => {
 

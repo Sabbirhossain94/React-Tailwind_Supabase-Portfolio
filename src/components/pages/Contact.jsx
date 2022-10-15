@@ -1,6 +1,8 @@
 import React from 'react'
 
-export default function Contact() {
+export default function Contact({funcTopNav,funcSideNav}) {
+    funcTopNav(true)
+    funcSideNav(false)
     return (
         <div>
              <div className="bg-white dark:bg-slate-800 ">

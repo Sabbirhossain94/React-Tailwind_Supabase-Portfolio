@@ -2,7 +2,10 @@ import React from 'react'
 import { useState } from 'react'
 import { portfolioClient } from '../../portfolioClient'
 
-export default function Sign() {
+export default function Sign({funcTopNav,funcSideNav}) {
+    funcTopNav(true)
+    funcSideNav(false)
+
     const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState('')
 

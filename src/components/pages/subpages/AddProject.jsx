@@ -4,9 +4,9 @@ import { portfolioClient } from '../../../portfolioClient';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
 
-export default function AddProject({ session, funcNav }) {
+export default function AddProject({ session, funcTopNav }) {
 
-    funcNav(false)
+    funcTopNav(false)
     const params = useParams();
     console.log(params)
     const [title, setTitle] = useState("")

@@ -3,7 +3,9 @@ import { useState, useEffect } from 'react';
 import ProjectsDetails from '../ProjectsDetails';
 import { portfolioClient } from '../../portfolioClient';
 
-export default function Projects() {
+export default function Projects({funcTopNav,funcSideNav}) {
+    funcTopNav(true)
+    funcSideNav(false)
 
     const [showModal, setShowModal] = useState(false);
     const [allprojects, setAllProjects] = useState([])
