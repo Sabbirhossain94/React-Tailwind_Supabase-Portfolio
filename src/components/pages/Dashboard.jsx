@@ -10,7 +10,6 @@ export default function Dashboard({ session, funcNav, funcSideNav }) {
     return (
         <div>
             <Table />
-            
 
         </div>
     )
