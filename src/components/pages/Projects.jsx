@@ -35,7 +35,7 @@ export default function Projects({funcTopNav,funcSideNav}) {
                                 </div>
                                 <header className="max-w-2xl">
                                     <h1 className="text-4xl font-bold tracking-tight text-zinc-700 dark:text-zinc-500 sm:text-5xl">Things I've made trying to put my dent in the universe.</h1>
-                                    <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">I've worked on tons of little projects over the years but these are the ones that I'm most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved.</p>
+                                    <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">I've worked on several projects over the years but these are the ones that I'm most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved.</p>
                                 </header>
                                 <div className="mt-16 sm:mt-20">
                                     <ul role="list" className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">

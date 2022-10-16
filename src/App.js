@@ -1,24 +1,10 @@
 import './App.css';
 import BlogFeed from './components/BlogFeed';
 import Scroll_to_top from "./components/sub-components/Scroll_to_top"
-import { portfolioClient } from './portfolioClient';
-
+import { Link } from 'react-router-dom';
 function App({ session, funcTopNav, funcSideNav }) {
   funcTopNav(true)
   funcSideNav(false)
-
-  const getImages = async (e) => {
-
-    const { data, error } = await portfolioClient
-      .storage.from('image').download('public/CV.pdf')
-
-    if (error) {
-      console.log(error)
-    } else {
-      console.log(data)
-
-    }
-  }
 
   return (
 
@@ -67,10 +53,10 @@ function App({ session, funcTopNav, funcSideNav }) {
                 <div className="relative px-4 sm:px-8 lg:px-12">
                   <div className="mx-auto max-w-2xl lg:max-w-5xl">
                     <div className="max-w-2xl">
-                      <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">Software designer, founder, and amateur astronaut.</h1>
-                      <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-                        I'm Spencer, a software designer and entrepreneur based in New York City. I'm the founder and CEO of Planetaria, where we develop technologies that empower regular people to explore space on their own
-                        terms.
+                      <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">Full Stack Web developer</h1>
+                      <p className="typingeffect mt-6 text-base text-zinc-600 dark:text-zinc-400">
+                        I'm Sabbir, a web developer based in Dhaka, Bangladesh. I have experience building websites based on React JS, Next JS and other cool frameworks. I love to learn new things everyday.
+
                       </p>
                       <div className="mt-6 flex gap-6">
 
@@ -115,44 +101,44 @@ function App({ session, funcTopNav, funcSideNav }) {
                                 className="stroke-zinc-400 dark:stroke-zinc-500"
                               ></path>
                             </svg>
-                            <span className="ml-3">Work</span>
+                            <span className="ml-3">Education and Certifications</span>
                           </h2>
                           <ol className="mt-6 space-y-4">
                             <li className="flex gap-4">
                               <div
                                 className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
                               >
-                                <img alt="" src="/_next/static/media/planetaria.ecd81ade.svg" width="32" height="32" decoding="async" data-nimg="future" className="h-7 w-7" loading="lazy" style={{ color: "transparent" }} />
+                                <img alt="" src="https://i.imgur.com/ptq7E9Q.jpg" width="32" height="32" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
                               </div>
                               <dl className="flex flex-auto flex-wrap gap-x-2">
-                                <dt className="sr-only">Company</dt>
-                                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">Planetaria</dd>
+                                <dt className="sr-only">Institution</dt>
+                                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">Bachelor in CSE</dd>
                                 <dt className="sr-only">Role</dt>
-                                <dd className="text-xs text-zinc-500 dark:text-zinc-400">CEO</dd>
+                                <dd className="text-xs text-zinc-500 dark:text-zinc-400">East West University</dd>
                                 <dt className="sr-only">Date</dt>
                                 <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2019 until Present">
-                                  <time dateTime="2019">2019</time>
+                                  <time dateTime="2019">2015</time>
                                   <span aria-hidden="true">—</span>
-                                  <time dateTime="2022">Present</time>
+                                  <time dateTime="2022">2020</time>
                                 </dd>
                               </dl>
                             </li>
                             <li className="flex gap-4">
                               <div
-                                className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
+                                className=" relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
                               >
-                                <img alt="" src="/_next/static/media/airbnb.b4000690.svg" width="28" height="28" decoding="async" data-nimg="future" className="h-7 w-7" loading="lazy" style={{ color: "transparent" }} />
+                                <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
                               </div>
                               <dl className="flex flex-auto flex-wrap gap-x-2">
                                 <dt className="sr-only">Company</dt>
-                                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">Airbnb</dd>
+                                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
                                 <dt className="sr-only">Role</dt>
-                                <dd className="text-xs text-zinc-500 dark:text-zinc-400">Product Designer</dd>
+                                <dd className="text-xs text-zinc-500 dark:text-zinc-400">JS Algorithms and Data Structures</dd>
                                 <dt className="sr-only">Date</dt>
                                 <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2014 until 2019">
-                                  <time dateTime="2014">2014</time>
                                   <span aria-hidden="true">—</span>
-                                  <time dateTime="2019">2019</time>
+                                  <time dateTime="2019">December 9,
+                                    2020</time>
                                 </dd>
                               </dl>
                             </li>
@@ -160,18 +146,18 @@ function App({ session, funcTopNav, funcSideNav }) {
                               <div
                                 className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
                               >
-                                <img alt="" src="/_next/static/media/facebook.dd9e7d48.svg" width="28" height="28" decoding="async" data-nimg="future" className="h-7 w-7" loading="lazy" style={{ color: "transparent" }} />
+                                <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
                               </div>
                               <dl className="flex flex-auto flex-wrap gap-x-2">
                                 <dt className="sr-only">Company</dt>
-                                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">Facebook</dd>
+                                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
                                 <dt className="sr-only">Role</dt>
-                                <dd className="text-xs text-zinc-500 dark:text-zinc-400">iOS Software Engineer</dd>
+                                <dd className="text-xs text-zinc-500 dark:text-zinc-400">Responsive Web Design</dd>
                                 <dt className="sr-only">Date</dt>
                                 <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2011 until 2014">
-                                  <time dateTime="2011">2011</time>
                                   <span aria-hidden="true">—</span>
-                                  <time dateTime="2014">2014</time>
+                                  <time dateTime="2014">February 3,
+                                    2021</time>
                                 </dd>
                               </dl>
                             </li>
@@ -179,18 +165,37 @@ function App({ session, funcTopNav, funcSideNav }) {
                               <div
                                 className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
                               >
-                                <img alt="" src="/_next/static/media/starbucks.4a5bd050.svg" width="28" height="28" decoding="async" data-nimg="future" className="h-7 w-7" loading="lazy" style={{ color: "transparent" }} />
+                                <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
                               </div>
                               <dl className="flex flex-auto flex-wrap gap-x-2">
                                 <dt className="sr-only">Company</dt>
-                                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">Starbucks</dd>
+                                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
                                 <dt className="sr-only">Role</dt>
-                                <dd className="text-xs text-zinc-500 dark:text-zinc-400">Shift Supervisor</dd>
+                                <dd className="text-xs text-zinc-500 dark:text-zinc-400">Front End Development Libraries</dd>
                                 <dt className="sr-only">Date</dt>
                                 <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2008 until 2011">
-                                  <time dateTime="2008">2008</time>
                                   <span aria-hidden="true">—</span>
-                                  <time dateTime="2011">2011</time>
+                                  <time dateTime="2011">March 27,
+                                    2021</time>
+                                </dd>
+                              </dl>
+                            </li>
+                            <li className="flex gap-4">
+                              <div
+                                className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
+                              >
+                                <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
+                              </div>
+                              <dl className="flex flex-auto flex-wrap gap-x-2">
+                                <dt className="sr-only">Company</dt>
+                                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
+                                <dt className="sr-only">Role</dt>
+                                <dd className="text-xs text-zinc-500 dark:text-zinc-400">Back End Development and APIs</dd>
+                                <dt className="sr-only">Date</dt>
+                                <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2008 until 2011">
+                                  <span aria-hidden="true">—</span>
+                                  <time dateTime="2011">June 12,
+                                    2021</time>
                                 </dd>
                               </dl>
                             </li>
@@ -223,9 +228,9 @@ function App({ session, funcTopNav, funcSideNav }) {
                     <div className="mx-auto max-w-2xl lg:max-w-5xl">
                       <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
                         <div className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-                          <a className="transition hover:text-teal-500 dark:hover:text-teal-400" href="/about">About</a>
+                          <a className="transition hover:text-teal-500 dark:hover:text-teal-400" href="/">About</a>
                           <a className="transition hover:text-teal-500 dark:hover:text-teal-400" href="/projects">Projects</a>
-                          <a className="transition hover:text-teal-500 dark:hover:text-teal-400" href="/uses">Contact</a>
+                          <a className="transition hover:text-teal-500 dark:hover:text-teal-400" href="/contact">Contact</a>
                         </div>
                         <p className="text-sm text-zinc-400 dark:text-zinc-500">
                         </p>
