@@ -35,58 +35,38 @@ export default function Projects({ funcTopNav, funcSideNav }) {
                                     <h1 className="text-4xl font-bold tracking-tight text-zinc-700 dark:text-zinc-500 sm:text-5xl">Things I've made trying to put my dent in the universe.</h1>
                                     <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">I've worked on several projects over the years but these are the ones that I'm most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved.</p>
                                 </header>
-                                <div className="mt-16 sm:mt-20">
-                                    {/* {/* <ul role="list" className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
-
-                                        {/* {allprojects.map((item) =>
-                                            <li key={item.id} className="group relative flex flex-col items-start">
-                                                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-                                                    <img alt="" src={item.image} width="32" height="32" decoding="async" data-nimg="future" className="h-8 w-8" loading="lazy" style={{ color: "transparent" }} />
-                                                </div>
-                                                <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-                                                    <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl">
+                                <div className=" mt-16 sm:mt-20">
+                           
+                                    <ul className=" mx-auto mt-16 grid max-w-[26rem] grid-cols-1 gap-6 px-4 sm:mt-20 sm:max-w-[52.5rem] sm:grid-cols-2 sm:px-6 md:mt-32 lg:max-w-7xl lg:grid-cols-3 lg:gap-y-8 lg:px-8 xl:gap-x-8">
+                                        {allprojects.map((item) => (
+                                            <li key={item.id} className="shadow-md hover:shadow-xl ring-1 scale-95 transition hover:scale-100 dark:highlight-white/5 group relative rounded-3xl bg-slate-100 p-6 hover:bg-slate-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-900/50">
+                                                <div className="rounded-lg relative aspect-[672/400] transform overflow-hidden bg-slate-400 shadow-[0_2px_8px_rgba(15,23,42,0.08)] dark:bg-slate-700">
+                                                    <img alt="" src={item.image} width="672" height="247" className="rounded-md absolute inset-0 h-full w-full" style={{ color: "transparent" }} />
+                                                    <div style={{ opacity: "0", transition: "opacity 0.5s linear 0s" }}>
+                                                        <video preload="none" playsInline="" className="absolute inset-0 h-full w-full [mask-image:radial-gradient(white,black)]">
+                                                            <source src="videos/project_showcase.mp4" type="video/mp4" />
+                                                        </video>
                                                     </div>
-                                                    <p >
-                                                        <span className="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl">
-                                                        </span>
-                                                        <span className="relative z-10">{item.title}</span>
-                                                    </p>
-                                                </h2>
-                                                <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">{item.description}</p>
-                                                <a className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
-                                                    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 flex-none">
-                                                        <path d="M15.712 11.823a.75.75 0 1 0 1.06 1.06l-1.06-1.06Zm-4.95 1.768a.75.75 0 0 0 1.06-1.06l-1.06 1.06Zm-2.475-1.414a.75.75 0 1 0-1.06-1.06l1.06 1.06Zm4.95-1.768a.75.75 0 1 0-1.06 1.06l1.06-1.06Zm3.359.53-.884.884 1.06 1.06.885-.883-1.061-1.06Zm-4.95-2.12 1.414-1.415L12 6.344l-1.415 1.413 1.061 1.061Zm0 3.535a2.5 2.5 0 0 1 0-3.536l-1.06-1.06a4 4 0 0 0 0 5.656l1.06-1.06Zm4.95-4.95a2.5 2.5 0 0 1 0 3.535L17.656 12a4 4 0 0 0 0-5.657l-1.06 1.06Zm1.06-1.06a4 4 0 0 0-5.656 0l1.06 1.06a2.5 2.5 0 0 1 3.536 0l1.06-1.06Zm-7.07 7.07.176.177 1.06-1.06-.176-.177-1.06 1.06Zm-3.183-.353.884-.884-1.06-1.06-.884.883 1.06 1.06Zm4.95 2.121-1.414 1.414 1.06 1.06 1.415-1.413-1.06-1.061Zm0-3.536a2.5 2.5 0 0 1 0 3.536l1.06 1.06a4 4 0 0 0 0-5.656l-1.06 1.06Zm-4.95 4.95a2.5 2.5 0 0 1 0-3.535L6.344 12a4 4 0 0 0 0 5.656l1.06-1.06Zm-1.06 1.06a4 4 0 0 0 5.657 0l-1.061-1.06a2.5 2.5 0 0 1-3.535 0l-1.061 1.06Zm7.07-7.07-.176-.177-1.06 1.06.176.178 1.06-1.061Z" fill="currentColor">
-                                                        </path>
-                                                    </svg>
-                                                    <p className="ml-2">{item.link}</p>
-                                                </a>
-                                            </li>
-                                        )} 
-                                    </ul> */}
-
-                                    <ul className="mx-auto mt-16 grid max-w-[26rem] grid-cols-1 gap-6 px-4 sm:mt-20 sm:max-w-[52.5rem] sm:grid-cols-2 sm:px-6 md:mt-32 lg:max-w-7xl lg:grid-cols-3 lg:gap-y-8 lg:px-8 xl:gap-x-8">
-                                        <li className="dark:highlight-white/5 group relative rounded-3xl bg-slate-100 p-6 hover:bg-slate-100 dark:bg-zinc-800/50 dark:hover:bg-slate-700/50">
-                                            <div className="relative aspect-[672/494] transform overflow-hidden rounded-md bg-slate-400 shadow-[0_2px_8px_rgba(15,23,42,0.08)] dark:bg-slate-700">
-                                                <img alt="" src="https://i.imgur.com/MBuDXG8.png" width="672" height="494" decoding="async" data-nimg="future" className="absolute inset-0 h-full w-full" style={{ color: "transparent" }} />
-                                                <div style={{ opacity: "0", transition: "opacity 0.5s linear 0s" }}>
-                                                    <video preload="auto" playsInline="" className="absolute inset-0 h-full w-full [mask-image:radial-gradient(white,black)]">
-                                                        <source src="videos/project_showcase.mp4" type="video/mp4" />
-                                                    </video>
                                                 </div>
-                                            </div>
-                                            <div className="mt-6 flex flex-wrap items-center">
-                                                <h2 className="text-sm font-semibold leading-6 text-slate-900 group-hover:text-sky-500 dark:text-white dark:group-hover:text-sky-400">
-                                                    <a href="https://blog.sabbirontheweb.com/" target="_blank">
-                                                        <span className="absolute inset-0 rounded-3xl">
-                                                        </span>Blog Website</a>
-                                                </h2>
-                                                <svg className="h-6 w-6 flex-none opacity-0 group-hover:opacity-100" viewBox="0 0 24 24" fill="none">
-                                                    <path d="M9.75 15.25L15.25 9.75M15.25 9.75H10.85M15.25 9.75V14.15" stroke="#0EA5E9" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                                    </path>
-                                                </svg>
-                                                <p className="w-full flex-none text-[0.8125rem] leading-6 text-slate-500 dark:text-slate-400">Live Demo</p>
-                                            </div>
-                                        </li>
+                                                <div className="mt-6 flex flex-col items-start">
+                                                    <div className='flex flex-row'><h2 className="text-sm font-semibold leading-6 text-slate-900 group-hover:text-sky-500 dark:text-white dark:group-hover:text-sky-400">
+                                                        <p target="_blank">
+                                                            <span className="absolute inset-0 rounded-3xl">
+                                                            </span>{item.title}
+                                                        </p>
+                                                    </h2>
+                                                        <svg className="h-6 w-6 flex-none opacity-0 group-hover:opacity-100" viewBox="0 0 24 24" fill="none">
+                                                            <path d="M9.75 15.25L15.25 9.75M15.25 9.75H10.85M15.25 9.75V14.15" stroke="#0EA5E9" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                                            </path>
+                                                        </svg>
+                                                    </div>
+                                                    <div >
+                                                        <a href={item.link} onClick={() => alert(1)} className="group-hover:cursor-pointer w-full pr-2 border-r-2 border-slate-900 dark:border-sky-500 group-hover:border-sky-500 flex-none text-[0.8125rem] leading-6 text-slate-500 group-hover:text-teal-500 dark:text-slate-400">Live Demo</a>
+                                                        <a className="group-hover:cursor-pointer w-full pl-2 flex-none text-[0.8125rem] leading-6 text-slate-500 group-hover:text-teal-500 dark:text-slate-400">Github</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
