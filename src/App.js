@@ -1,7 +1,8 @@
 import './App.css';
 import BlogFeed from './components/BlogFeed';
 import Scroll_to_top from "./components/sub-components/Scroll_to_top"
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
+
 function App({ session, funcTopNav, funcSideNav }) {
   funcTopNav(true)
   funcSideNav(false)
