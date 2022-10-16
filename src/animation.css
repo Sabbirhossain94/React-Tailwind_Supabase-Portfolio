@@ -23,12 +23,12 @@
     opacity: 0;
     height: 0;
     transition-property: all;
-    transition-duration: 500ms;
+    transition-duration: 300ms;
 }
 
 .slide-down {
     opacity: 1;
     height: 177px;
     transition-property: all;
-    transition-duration: 500ms;
+    transition-duration: 300ms;
 }
