@@ -5,13 +5,22 @@ import { NavLink } from 'react-router-dom';
 
 export default function Navigation({ session }) {
 
-    // const navLinkStyles = ({ isActive }) => {
-    //     return {
-
-    //         color: isActive ? "blue" : "gray",
-
-    //     }
-    // }
+    const navLinkStyles = ({ isActive }) => {
+        return {
+            
+            color: isActive ? "white" : "white",
+            background: isActive ? "rgb(55,65,81)" : "none",
+        
+        }
+    }
+    const navLinkStylesMobileMenu = ({ isActive }) => {
+        return {
+            
+            color: isActive ? "white" : "white",
+            background: isActive ? "rgb(55,65,81)" : "none",
+        
+        }
+    }
     const [openMenuIcon, setOpenMenuIcon] = useState(false)
     const [dark, setDark] = useState(true);
     useEffect(() => {
@@ -45,9 +54,9 @@ export default function Navigation({ session }) {
                             </div>
                             <div className="hidden sm:ml-6 sm:block">
                                 <div className="flex space-x-4">
-                                    <NavLink to="/" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</NavLink>
-                                    <NavLink to="/projects" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</NavLink>
-                                    <NavLink to="/contact" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact</NavLink>
+                                    <NavLink to="/" className="font-bold rounded-md px-3 py-2 text-sm " style={navLinkStyles} end>About</NavLink>
+                                    <NavLink to="/projects"  className="font-bold rounded-md px-3 py-2 text-sm " style={navLinkStyles}>Projects</NavLink>
+                                    <NavLink to="/contact" className="font-bold rounded-md px-3 py-2 text-sm " style={navLinkStyles}>Contact</NavLink>
                                     {session ? '' : (<NavLink to="/sign" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Sign In</NavLink>)}
                                     {session ? '' : (<NavLink to="/account" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Account</NavLink>)}
                                     {session ? '' : (<NavLink to="/dashboard" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Dashboard</NavLink>)}
@@ -94,11 +103,11 @@ export default function Navigation({ session }) {
                 <div className="sm:hidden" id="mobile-menu">
                     <div className={openMenuIcon ? "slide-down " : "slide-up "}>
                         <div className="space-y-1 px-2 pt-2 pb-3">
-                            <NavLink to="/" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</NavLink>
-                            <NavLink to="/projects" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</NavLink>
-                            <NavLink to="/contact" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact</NavLink>
+                            <NavLink to="/" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300" style={navLinkStylesMobileMenu} end>About</NavLink>
+                            <NavLink to="/projects" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300" style={navLinkStylesMobileMenu}>Projects</NavLink>
+                            <NavLink to="/contact" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300" style={navLinkStylesMobileMenu}>Contact</NavLink>
                         </div>
-                      
+
                     </div>
                 </div>
             </nav >
