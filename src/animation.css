@@ -18,3 +18,17 @@
 .slide-exit-done{
     opacity: 0;
 }
+
+.slide-up {
+    opacity: 0;
+    height: 0;
+    transition-property: all;
+    transition-duration: 500ms;
+}
+
+.slide-down {
+    opacity: 1;
+    height: 177px;
+    transition-property: all;
+    transition-duration: 500ms;
+}

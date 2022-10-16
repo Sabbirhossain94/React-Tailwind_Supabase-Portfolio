@@ -1,8 +1,9 @@
+import "../../src/animation.css"
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-export default function Navigation() {
+export default function Navigation({ session }) {
 
     // const navLinkStyles = ({ isActive }) => {
     //     return {
@@ -11,6 +12,7 @@ export default function Navigation() {
 
     //     }
     // }
+    const [openMenuIcon, setOpenMenuIcon] = useState(false)
     const [dark, setDark] = useState(true);
     useEffect(() => {
         if (dark) {
@@ -32,14 +34,23 @@ export default function Navigation() {
                                 <img className="block h-8 w-auto lg:hidden" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
                                 <img className="hidden h-8 w-auto lg:block" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
                             </div> */}
+                            <div className="flex-shrink-0 sm:hidden">
+                                <button className='rounded-md hover:bg-gray-800 px-1 py-1'>
+                                    {openMenuIcon ? (<svg onClick={() => setOpenMenuIcon(false)} xmlns="http://www.w3.org/2000/svg" color="white" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>) : (<svg onClick={() => setOpenMenuIcon(true)} className=" block h-8 w-8" xmlns="http://www.w3.org/2000/svg" color="white" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                    </svg>)}
+                                </button>
+                            </div>
                             <div className="hidden sm:ml-6 sm:block">
                                 <div className="flex space-x-4">
                                     <NavLink to="/" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</NavLink>
                                     <NavLink to="/projects" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</NavLink>
                                     <NavLink to="/contact" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact</NavLink>
-                                    <NavLink to="/sign" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Sign In</NavLink>
-                                    <NavLink to="/account" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Account</NavLink>
-                                    <NavLink to="/dashboard" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Dashboard</NavLink>
+                                    {session ? '' : (<NavLink to="/sign" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Sign In</NavLink>)}
+                                    {session ? '' : (<NavLink to="/account" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Account</NavLink>)}
+                                    {session ? '' : (<NavLink to="/dashboard" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Dashboard</NavLink>)}
                                 </div>
                             </div>
                         </div>
@@ -81,17 +92,16 @@ export default function Navigation() {
                     </div>
                 </div>
                 <div className="sm:hidden" id="mobile-menu">
-                    <div className="space-y-1 px-2 pt-2 pb-3">
-                        <NavLink to="/" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</NavLink>
-                        <NavLink to="/projects" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</NavLink>
-                        <NavLink to="/calendar" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</NavLink>
-                    </div>
-                    <div className="border-t border-gray-700 pt-4 pb-3">
-                        <div className="flex items-center px-5">
+                    <div className={openMenuIcon ? "slide-down " : "slide-up "}>
+                        <div className="space-y-1 px-2 pt-2 pb-3">
+                            <NavLink to="/" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</NavLink>
+                            <NavLink to="/projects" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</NavLink>
+                            <NavLink to="/contact" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact</NavLink>
                         </div>
+                      
                     </div>
                 </div>
-            </nav>
-        </div>
+            </nav >
+        </div >
     )
 }

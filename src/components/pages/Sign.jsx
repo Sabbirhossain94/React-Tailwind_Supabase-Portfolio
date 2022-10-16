@@ -16,6 +16,9 @@ export default function Sign({funcTopNav,funcSideNav}) {
         if (error) {
             console.log(error)
         }
+        else {
+            alert("Check Your email for the magic link!")
+        }
 
     }
     return (

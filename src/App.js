@@ -129,18 +129,20 @@ function App({ session, funcTopNav, funcSideNav }) {
                               >
                                 <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
                               </div>
-                              <dl className="flex flex-auto flex-wrap gap-x-2">
-                                <dt className="sr-only">Company</dt>
-                                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
-                                <dt className="sr-only">Role</dt>
-                                <dd className="text-xs text-zinc-500 dark:text-zinc-400">JS Algorithms and Data Structures</dd>
-                                <dt className="sr-only">Date</dt>
-                                <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2014 until 2019">
-                                  <span aria-hidden="true">—</span>
-                                  <time dateTime="2019">December 9,
-                                    2020</time>
-                                </dd>
-                              </dl>
+                              <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/javascript-algorithms-and-data-structures">
+                                <dl className="flex flex-auto flex-wrap gap-x-2">
+                                  <dt className="sr-only">Company</dt>
+                                  <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
+                                  <dt className="sr-only">Role</dt>
+                                  <dd className="text-xs text-zinc-500 dark:text-zinc-400">JS Algorithms and Data Structures</dd>
+                                  <dt className="sr-only">Date</dt>
+                                  <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2014 until 2019">
+                                    <span aria-hidden="true">—</span>
+                                    <time dateTime="2019">December 9,
+                                      2020</time>
+                                  </dd>
+                                </dl>
+                              </a>
                             </li>
                             <li className="flex gap-4">
                               <div
@@ -148,18 +150,20 @@ function App({ session, funcTopNav, funcSideNav }) {
                               >
                                 <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
                               </div>
-                              <dl className="flex flex-auto flex-wrap gap-x-2">
-                                <dt className="sr-only">Company</dt>
-                                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
-                                <dt className="sr-only">Role</dt>
-                                <dd className="text-xs text-zinc-500 dark:text-zinc-400">Responsive Web Design</dd>
-                                <dt className="sr-only">Date</dt>
-                                <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2011 until 2014">
-                                  <span aria-hidden="true">—</span>
-                                  <time dateTime="2014">February 3,
-                                    2021</time>
-                                </dd>
-                              </dl>
+                              <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/responsive-web-design">
+                                <dl className="flex flex-auto flex-wrap gap-x-2">
+                                  <dt className="sr-only">Company</dt>
+                                  <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
+                                  <dt className="sr-only">Role</dt>
+                                  <dd className="text-xs text-zinc-500 dark:text-zinc-400">Responsive Web Design</dd>
+                                  <dt className="sr-only">Date</dt>
+                                  <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2011 until 2014">
+                                    <span aria-hidden="true">—</span>
+                                    <time dateTime="2014">February 3,
+                                      2021</time>
+                                  </dd>
+                                </dl>
+                              </a>
                             </li>
                             <li className="flex gap-4">
                               <div
@@ -167,18 +171,19 @@ function App({ session, funcTopNav, funcSideNav }) {
                               >
                                 <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
                               </div>
-                              <dl className="flex flex-auto flex-wrap gap-x-2">
-                                <dt className="sr-only">Company</dt>
-                                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
-                                <dt className="sr-only">Role</dt>
-                                <dd className="text-xs text-zinc-500 dark:text-zinc-400">Front End Development Libraries</dd>
-                                <dt className="sr-only">Date</dt>
-                                <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2008 until 2011">
-                                  <span aria-hidden="true">—</span>
-                                  <time dateTime="2011">March 27,
-                                    2021</time>
-                                </dd>
-                              </dl>
+                              <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/front-end-development-libraries">
+                                <dl className="flex flex-auto flex-wrap gap-x-2">
+                                  <dt className="sr-only">Company</dt>
+                                  <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
+                                  <dt className="sr-only">Role</dt>
+                                  <dd className="text-xs text-zinc-500 dark:text-zinc-400">Front End Development Libraries</dd>
+                                  <dt className="sr-only">Date</dt>
+                                  <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2008 until 2011">
+                                    <span aria-hidden="true">—</span>
+                                    <time dateTime="2011">March 27,
+                                      2021</time>
+                                  </dd>
+                                </dl></a>
                             </li>
                             <li className="flex gap-4">
                               <div
@@ -186,18 +191,20 @@ function App({ session, funcTopNav, funcSideNav }) {
                               >
                                 <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
                               </div>
-                              <dl className="flex flex-auto flex-wrap gap-x-2">
-                                <dt className="sr-only">Company</dt>
-                                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
-                                <dt className="sr-only">Role</dt>
-                                <dd className="text-xs text-zinc-500 dark:text-zinc-400">Back End Development and APIs</dd>
-                                <dt className="sr-only">Date</dt>
-                                <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2008 until 2011">
-                                  <span aria-hidden="true">—</span>
-                                  <time dateTime="2011">June 12,
-                                    2021</time>
-                                </dd>
-                              </dl>
+                              <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/back-end-development-and-apis">
+                                <dl className="flex flex-auto flex-wrap gap-x-2">
+                                  <dt className="sr-only">Company</dt>
+                                  <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
+                                  <dt className="sr-only">Role</dt>
+                                  <dd className="text-xs text-zinc-500 dark:text-zinc-400">Back End Development and APIs</dd>
+                                  <dt className="sr-only">Date</dt>
+                                  <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2008 until 2011">
+                                    <span aria-hidden="true">—</span>
+                                    <time dateTime="2011">June 12,
+                                      2021</time>
+                                  </dd>
+                                </dl>
+                              </a>
                             </li>
                           </ol>
                           <a
