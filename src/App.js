@@ -130,7 +130,7 @@ function App({ session, funcTopNav, funcSideNav }) {
                               >
                                 <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
                               </div>
-                              <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/javascript-algorithms-and-data-structures">
+                              <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/javascript-algorithms-and-data-structures" target="_blank">
                                 <dl className="flex flex-auto flex-wrap gap-x-2">
                                   <dt className="sr-only">Company</dt>
                                   <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
@@ -151,7 +151,7 @@ function App({ session, funcTopNav, funcSideNav }) {
                               >
                                 <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
                               </div>
-                              <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/responsive-web-design">
+                              <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/responsive-web-design" target="_blank">
                                 <dl className="flex flex-auto flex-wrap gap-x-2">
                                   <dt className="sr-only">Company</dt>
                                   <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
@@ -172,7 +172,7 @@ function App({ session, funcTopNav, funcSideNav }) {
                               >
                                 <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
                               </div>
-                              <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/front-end-development-libraries">
+                              <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/front-end-development-libraries" target="_blank">
                                 <dl className="flex flex-auto flex-wrap gap-x-2">
                                   <dt className="sr-only">Company</dt>
                                   <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
@@ -192,7 +192,7 @@ function App({ session, funcTopNav, funcSideNav }) {
                               >
                                 <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
                               </div>
-                              <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/back-end-development-and-apis">
+                              <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/back-end-development-and-apis" target="_blank">
                                 <dl className="flex flex-auto flex-wrap gap-x-2">
                                   <dt className="sr-only">Company</dt>
                                   <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
