@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { portfolioClient } from '../../portfolioClient';
-
 export default function Projects({ funcTopNav, funcSideNav }) {
     funcTopNav(true)
     funcSideNav(false)
@@ -51,7 +50,7 @@ export default function Projects({ funcTopNav, funcSideNav }) {
                                                 <div className="mt-6 flex flex-col items-start">
                                                     <div className='flex flex-row'><h2 className="text-sm font-semibold leading-6 text-slate-900 group-hover:text-sky-500 dark:text-white dark:group-hover:text-sky-400">
                                                         <p target="_blank">
-                                                            <span className="absolute inset-0 rounded-3xl">
+                                                            <span className="inset-0 rounded-3xl">
                                                             </span>{item.title}
                                                         </p>
                                                     </h2>
@@ -61,8 +60,8 @@ export default function Projects({ funcTopNav, funcSideNav }) {
                                                         </svg>
                                                     </div>
                                                     <div >
-                                                        <a href={item.link} onClick={() => alert(1)} className="group-hover:cursor-pointer w-full pr-2 border-r-2 border-slate-900 dark:border-sky-500 group-hover:border-sky-500 flex-none text-[0.8125rem] leading-6 text-slate-500 group-hover:text-teal-500 dark:text-slate-400">Live Demo</a>
-                                                        <a className="group-hover:cursor-pointer w-full pl-2 flex-none text-[0.8125rem] leading-6 text-slate-500 group-hover:text-teal-500 dark:text-slate-400">Github</a>
+                                                        <a href={item.link} target="_blank" className="group-hover:cursor-pointer w-full pr-2 border-r-2 border-slate-900 dark:border-white group-hover:dark:border-sky-500 group-hover:border-sky-500 flex-none text-[0.8125rem] leading-6 text-slate-500 group-hover:text-teal-500 dark:text-slate-400">Live Demo</a>
+                                                        <a href="https://github.com/Sabbirhossain94/Good_Blog" target="_blank" className="group-hover:cursor-pointer w-full pl-2 flex-none text-[0.8125rem] leading-6 text-slate-500 group-hover:text-teal-500 dark:text-slate-400">Github</a>
                                                     </div>
                                                 </div>
                                             </li>

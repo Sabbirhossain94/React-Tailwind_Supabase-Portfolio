@@ -42,16 +42,17 @@ export default function Home() {
             }
 
             <Routes>
-                <Route exact path="/" element={<App session={session} funcTopNav={setShowTopNav} funcSideNav={setShowSideNav}/>} />
-                <Route path="/projects" element={<Projects funcTopNav={setShowTopNav} funcSideNav={setShowSideNav}/>} />
-                <Route path="/contact" element={<Contact funcTopNav={setShowTopNav} funcSideNav={setShowSideNav}/>} />
-                <Route path="/sign" element={<Sign funcTopNav={setShowTopNav} funcSideNav={setShowSideNav}/>} />
+                <Route exact end path="/" element={<App session={session} funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
+                <Route path="/projects" element={<Projects funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
+                <Route path="/contact" element={<Contact funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
+                <Route path="/sign" element={<Sign funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
                 <Route path="/dashboard" element={<Dashboard session={session} funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
                 <Route path="/dashboard/projects" element={<Table session={session} funcSideNav={setShowSideNav} />} />
                 <Route path="/dashboard/gallery" element={<Gallery session={session} funcSideNav={setShowSideNav} />} />
                 <Route path="/dashboard/:id" element={<AddProject session={session} funcTopNav={setShowTopNav} />} />
                 <Route path="/dashboard/:id/update" element={<AddProject session={session} funcTopNav={setShowTopNav} />} />
                 <Route path="/account" element={<Account session={session} />} />
+                <Route path="*" element={<Account session={session} />} />
             </Routes>
         </Router>
 

@@ -5,22 +5,6 @@ import { NavLink } from 'react-router-dom';
 
 export default function Navigation({ session }) {
 
-    const navLinkStyles = ({ isActive }) => {
-        return {
-            
-            color: isActive ? "white" : "white",
-            background: isActive ? "rgb(55,65,81)" : "none",
-        
-        }
-    }
-    const navLinkStylesMobileMenu = ({ isActive }) => {
-        return {
-            
-            color: isActive ? "white" : "white",
-            background: isActive ? "rgb(55,65,81)" : "none",
-        
-        }
-    }
     const [openMenuIcon, setOpenMenuIcon] = useState(false)
     const [dark, setDark] = useState(true);
     useEffect(() => {
@@ -32,17 +16,103 @@ export default function Navigation({ session }) {
         }
     }, [dark]);
 
+    const navigation = [
+        {
+            Name: "About",
+            Link: "/",
+            isSession: false,
+            property: "end",
+            navLinkStyles: ({ isActive }) => {
+                return {
+
+                    color: isActive ? "rgb(56,189,248)" : 'white',
+                    background: isActive ? "rgb(55,65,81)" : "none",
+                }
+            }
+        },
+        {
+            Name: "Projects",
+            Link: "/projects",
+            isSession: false,
+            navLinkStyles: ({ isActive }) => {
+                return {
+
+                    color: isActive ? "rgb(56,189,248)" : 'white',
+                    background: isActive ? "rgb(55,65,81)" : "none",
+                }
+            }
+
+        },
+        {
+            Name: "Contact",
+            Link: "/contact",
+            isSession: false,
+            navLinkStyles: ({ isActive }) => {
+                return {
+
+                    color: isActive ? "rgb(56,189,248)" : 'white',
+                    background: isActive ? "rgb(55,65,81)" : "none",
+                }
+            }
+
+        },
+        {
+            Name: "Sign In",
+            Link: "/sign",
+            isSession: true,
+            navLinkStyles: ({ isActive }) => {
+                return {
+
+                    color: isActive ? "rgb(56,189,248)" : 'white',
+                    background: isActive ? "rgb(55,65,81)" : "none",
+                }
+            }
+
+        },
+        {
+            Name: "Account",
+            Link: "/account",
+            isSession: true,
+            navLinkStyles: ({ isActive }) => {
+                return {
+
+                    color: isActive ? "rgb(56,189,248)" : 'white',
+                    background: isActive ? "rgb(55,65,81)" : "none",
+                }
+            }
+
+        },
+        {
+            Name: "Dashboard",
+            Link: "/dashboard",
+            isSession: true,
+            navLinkStyles: ({ isActive }) => {
+                return {
+
+                    color: isActive ? "rgb(56,189,248)" : 'white',
+                    background: isActive ? "rgb(55,65,81)" : "none",
+                }
+            }
+
+        }
+    ];
+
+    const navLinkStylesMobileMenu = ({ isActive }) => {
+        return {
+
+            color: isActive ? "white" : "white",
+            background: isActive ? "rgb(55,65,81)" : "none",
+
+        }
+    }
+
 
     return (
         <div>
-            <nav className=" bg-slate-900">
+            <nav className="bg-zinc-800 dark:bg-slate-900">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between">
                         <div className="flex items-center md:ml-[80px]">
-                            {/* <div className="flex-shrink-0">
-                                <img className="block h-8 w-auto lg:hidden" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
-                                <img className="hidden h-8 w-auto lg:block" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
-                            </div> */}
                             <div className="flex-shrink-0 sm:hidden">
                                 <button className='rounded-md hover:bg-gray-800 px-1 py-1'>
                                     {openMenuIcon ? (<svg onClick={() => setOpenMenuIcon(false)} xmlns="http://www.w3.org/2000/svg" color="white" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8">
@@ -54,12 +124,9 @@ export default function Navigation({ session }) {
                             </div>
                             <div className="hidden sm:ml-6 sm:block">
                                 <div className="flex space-x-4">
-                                    <NavLink to="/" className="font-bold rounded-md px-3 py-2 text-sm " style={navLinkStyles} end>About</NavLink>
-                                    <NavLink to="/projects"  className="font-bold rounded-md px-3 py-2 text-sm " style={navLinkStyles}>Projects</NavLink>
-                                    <NavLink to="/contact" className="font-bold rounded-md px-3 py-2 text-sm " style={navLinkStyles}>Contact</NavLink>
-                                    {session ? '' : (<NavLink to="/sign" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Sign In</NavLink>)}
-                                    {session ? '' : (<NavLink to="/account" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Account</NavLink>)}
-                                    {session ? '' : (<NavLink to="/dashboard" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Dashboard</NavLink>)}
+                                    {navigation.map((item) =>
+                                        (item.isSession ? '' : (<NavLink key={item.id} to={item.Link} className="font-bold rounded-md px-3 py-2 text-sm" style={item.navLinkStyles} end>{item.Name}</NavLink>))
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -86,7 +153,6 @@ export default function Navigation({ session }) {
                             <button type="button" onClick={() => setDark(!dark)} aria-label="Toggle dark mode" className="rounded-md px-3 py-2 hover:bg-gray-700">
                                 {dark ? (<svg viewBox="0 0 24 24" aria-hidden="true" className=" stroke-sky-500  h-8 w-8">
                                     <path d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-
                                     </path>
                                 </svg>) : (
                                     <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
@@ -103,11 +169,10 @@ export default function Navigation({ session }) {
                 <div className="sm:hidden" id="mobile-menu">
                     <div className={openMenuIcon ? "slide-down " : "slide-up "}>
                         <div className="space-y-1 px-2 pt-2 pb-3">
-                            <NavLink to="/" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300" style={navLinkStylesMobileMenu} end>About</NavLink>
-                            <NavLink to="/projects" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300" style={navLinkStylesMobileMenu}>Projects</NavLink>
-                            <NavLink to="/contact" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300" style={navLinkStylesMobileMenu}>Contact</NavLink>
+                            {navigation.map((item) =>
+                                (item.isSession ? '' : (<NavLink key={item.id} to={item.Link} className="block rounded-md px-3 py-2 text-base font-medium text-gray-300" style={item.navLinkStyles} end>{item.Name}</NavLink>))
+                            )}
                         </div>
-
                     </div>
                 </div>
             </nav >
