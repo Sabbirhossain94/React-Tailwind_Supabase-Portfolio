@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import App from '../../App'
 import { portfolioClient } from '../../portfolioClient'
@@ -18,7 +18,7 @@ import { useLocation } from 'react-router-dom'
 
 export default function Home() {
 
-   // const location = useLocation();
+    //const location = useLocation();
 
     const [session, setSession] = useState(null);
     const [showTopNav, setShowTopNav] = useState(true);
@@ -46,8 +46,8 @@ export default function Home() {
             {showSideNav &&
                 <Sidebar session={session} />
             }
-            <AnimatePresence exitBeforeEnter>
-                <Routes >
+            <AnimatePresence mode='wait'>
+                <Routes>
                     <Route exact path="/" element={<App session={session} funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
                     <Route path="/projects" element={<Projects funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
                     <Route path="/contact" element={<Contact funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />

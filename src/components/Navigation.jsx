@@ -116,8 +116,8 @@ export default function Navigation({ session, openMenuIcon, setOpenMenuIcon }) {
                             </div>
                             <div className="hidden sm:ml-6 sm:block">
                                 <div className="flex space-x-4">
-                                    {navigation.map((item) =>
-                                        (item.isSession ? '' : (<NavLink key={item.id} to={item.Link} className="font-bold rounded-md px-3 py-2 text-sm" style={item.navLinkStyles} end>{item.Name}</NavLink>))
+                                    {navigation.map((item,key) =>
+                                        (item.isSession ? '' : (<li key={item.id} className="list-none" ><NavLink key={item.id} to={item.Link} className="font-bold rounded-md px-3 py-2 text-sm" style={item.navLinkStyles} end>{item.Name}</NavLink></li>))
                                     )}
                                 </div>
                             </div>

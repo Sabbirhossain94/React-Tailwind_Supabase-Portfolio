@@ -36,14 +36,14 @@ export default function Table({ session }) {
 
     return (
         <div>
-            
+
             {showProjectForm && <AddProject
                 showProjectForm={showProjectForm}
                 setShowProjectForm={setShowProjectForm}
 
             />}
 
-            <div className="mt-[50px] w-4/5 ml-[300px] px-4 sm:px-6 lg:px-8 ">
+            <div className="mt-[50px] flex flex-col flex-shrink w-4/5 ml-[300px] px-4 sm:px-6 lg:px-8 ">
                 <div className="flex flex-col  items-end sm:w-full md:w-full">
 
                     <div className="sm:mt-0 sm:ml-16 sm:flex-none">
