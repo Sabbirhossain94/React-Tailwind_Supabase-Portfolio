@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import App from '../../App'
 import { portfolioClient } from '../../portfolioClient'
@@ -13,8 +13,12 @@ import AddProject from './subpages/AddProject'
 import Sidebar from './subpages/Sidebar'
 import Table from './subpages/Table'
 import Gallery from './subpages/Gallery'
+import { AnimatePresence } from "framer-motion";
+import { useLocation } from 'react-router-dom'
 
 export default function Home() {
+
+   // const location = useLocation();
 
     const [session, setSession] = useState(null);
     const [showTopNav, setShowTopNav] = useState(true);
@@ -42,20 +46,21 @@ export default function Home() {
             {showSideNav &&
                 <Sidebar session={session} />
             }
-
-            <Routes>
-                <Route exact path="/" element={<App session={session} funcTopNav={setShowTopNav} funcSideNav={setShowSideNav}  />} />
-                <Route path="/projects" element={<Projects funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
-                <Route path="/contact" element={<Contact funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
-                <Route path="/sign" element={<Sign funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
-                <Route path="/dashboard" element={<Dashboard session={session} funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
-                <Route path="/dashboard/projects" element={<Table session={session} funcSideNav={setShowSideNav} />} />
-                <Route path="/dashboard/gallery" element={<Gallery session={session} funcSideNav={setShowSideNav} />} />
-                <Route path="/dashboard/:id" element={<AddProject session={session} funcTopNav={setShowTopNav} />} />
-                <Route path="/dashboard/:id/update" element={<AddProject session={session} funcTopNav={setShowTopNav} />} />
-                <Route path="/account" element={<Account session={session} />} />
-                <Route path="*" element={<Account session={session} />} />
-            </Routes>
+            <AnimatePresence exitBeforeEnter>
+                <Routes >
+                    <Route exact path="/" element={<App session={session} funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
+                    <Route path="/projects" element={<Projects funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
+                    <Route path="/contact" element={<Contact funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
+                    <Route path="/sign" element={<Sign funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
+                    <Route path="/dashboard" element={<Dashboard session={session} funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
+                    <Route path="/dashboard/projects" element={<Table session={session} funcSideNav={setShowSideNav} />} />
+                    <Route path="/dashboard/gallery" element={<Gallery session={session} funcSideNav={setShowSideNav} />} />
+                    <Route path="/dashboard/:id" element={<AddProject session={session} funcTopNav={setShowTopNav} />} />
+                    <Route path="/dashboard/:id/update" element={<AddProject session={session} funcTopNav={setShowTopNav} />} />
+                    <Route path="/account" element={<Account session={session} />} />
+                    <Route path="*" element={<Account session={session} />} />
+                </Routes>
+            </AnimatePresence>
         </Router>
 
     )

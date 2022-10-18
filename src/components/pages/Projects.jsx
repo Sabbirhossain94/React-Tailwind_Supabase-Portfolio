@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { portfolioClient } from '../../portfolioClient';
+import AnimatedPage from '../AnimatedPages';
 
 export default function Projects({ funcTopNav, funcSideNav }) {
 
@@ -24,6 +25,7 @@ export default function Projects({ funcTopNav, funcSideNav }) {
     }, [])
 
     return (
+        <AnimatedPage>
         <div>
             <div className=''>
                 <main className='p-[50px] bg-white dark:bg-slate-800'>
@@ -76,6 +78,7 @@ export default function Projects({ funcTopNav, funcSideNav }) {
                 </main>
             </div>
         </div>
+        </AnimatedPage>
 
     )
 }
