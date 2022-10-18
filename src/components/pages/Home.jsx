@@ -14,12 +14,12 @@ import Sidebar from './subpages/Sidebar'
 import Table from './subpages/Table'
 import Gallery from './subpages/Gallery'
 
-
 export default function Home() {
 
     const [session, setSession] = useState(null);
     const [showTopNav, setShowTopNav] = useState(true);
     const [showSideNav, setShowSideNav] = useState(false);
+    const [openMenuIcon, setOpenMenuIcon] = useState(false)
     useEffect(() => {
 
         portfolioClient.auth.getSession().then(({ data: { session } }) => {
@@ -33,16 +33,18 @@ export default function Home() {
     }, [])
 
     return (
+
         <Router>
+
             {showTopNav &&
-                <Navigation session={session} />
+                <Navigation session={session} openMenuIcon={openMenuIcon} setOpenMenuIcon={setOpenMenuIcon} />
             }
             {showSideNav &&
                 <Sidebar session={session} />
             }
 
             <Routes>
-                <Route exact end path="/" element={<App session={session} funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
+                <Route exact path="/" element={<App session={session} funcTopNav={setShowTopNav} funcSideNav={setShowSideNav}  />} />
                 <Route path="/projects" element={<Projects funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
                 <Route path="/contact" element={<Contact funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
                 <Route path="/sign" element={<Sign funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />

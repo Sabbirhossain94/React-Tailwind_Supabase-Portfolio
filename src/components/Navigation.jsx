@@ -3,9 +3,8 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-export default function Navigation({ session }) {
-
-    const [openMenuIcon, setOpenMenuIcon] = useState(false)
+export default function Navigation({ session, openMenuIcon, setOpenMenuIcon }) {
+    
     const [dark, setDark] = useState(true);
     useEffect(() => {
         if (dark) {
@@ -97,19 +96,12 @@ export default function Navigation({ session }) {
         }
     ];
 
-    const navLinkStylesMobileMenu = ({ isActive }) => {
-        return {
-
-            color: isActive ? "white" : "white",
-            background: isActive ? "rgb(55,65,81)" : "none",
-
-        }
-    }
+   
 
 
     return (
         <div>
-            <nav className="bg-zinc-800 dark:bg-slate-900">
+            <nav className="shadow-xl bg-zinc-800 dark:bg-slate-900">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between">
                         <div className="flex items-center md:ml-[80px]">

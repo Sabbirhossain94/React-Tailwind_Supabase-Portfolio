@@ -2,7 +2,8 @@ import React from 'react'
 import { useRef } from 'react'
 import emailjs from '@emailjs/browser';
 
-export default function Contact({ funcTopNav, funcSideNav }) {
+export default function Contact({ funcTopNav, funcSideNav, }) {
+
     funcTopNav(true)
     funcSideNav(false)
 
@@ -17,10 +18,10 @@ export default function Contact({ funcTopNav, funcSideNav }) {
             }, (error) => {
                 console.log(error.text);
             });
-            setTimeout(()=>{
-                e.target.reset()
-            },1000)
-            
+        setTimeout(() => {
+            e.target.reset()
+        }, 1000)
+
     };
 
     return (
@@ -80,7 +81,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                                             <dt><span className="sr-only">Email</span></dt>
                                             <dd className="flex text-base text-teal-50">
 
-                                                <svg className="h-6 w-6 flex-shrink-0 text-sky-500 dark:text-teal-500"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
+                                                <svg className="h-6 w-6 flex-shrink-0 text-sky-500 dark:text-teal-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                                                 </svg>
                                                 <span className="ml-3">sabbirhossainbd199@gmail.com</span>
@@ -110,25 +111,25 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                                     </div>
 
                                     {/* Contact form */}
-                                    <div className="dark:bg-slate-800 py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
-                                        <h3 className="text-warm-gray-900 text-lg font-medium dark:text-white">Send me a message</h3>
+                                    <div className="dark:bg-slate-800  py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
+                                        <h3 className="text-warm-gray-900 dark:border-sky-500 text-lg font-medium dark:text-white">Send me a message</h3>
                                         <form ref={form} onSubmit={sendEmail} className=" mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                                             <div>
                                                 <label htmlFor="first-name" className="text-warm-gray-900 block text-sm font-medium dark:text-white">First name</label>
                                                 <div className="mt-1">
-                                                    <input type="text" name="first_name" id="first_name" autoComplete="given-name" className="ring-1 dark:ring-teal-500 mt-[10px]  dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800 focus:ring-indigo-400" required/>
+                                                    <input type="text" name="first_name" id="first_name" autoComplete="given-name" className="ring-1 dark:ring-teal-500 mt-[10px]  dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800 focus:ring-indigo-400" required />
                                                 </div>
                                             </div>
                                             <div>
                                                 <label htmlFor="last-name" className="text-warm-gray-900 block text-sm font-medium dark:text-white">Last name</label>
                                                 <div className="mt-1">
-                                                    <input type="text" name="last_name" id="last_name" autoComplete="family-name" className="ring-1 dark:ring-teal-500 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800" required/>
+                                                    <input type="text" name="last_name" id="last_name" autoComplete="family-name" className="ring-1 dark:ring-teal-500 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800" required />
                                                 </div>
                                             </div>
                                             <div>
                                                 <label htmlFor="email" className="text-warm-gray-900 block text-sm font-medium dark:text-white">Email</label>
                                                 <div className="mt-1">
-                                                    <input id="email" name="email" type="email" autoComplete="email" className="ring-1 dark:ring-teal-500 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800" required/>
+                                                    <input id="email" name="email" type="email" autoComplete="email" className="ring-1 dark:ring-teal-500 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800" required />
                                                 </div>
                                             </div>
                                             <div>
@@ -137,13 +138,13 @@ export default function Contact({ funcTopNav, funcSideNav }) {
 
                                                 </div>
                                                 <div className="mt-1">
-                                                    <input type="tel" name="phone" id="phone" autoComplete="tel" className="ring-1 dark:ring-teal-500 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800" aria-describedby="phone-optional" required/>
+                                                    <input type="tel" name="phone" id="phone" autoComplete="tel" className="ring-1 dark:ring-teal-500 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800" aria-describedby="phone-optional" required />
                                                 </div>
                                             </div>
                                             <div className="sm:col-span-2">
                                                 <label htmlFor="subject" className="text-warm-gray-900 block text-sm font-medium dark:text-white">Subject</label>
                                                 <div className="mt-1">
-                                                    <input type="text" name="subject" id="subject" className="ring-1 dark:ring-teal-500 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800" required/>
+                                                    <input type="text" name="subject" id="subject" className="ring-1 dark:ring-teal-500 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800" required />
                                                 </div>
                                             </div>
                                             <div className="sm:col-span-2">

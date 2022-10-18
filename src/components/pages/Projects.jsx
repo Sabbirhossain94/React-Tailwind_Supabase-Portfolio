@@ -1,7 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { portfolioClient } from '../../portfolioClient';
+
 export default function Projects({ funcTopNav, funcSideNav }) {
+
     funcTopNav(true)
     funcSideNav(false)
 
@@ -35,7 +37,7 @@ export default function Projects({ funcTopNav, funcSideNav }) {
                                     <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">I've worked on several projects over the years but these are the ones that I'm most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved.</p>
                                 </header>
                                 <div className=" mt-16 sm:mt-20">
-                           
+
                                     <ul className=" mx-auto mt-16 grid max-w-[26rem] grid-cols-1 gap-6 px-4 sm:mt-20 sm:max-w-[52.5rem] sm:grid-cols-2 sm:px-6 md:mt-32 lg:max-w-7xl lg:grid-cols-3 lg:gap-y-8 lg:px-8 xl:gap-x-8">
                                         {allprojects.map((item) => (
                                             <li key={item.id} className="shadow-md hover:shadow-xl ring-1 scale-95 transition hover:scale-100 dark:highlight-white/5 group relative rounded-3xl bg-slate-100 p-6 hover:bg-slate-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-900/50">
