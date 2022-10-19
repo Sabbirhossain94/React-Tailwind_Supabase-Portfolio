@@ -14,16 +14,15 @@ import Sidebar from './subpages/Sidebar'
 import Table from './subpages/Table'
 import Gallery from './subpages/Gallery'
 import { AnimatePresence } from "framer-motion";
-import { useLocation } from 'react-router-dom'
+
 
 export default function Home() {
-
-    //const location = useLocation();
 
     const [session, setSession] = useState(null);
     const [showTopNav, setShowTopNav] = useState(true);
     const [showSideNav, setShowSideNav] = useState(false);
-    const [openMenuIcon, setOpenMenuIcon] = useState(false)
+
+
     useEffect(() => {
 
         portfolioClient.auth.getSession().then(({ data: { session } }) => {
@@ -41,7 +40,7 @@ export default function Home() {
         <Router>
 
             {showTopNav &&
-                <Navigation session={session} openMenuIcon={openMenuIcon} setOpenMenuIcon={setOpenMenuIcon} />
+                <Navigation session={session} />
             }
             {showSideNav &&
                 <Sidebar session={session} />

@@ -2,18 +2,13 @@ import "../../src/animation.css"
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
-export default function Navigation({ session, openMenuIcon, setOpenMenuIcon }) {
-    
+export default function Navigation({ session }) {
+
+    const location = useLocation();
+    const [openMenuIcon, setOpenMenuIcon] = useState(false)
     const [dark, setDark] = useState(true);
-    useEffect(() => {
-        if (dark) {
-            document.body.classList.add('dark');
-        }
-        else {
-            document.body.classList.remove('dark');
-        }
-    }, [dark]);
 
     const navigation = [
         {
@@ -96,7 +91,18 @@ export default function Navigation({ session, openMenuIcon, setOpenMenuIcon }) {
         }
     ];
 
-   
+    useEffect(() => {
+        if (dark) {
+            document.body.classList.add('dark');
+        }
+        else {
+            document.body.classList.remove('dark');
+        }
+    }, [dark]);
+
+    useEffect(() => {
+        setOpenMenuIcon(false)
+    }, [location.pathname])
 
 
     return (
@@ -116,7 +122,7 @@ export default function Navigation({ session, openMenuIcon, setOpenMenuIcon }) {
                             </div>
                             <div className="hidden sm:ml-6 sm:block">
                                 <div className="flex space-x-4">
-                                    {navigation.map((item,key) =>
+                                    {navigation.map((item, key) =>
                                         (item.isSession ? '' : (<li key={item.id} className="list-none" ><NavLink key={item.id} to={item.Link} className="font-bold rounded-md px-3 py-2 text-sm" style={item.navLinkStyles} end>{item.Name}</NavLink></li>))
                                     )}
                                 </div>
@@ -159,7 +165,7 @@ export default function Navigation({ session, openMenuIcon, setOpenMenuIcon }) {
                     </div>
                 </div>
                 <div className="sm:hidden" id="mobile-menu">
-                    <div className={openMenuIcon ? "slide-down " : "slide-up "}>
+                    <div className={openMenuIcon ? "slide-down " : "slide-up"}>
                         <div className="space-y-1 px-2 pt-2 pb-3">
                             {navigation.map((item) =>
                                 (item.isSession ? '' : (<NavLink key={item.id} to={item.Link} className="block rounded-md px-3 py-2 text-base font-medium text-gray-300" style={item.navLinkStyles} end>{item.Name}</NavLink>))

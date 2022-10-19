@@ -94,7 +94,7 @@ function App({ session, funcTopNav, funcSideNav }) {
                     <div className="mx-auto max-w-2xl lg:max-w-5xl">
                       <div className=" grid max-w-xl grid-cols-1 gap-y-10 lg:max-w-none lg:grid-cols-2">
                         <BlogFeed session={session} />
-                        <div className="space-y-6 lg:pl-16 xl:pl-24">
+                        <div className="space-y-6 lg:pl-12 xl:pl-18">
 
                           <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
                             <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
@@ -136,9 +136,9 @@ function App({ session, funcTopNav, funcSideNav }) {
                                 <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/javascript-algorithms-and-data-structures" target="_blank">
                                   <dl className="flex flex-auto flex-wrap gap-x-2">
                                     <dt className="sr-only">Company</dt>
-                                    <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
+                                    <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">JS Algorithms and Data Structures</dd>
                                     <dt className="sr-only">Role</dt>
-                                    <dd className="text-xs text-zinc-500 dark:text-zinc-400">JS Algorithms and Data Structures</dd>
+                                    <dd className="text-xs text-zinc-500 dark:text-zinc-400">freeCodeCamp</dd>
                                     <dt className="sr-only">Date</dt>
                                     <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2014 until 2019">
                                       <span aria-hidden="true">—</span>
@@ -157,9 +157,9 @@ function App({ session, funcTopNav, funcSideNav }) {
                                 <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/responsive-web-design" target="_blank">
                                   <dl className="flex flex-auto flex-wrap gap-x-2">
                                     <dt className="sr-only">Company</dt>
-                                    <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
+                                    <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">Responsive Web Design</dd>
                                     <dt className="sr-only">Role</dt>
-                                    <dd className="text-xs text-zinc-500 dark:text-zinc-400">Responsive Web Design</dd>
+                                    <dd className="text-xs text-zinc-500 dark:text-zinc-400">freeCodeCamp</dd>
                                     <dt className="sr-only">Date</dt>
                                     <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2011 until 2014">
                                       <span aria-hidden="true">—</span>
@@ -178,9 +178,9 @@ function App({ session, funcTopNav, funcSideNav }) {
                                 <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/front-end-development-libraries" target="_blank">
                                   <dl className="flex flex-auto flex-wrap gap-x-2">
                                     <dt className="sr-only">Company</dt>
-                                    <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
+                                    <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">Front End Development Libraries</dd>
                                     <dt className="sr-only">Role</dt>
-                                    <dd className="text-xs text-zinc-500 dark:text-zinc-400">Front End Development Libraries</dd>
+                                    <dd className="text-xs text-zinc-500 dark:text-zinc-400">freeCodeCamp</dd>
                                     <dt className="sr-only">Date</dt>
                                     <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2008 until 2011">
                                       <span aria-hidden="true">—</span>
@@ -198,9 +198,9 @@ function App({ session, funcTopNav, funcSideNav }) {
                                 <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/back-end-development-and-apis" target="_blank">
                                   <dl className="flex flex-auto flex-wrap gap-x-2">
                                     <dt className="sr-only">Company</dt>
-                                    <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">FreeCodeCamp</dd>
+                                    <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">Back End Development and APIs</dd>
                                     <dt className="sr-only">Role</dt>
-                                    <dd className="text-xs text-zinc-500 dark:text-zinc-400">Back End Development and APIs</dd>
+                                    <dd className="text-xs text-zinc-500 dark:text-zinc-400">freeCodeCamp</dd>
                                     <dt className="sr-only">Date</dt>
                                     <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2008 until 2011">
                                       <span aria-hidden="true">—</span>
@@ -217,7 +217,7 @@ function App({ session, funcTopNav, funcSideNav }) {
                               download="cv.pdf"
                             >
                               Download CV
-                              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50">
+                              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="animate-bounce h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50">
                                 <path d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                 </path>
                               </svg>
