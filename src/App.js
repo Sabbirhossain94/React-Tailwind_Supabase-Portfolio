@@ -1,8 +1,8 @@
 import './App.css';
 import BlogFeed from './components/BlogFeed';
 import Scroll_to_top from "./components/sub-components/Scroll_to_top"
-import { Link } from 'react-router-dom';
 import AnimatedPage from './components/AnimatedPages';
+import { Typewriter } from 'react-simple-typewriter';
 
 function App({ session, funcTopNav, funcSideNav }) {
 
@@ -57,7 +57,20 @@ function App({ session, funcTopNav, funcSideNav }) {
                   <div className="relative px-4 sm:px-8 lg:px-12">
                     <div className="mx-auto max-w-2xl lg:max-w-5xl">
                       <div className="max-w-2xl">
-                        <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">Full Stack Web developer</h1>
+                        <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+                          <span>
+                            <Typewriter
+                              loop
+                              cursor
+                              cursorStyle='|'
+                              typeSpeed={70}
+                              deleteSpeed={50}
+                              delaySpeed={1000}
+                              words={['Front End Developer', 'Full Stack Developer', 'javaScript Lover']}
+                            />
+
+                          </span>
+                        </h1>
                         <p className="typingeffect mt-6 text-base text-zinc-600 dark:text-zinc-400">
                           I'm Sabbir, a web developer based in Dhaka, Bangladesh. I have experience building websites based on React JS, Next JS and other cool frameworks. I love to learn new things everyday.
 
