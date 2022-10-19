@@ -1,46 +1,23 @@
 import React from 'react'
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-export default function Notification({showNotification}) {
+export default function Notification() {
     return (
+
         <div>
-            <TransitionGroup>
-                <CSSTransition
-                    in={showNotification}
-                    classNames="fade"
-                    timeout={300}
-
-                >
-                    <div className="transition-opacityh-12 relative z-10" >
-
-                        <div className=" h-12 relative top-0 bg-opacity-75 transition-opacity"></div>
-                        <div className="transition-opacity fixed inset-0 z-10 overflow-y-auto">
-                            <div className="transition-opacity flex items-end justify-center p-4 text-center sm:items-center sm:p-0">
-
-                                <div className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
-                                    <div>
-                                        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-
-                                            <svg className="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
-                                                <path snametrokelinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                                            </svg>
-                                        </div>
-                                        <div className="text-center sm:mt-5">
-                                            <h3 className="text-lg font-medium leading-6 text-gray-900" id="modal-title">Success!</h3>
-                                            <div className="mt-2">
-                                                <p className="text-sm text-gray-500">Your Email has been sent!</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* <div className="mt-5 sm:mt-6">
-                                <button type="button" className="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm">Go back to dashboard</button>
-                            </div>  */}
-                                </div>
-                            </div>
-                        </div>
+            <div class="z-10">
+                <div id="toast-success" class="mb-4 flex w-full max-w-xs items-center rounded-lg bg-white p-6 text-gray-500 shadow dark:bg-gray-800 dark:text-gray-400" role="alert">
+                    <div class="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200">
+                        <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="sr-only">Check icon</span>
                     </div>
-                </CSSTransition>
-            </TransitionGroup>
+                    <div class="ml-3 text-sm font-normal">Your Email has been sent!</div>
+                    <button type="button" class="-mx-1.5 -my-1.5 ml-6 inline-flex h-8 w-8 rounded-lg bg-white p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white" data-dismiss-target="#toast-success" aria-label="Close">
+                        <span class="sr-only">Close</span>
+                        <svg aria-hidden="true" class=" h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+            </div>
         </div>
+
     )
 }
