@@ -1,20 +1,19 @@
 import { useState, useEffect, useRef } from 'react'
 //import { portfoliClien } from '../supabaseClient'
 import { portfolioClient } from "../portfolioClient"
+import Notification from './sub-components/Notification'
 
 const Account = ({ session }) => {
-    //const [loading, setLoading] = useState(true)
+
+    const [showNotification, setShowNotification] = useState(false)
     const [username, setUsername] = useState(null)
     const [website, setWebsite] = useState(null)
     const [avatar_url, setAvatarUrl] = useState(null)
-
 
     const updateProfile = async (e) => {
         e.preventDefault()
 
         try {
-            // setLoading(false)
-            // const { user } = session
 
             const updates = {
                 id: session.user.id,
@@ -32,14 +31,15 @@ const Account = ({ session }) => {
         } catch (error) {
             alert(error.message)
         } finally {
-            //setLoading(false)
-            alert("you have successfully updated your profile!")
+            setShowNotification(true)
         }
     }
 
 
     return (
         <div>
+            <Notification showNotification={showNotification} setShowNotification={setShowNotification} />
+
             <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8 sm:w-3/4 sm:mx-auto">
                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
                     <h3 className="text-center text-xl font-bold tracking-tight dark:text-white">Update your profile</h3>
@@ -49,7 +49,7 @@ const Account = ({ session }) => {
                     <div aria-live="polite" className='flex flex-col p-4 '>
 
                         <form onSubmit={updateProfile} className="space-y-6 p-5">
-                          {session ? ( <div className="ring-1 inputField block w-full appearance-none rounded-md border  px-3 py-2 dark:text-white shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" >Email: {session.user.email}</div>):''}  
+                            {session ? (<div className="ring-1 inputField block w-full appearance-none rounded-md border  px-3 py-2 dark:text-white shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" >Email: {session.user.email}</div>) : ''}
                             <div>
                                 <label htmlFor="username" className="block text-sm font-medium dark:text-white">Name</label>
                                 <input

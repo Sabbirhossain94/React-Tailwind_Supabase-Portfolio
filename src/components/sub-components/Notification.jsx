@@ -1,6 +1,10 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 
 export default function Notification({ showNotification, setShowNotification }) {
+    const location = useLocation();
+    console.log(location.pathname)
+
     return (
 
         <div>
@@ -14,7 +18,9 @@ export default function Notification({ showNotification, setShowNotification }) 
                             </svg>
                             <span className="sr-only">Check icon</span>
                         </div>
-                        <div className="ml-3 text-sm font-normal">Your Email has been sent!</div>
+                        {location.pathname === "/contact" ? (<div className="ml-3 text-sm font-normal">Your Email has been sent!</div>)
+                            :
+                            (location.pathname === "/account" ? (<div className="ml-3 text-sm font-normal">Successfully updated your profile!</div>) : '')}
                         <button type="button" onClick={() => setShowNotification(false)} className="-mx-1.5 -my-1.5 ml-6 inline-flex h-8 w-8 rounded-lg dark:bg-zinc-800 p-1.5 text-gray-400 hover:bg-zinc-700 hover:text-gray-400 focus:ring-2 focus:ring-gray-300 bg-gray-800 dark:text-gray-200 dark:hover:bg-zinc-900 dark:hover:text-gray-200" data-dismiss-target="#toast-success" aria-label="Close">
                             <span className="sr-only">Close</span>
                             <svg aria-hidden="true" className=" h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

@@ -39,7 +39,6 @@ export default function Contact({ funcTopNav, funcSideNav, }) {
 
                 <Notification showNotification={showNotification} setShowNotification={setShowNotification} />
 
-
                 <div className="bg-white dark:bg-slate-800 ">
                     <main className="overflow-hidden ">
                         <div className="mt-[50px]  relative bg-white dark:bg-slate-800" aria-labelledby="contact-heading">
