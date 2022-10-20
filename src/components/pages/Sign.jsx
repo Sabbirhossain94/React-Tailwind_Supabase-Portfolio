@@ -1,11 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
 import { portfolioClient } from '../../portfolioClient'
+import Notification from '../sub-components/Notification'
 
-export default function Sign({funcTopNav,funcSideNav}) {
+export default function Sign({ funcTopNav, funcSideNav }) {
     funcTopNav(true)
     funcSideNav(false)
 
+    const [showNotification, setShowNotification] = useState(false)
     const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState('')
 
@@ -17,12 +19,13 @@ export default function Sign({funcTopNav,funcSideNav}) {
             console.log(error)
         }
         else {
-            alert("Check Your email for the magic link!")
-        }
+            setShowNotification(true)
 
+        }
     }
     return (
         <div>
+            <Notification showNotification={showNotification} setShowNotification={setShowNotification} />
             <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8 sm:w-3/4 sm:mx-auto">
                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
                     <h3 className="text-center text-xl font-bold tracking-tight dark:text-white">Sign in to your account</h3>
@@ -40,6 +43,7 @@ export default function Sign({funcTopNav,funcSideNav}) {
                                         placeholder="Your email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
+                                        required
                                     />
                                 </div>
                             </div>

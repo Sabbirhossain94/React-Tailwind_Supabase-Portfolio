@@ -130,7 +130,7 @@ export default function Contact({ funcTopNav, funcSideNav, }) {
                                                 <div>
                                                     <label htmlFor="first-name" className="text-warm-gray-900 block text-sm font-medium dark:text-white">First name</label>
                                                     <div className="mt-1">
-                                                        <input type="text" name="first_name" id="first_name" autoComplete="given-name" className="ring-1 dark:ring-teal-500 mt-[10px]  dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800 focus:ring-indigo-400" required />
+                                                        <input type="text" name="first_name" id="first_name" autoComplete="given-name" className="ring-1 dark:ring-teal-500 mt-[10px]  dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800 focus:border-indigo-500 focus:ring-indigo-400" required />
                                                     </div>
                                                 </div>
                                                 <div>

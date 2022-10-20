@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink,Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 
 
 export default function Sidebar({ session }) {
@@ -74,11 +74,9 @@ export default function Sidebar({ session }) {
                 </div>
             </div>
             {/* sidebar from md to lg screen */}
-            <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
+            <div className="hidden sm:absolute sm:top-0 sm:bottom-0 md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
                 <div className="flex min-h-0 flex-1 flex-col bg-gray-800">
                     <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
-
-
                         <nav className="mt-5 flex-1 space-y-1 px-2">
                             <NavLink to="/" className="group flex items-center rounded-md px-2 py-2 text-sm font-medium text-gray-300 hover:text-white" style={navLinkStyles} end>
                                 <svg xmlns="http://www.w3.org/2000/svg" color="white" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-3 h-6 w-6 flex-shrink-0 text-gray-300">

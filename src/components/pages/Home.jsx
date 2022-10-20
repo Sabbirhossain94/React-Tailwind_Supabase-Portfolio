@@ -7,12 +7,9 @@ import Projects from "./Projects"
 import Contact from './Contact'
 import Navigation from '../Navigation'
 import Sign from './Sign'
-import Dashboard from './Dashboard'
 import Account from '../Account'
 import AddProject from './subpages/AddProject'
-import Sidebar from './subpages/Sidebar'
-import Table from './subpages/Table'
-import Gallery from './subpages/Gallery'
+import Dashboard from './subpages/Dashboard'
 import { AnimatePresence } from "framer-motion";
 
 
@@ -21,7 +18,6 @@ export default function Home() {
     const [session, setSession] = useState(null);
     const [showTopNav, setShowTopNav] = useState(true);
     const [showSideNav, setShowSideNav] = useState(false);
-
 
     useEffect(() => {
 
@@ -42,18 +38,16 @@ export default function Home() {
             {showTopNav &&
                 <Navigation session={session} />
             }
-            {showSideNav &&
-                <Sidebar session={session} />
-            }
+
             <AnimatePresence mode='wait'>
                 <Routes>
                     <Route exact path="/" element={<App session={session} funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
                     <Route path="/projects" element={<Projects funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
                     <Route path="/contact" element={<Contact funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
                     <Route path="/sign" element={<Sign funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
-                    <Route path="/dashboard" element={<Dashboard session={session} funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
-                    <Route path="/dashboard/projects" element={<Table session={session} funcSideNav={setShowSideNav} />} />
-                    <Route path="/dashboard/gallery" element={<Gallery session={session} funcSideNav={setShowSideNav} />} />
+                    <Route path="/dashboard" element={<Dashboard session={session} funcTopNav={setShowTopNav} />} />
+                    <Route path="/dashboard/projects" element={<Dashboard session={session} />} />
+                    <Route path="/dashboard/gallery" element={<Dashboard session={session} />} />
                     <Route path="/dashboard/:id" element={<AddProject session={session} funcTopNav={setShowTopNav} />} />
                     <Route path="/dashboard/:id/update" element={<AddProject session={session} funcTopNav={setShowTopNav} />} />
                     <Route path="/account" element={<Account session={session} />} />
