@@ -5,11 +5,12 @@ import { portfolioClient } from '../../../portfolioClient'
 export default function Gallery() {
 
     const [images, setImages] = useState(null)
+    const [uploading, setUploading] = useState(false)
 
     const getImages = async (e) => {
 
         const { data, error } = await portfolioClient
-            .storage.from('projects').download('signinpage.png')
+            .storage.from('projects').download('')
 
         if (error) {
             console.log(error)
@@ -20,6 +21,7 @@ export default function Gallery() {
     }
 
     const uploadImage = async (event) => {
+
         try {
 
 
@@ -44,7 +46,8 @@ export default function Gallery() {
         } catch (error) {
             alert(error.message)
         } finally {
-            console.log("successfully uploaded the file")
+            alert("successfully uploaded the file")
+            setUploading(false)
         }
     }
     useEffect(() => {
@@ -74,36 +77,45 @@ export default function Gallery() {
                                     src="https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/projects/public/tuku.png" />
                             </div>
                         </div>
-                        <div className="flex flex-wrap w-1/3">
-                            <div className="w-full p-1 md:p-2">
-                                <img alt="gallery" className="block object-cover object-center w-full h-full rounded-lg"
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(70).webp" />
-                            </div>
-                        </div>
-                        <div className="flex flex-wrap w-1/3">
-                            <div className="w-full p-1 md:p-2">
-                                <img alt="gallery" className="block object-cover object-center w-full h-full rounded-lg"
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(76).webp" />
-                            </div>
-                        </div>
-                        <div className="flex flex-wrap w-1/3">
-                            <div className="w-full p-1 md:p-2">
-                                <img alt="gallery" className="block object-cover object-center w-full h-full rounded-lg"
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(72).webp" />
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
-            <div className='w-1/5 flex flex-col mx-auto mt-[100px]'>
+            {/* <div className='w-1/5 flex flex-col mx-auto mt-[100px]'>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 bg-blu" htmlFor="file_input">Upload file</label>
                 <input className="block w-full text-sm text-gray-900 bg-blue-500 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     id="file_input"
                     type="file"
                     onChange={uploadImage}
-                ></input>
+                />
+                <button>Upload</button>
+            </div> */}
+            <div className='w-1/5 flex flex-col mx-auto' style={{}} aria-live="polite">
+                <img
+                    src="https://i.imgur.com/W2AT377.jpg"
+                    alt=""
+                    className="avatar image ring-1"
+                    style={{}}
+                />
+                {uploading ? (
+                    'Uploading...'
+                ) : (
+                    <>
+
+                        <div className="mt-[15px]">
+                            <input
+                                type="file"
+                                id="single"
+                                accept="image/*"
+                                disabled={uploading}
+                                className="block w-full text-sm text-gray-900 bg-blue-500 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            />
+                        </div>
+                        <button onClick={uploadImage} className='mt-[15px] flex justify-center rounded-md border border-transparent bg-sky-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>Upload</button>
+
+                    </>
+                )}
             </div>
-            
+
         </div>
     )
 }

@@ -1,4 +1,3 @@
-import './App.css';
 import BlogFeed from './components/BlogFeed';
 import Scroll_to_top from "./components/sub-components/Scroll_to_top"
 import AnimatedPage from './components/AnimatedPages';

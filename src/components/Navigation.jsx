@@ -123,7 +123,7 @@ export default function Navigation({ session }) {
                             <div className="hidden sm:ml-6 sm:block">
                                 <div className="flex space-x-4">
                                     {navigation.map((item, key) =>
-                                        (item.isSession ? '' : (<li key={item.id} className="list-none" ><NavLink key={item.id} to={item.Link} className="font-bold rounded-md px-3 py-2 text-sm" style={item.navLinkStyles} end>{item.Name}</NavLink></li>))
+                                        (item.isSession ? '' : (<li key={key} className="list-none" ><NavLink key={item.id} to={item.Link} className="font-bold rounded-md px-3 py-2 text-sm" style={item.navLinkStyles} end>{item.Name}</NavLink></li>))
                                     )}
                                 </div>
                             </div>
@@ -167,8 +167,8 @@ export default function Navigation({ session }) {
                 <div className="sm:hidden" id="mobile-menu">
                     <div className={openMenuIcon ? "slide-down " : "slide-up"}>
                         <div className="space-y-1 px-2 pt-2 pb-3">
-                            {navigation.map((item) =>
-                                (item.isSession ? '' : (<NavLink key={item.id} to={item.Link} className="block rounded-md px-3 py-2 text-base font-medium text-gray-300" style={item.navLinkStyles} end>{item.Name}</NavLink>))
+                            {navigation.map((item,key) =>
+                                (item.isSession ? '' : (<NavLink key={key} to={item.Link} className="block rounded-md px-3 py-2 text-base font-medium text-gray-300" style={item.navLinkStyles} end>{item.Name}</NavLink>))
                             )}
                         </div>
                     </div>

@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react'
 import emailjs from '@emailjs/browser';
 import Notification from '../sub-components/Notification';
 import AnimatedPage from '../AnimatedPages';
+
 export default function Contact({ funcTopNav, funcSideNav, }) {
 
     funcTopNav(true)
@@ -19,6 +20,7 @@ export default function Contact({ funcTopNav, funcSideNav, }) {
             }, (error) => {
                 console.log(error.text);
             });
+
         setTimeout(() => {
             e.target.reset()
             setShowNotification(true)
@@ -173,8 +175,6 @@ export default function Contact({ funcTopNav, funcSideNav, }) {
                                                 </div>
                                             </form>
                                         </div>
-
-                                        {/* */}
                                     </div>
                                 </div>
                             </div>
