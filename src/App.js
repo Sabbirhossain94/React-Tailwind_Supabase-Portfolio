@@ -8,6 +8,38 @@ function App({ session, funcTopNav, funcSideNav }) {
   funcTopNav(true)
   funcSideNav(false)
 
+  const certifications = [
+    {
+      Institution: "East West University",
+      certificate: "Bachelor in CSE",
+      logo: "https://i.imgur.com/ptq7E9Q.jpg",
+      Issued: "2015-2020"
+    },
+    {
+      Institution: "freeCodeCamp",
+      certificate: "JS Algorithms and Data Structures",
+      logo: "https://i.imgur.com/1FWhJeT.png",
+      Issued: "December 9.2020"
+    },
+    {
+      Institution: "freeCodeCamp",
+      certificate: "Responsive Web Design",
+      logo: "https://i.imgur.com/1FWhJeT.png",
+      Issued: "February 3,2021"
+    },
+    {
+      Institution: "freeCodeCamp",
+      certificate: "Front End Development Libraries",
+      logo: "https://i.imgur.com/1FWhJeT.png",
+      Issued: "March 27,2021"
+    },
+    {
+      Institution: "freeCodeCamp",
+      certificate: "Back End Development and APIs",
+      logo: "https://i.imgur.com/1FWhJeT.png",
+      Issued: "June 12,2021"
+    },
+  ];
 
   return (
     <AnimatedPage>
@@ -120,111 +152,27 @@ function App({ session, funcTopNav, funcSideNav }) {
                               <span className="ml-3">Education and Certifications</span>
                             </h2>
                             <ol className="mt-6 space-y-4">
-                              <li className="flex gap-4">
-                                <div
-                                  className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
-                                >
-                                  <img alt="" src="https://i.imgur.com/ptq7E9Q.jpg" width="32" height="32" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
-                                </div>
-                                <dl className="flex flex-auto flex-wrap gap-x-2">
-                                  <dt className="sr-only">Institution</dt>
-                                  <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">Bachelor in CSE</dd>
-                                  <dt className="sr-only">Role</dt>
-                                  <dd className="text-xs text-zinc-500 dark:text-zinc-400">East West University</dd>
-                                  <dt className="sr-only">Date</dt>
-                                  <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2019 until Present">
-                                    <time dateTime="2019">2015</time>
-                                    <span aria-hidden="true">—</span>
-                                    <time dateTime="2022">2020</time>
-                                  </dd>
-                                </dl>
-                              </li>
-                              <li className="flex gap-4">
-                                <div
-                                  className=" relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
-                                >
-                                  <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
-                                </div>
-                                <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/javascript-algorithms-and-data-structures" target="_blank">
+                              {certifications.map((item, key) => (
+                                <li key={key} className="flex gap-4">
+                                  <div
+                                    className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
+                                  >
+                                    <img alt="" src={item.logo} width="32" height="32" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
+                                  </div>
                                   <dl className="flex flex-auto flex-wrap gap-x-2">
-                                    <dt className="sr-only">Company</dt>
-                                    <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">JS Algorithms and Data Structures</dd>
-                                    <dt className="sr-only">Role</dt>
-                                    <dd className="text-xs text-zinc-500 dark:text-zinc-400">freeCodeCamp</dd>
+                                    <dt className="sr-only">Certification</dt>
+                                    <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">{item.certificate}</dd>
+                                    <dt className="sr-only">Institution</dt>
+                                    <dd className="text-xs text-zinc-500 dark:text-zinc-400">{item.Institution}</dd>
                                     <dt className="sr-only">Date</dt>
-                                    <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2014 until 2019">
-                                      <span aria-hidden="true">—</span>
-                                      <time dateTime="2019">December 9,
-                                        2020</time>
+                                    <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" >
+                                      <span aria-hidden="true">{item.Issued}</span>
                                     </dd>
                                   </dl>
-                                </a>
-                              </li>
-                              <li className="flex gap-4">
-                                <div
-                                  className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
-                                >
-                                  <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
-                                </div>
-                                <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/responsive-web-design" target="_blank">
-                                  <dl className="flex flex-auto flex-wrap gap-x-2">
-                                    <dt className="sr-only">Company</dt>
-                                    <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">Responsive Web Design</dd>
-                                    <dt className="sr-only">Role</dt>
-                                    <dd className="text-xs text-zinc-500 dark:text-zinc-400">freeCodeCamp</dd>
-                                    <dt className="sr-only">Date</dt>
-                                    <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2011 until 2014">
-                                      <span aria-hidden="true">—</span>
-                                      <time dateTime="2014">February 3,
-                                        2021</time>
-                                    </dd>
-                                  </dl>
-                                </a>
-                              </li>
-                              <li className="flex gap-4">
-                                <div
-                                  className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
-                                >
-                                  <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
-                                </div>
-                                <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/front-end-development-libraries" target="_blank">
-                                  <dl className="flex flex-auto flex-wrap gap-x-2">
-                                    <dt className="sr-only">Company</dt>
-                                    <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">Front End Development Libraries</dd>
-                                    <dt className="sr-only">Role</dt>
-                                    <dd className="text-xs text-zinc-500 dark:text-zinc-400">freeCodeCamp</dd>
-                                    <dt className="sr-only">Date</dt>
-                                    <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2008 until 2011">
-                                      <span aria-hidden="true">—</span>
-                                      <time dateTime="2011">March 27,
-                                        2021</time>
-                                    </dd>
-                                  </dl></a>
-                              </li>
-                              <li className="flex gap-4">
-                                <div
-                                  className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
-                                >
-                                  <img alt="" src="https://i.imgur.com/1FWhJeT.png" width="28" height="28" decoding="async" data-nimg="future" className="rounded-full h-10 w-10" loading="lazy" style={{ color: "transparent" }} />
-                                </div>
-                                <a className="flex flex-auto flex-wrap gap-x-2" href="https://www.freecodecamp.org/certification/sabbir_hossain_/back-end-development-and-apis" target="_blank">
-                                  <dl className="flex flex-auto flex-wrap gap-x-2">
-                                    <dt className="sr-only">Company</dt>
-                                    <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">Back End Development and APIs</dd>
-                                    <dt className="sr-only">Role</dt>
-                                    <dd className="text-xs text-zinc-500 dark:text-zinc-400">freeCodeCamp</dd>
-                                    <dt className="sr-only">Date</dt>
-                                    <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500" aria-label="2008 until 2011">
-                                      <span aria-hidden="true">—</span>
-                                      <time dateTime="2011">June 12,
-                                        2021</time>
-                                    </dd>
-                                  </dl>
-                                </a>
-                              </li>
+                                </li>
+                              ))}
                             </ol>
                             <a
-
                               className="inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none bg-zinc-50 font-medium text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-6 w-full"
                               href="https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/public/image/CV.pdf"
                               target="_self"
