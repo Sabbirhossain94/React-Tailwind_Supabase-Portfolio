@@ -11,11 +11,9 @@ export default function AddProject({ session, funcTopNav }) {
     const params = useParams();
     const formData = useRef();
     const [title, setTitle] = useState("")
-    //const [imageUrl, setImageUrl] = useState("")
     const [description, setDescription] = useState(" ")
     const [link, setLink] = useState("")
-    const [selectedImage, setSelectedImage] = useState(null)
-    //const [uploading, setUploading] = useState(false)
+    const [selectedImage, setSelectedImage] = useState(null)  
     const date = new Date().toLocaleDateString()
 
     const handleSubmit = async (e) => {
