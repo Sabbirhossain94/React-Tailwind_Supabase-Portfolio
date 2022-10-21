@@ -15,14 +15,50 @@ export default function Sidebar({ funcTopNav }) {
     const [showGallery, setShowGallery] = useState(false)
 
 
-    const navLinkStyles = ({ isActive }) => {
-        return {
+    // const navLinkStyles = ({ isActive }) => {
+    //     return {
 
-            color: isActive ? "white" : "white",
-            background: isActive ? "rgb(55,65,81)" : "none",
+    //         color: isActive ? "white" : "white",
+    //         background: isActive ? "rgb(55,65,81)" : "none",
 
+    //     }
+    // }
+    const sideBarContents = [
+        {
+            name: "Home",
+            path: true,
+            logo: <svg xmlns="http://www.w3.org/2000/svg" color="white" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-3 h-6 w-6 flex-shrink-0 text-gray-300">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            </svg>,
+            action: () => {
+
+
+
+            }
+        },
+        {
+            name: "Projects",
+            path: false,
+            logo: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-3 h-6 w-6 flex-shrink-0 text-gray-300">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+            </svg>,
+            action: (showGallery) => {
+
+                setShowGallery(!showGallery)
+
+            }
+        },
+        {
+            name: "Gallery",
+            path: false,
+            logo: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-3 h-6 w-6 flex-shrink-0 text-gray-300">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+            </svg>,
+            action: (showGallery) => {
+                setShowGallery(showGallery)
+            }
         }
-    }
+    ]
 
     const getProjects = async (e) => {
         let { data, error } = await portfolioClient
@@ -52,7 +88,7 @@ export default function Sidebar({ funcTopNav }) {
                 showProjectForm={showProjectForm}
                 setShowProjectForm={setShowProjectForm}
             />}
-            {/* 2xl:w-[250px] */}
+
             <div className="flex">
                 <div className={`${sideBarOpen ? "w-[60px]" : 'w-[200px]'} h-screen bg-slate-900 py-4 px-3 shadow-lg shadow-slate-500/40 duration-300`}>
                     <div className="flex justify-end">
@@ -65,30 +101,14 @@ export default function Sidebar({ funcTopNav }) {
                     </div>
                     <div className="mt-[50px]">
                         <ul className="space-y-2 ">
-                            <li>
-                                <a href="/" className="flex cursor-pointer items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" color="white" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-3 h-6 w-6 flex-shrink-0 text-gray-300">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                                    </svg>
-                                    <span className={`${sideBarOpen ? 'hidden' : ''} ml-3 whitespace-nowrap transition-opacity duration-300`}>Home</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a onClick={() => setShowGallery(false)} className="flex cursor-pointer items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-3 h-6 w-6 flex-shrink-0 text-gray-300">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
-                                    </svg>
-                                    <span className={`${sideBarOpen ? 'hidden' : ''} ml-3 whitespace-nowrap transition-opacity duration-300`}>Projects</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a onClick={() => setShowGallery(true)} className="flex items-center cursor-pointer rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"  >
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-3 h-6 w-6 flex-shrink-0 text-gray-300">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                                    </svg>
-                                    <span className={`${sideBarOpen ? 'hidden' : ''} ml-3 whitespace-nowrap transition-opacity duration-300`}>Gallery</span>
-                                </a>
-                            </li>
+                            {sideBarContents.map((item, key) => (
+                                <li key={key}>
+                                    <a onClick={item.action} href={item.path ? "/" : "#"} className="flex cursor-pointer items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" >
+                                        {item.logo}
+                                        <span className={`${sideBarOpen ? 'hidden' : ''} ml-3 whitespace-nowrap transition-opacity duration-300`}>{item.name}</span>
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>

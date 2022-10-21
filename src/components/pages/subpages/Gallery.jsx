@@ -24,7 +24,6 @@ export default function Gallery() {
 
         try {
 
-
             if (!event.target.files || event.target.files.length === 0) {
                 throw new Error('You must select an image to upload.')
             }
@@ -95,7 +94,7 @@ export default function Gallery() {
                         src="https://i.imgur.com/W2AT377.jpg"
                         alt=""
                         className="avatar image ring-1"
-                        style={{width: "200px",height: "200px"}}
+                        style={{ width: "200px", height: "200px" }}
                     />
 
                     <div className="mt-[15px]">

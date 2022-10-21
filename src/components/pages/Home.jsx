@@ -11,7 +11,7 @@ import Account from '../Account'
 import AddProject from './subpages/AddProject'
 import Dashboard from './subpages/Dashboard'
 import { AnimatePresence } from "framer-motion";
-
+import NoPage from './NoPage'
 
 export default function Home() {
 
@@ -45,13 +45,11 @@ export default function Home() {
                     <Route path="/projects" element={<Projects funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
                     <Route path="/contact" element={<Contact funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
                     <Route path="/sign" element={<Sign funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />} />
-                    <Route path="/dashboard" element={<Dashboard session={session} funcTopNav={setShowTopNav} />} />
-                    <Route path="/dashboard/projects" element={<Dashboard session={session} />} />
-                    <Route path="/dashboard/gallery" element={<Dashboard session={session} />} />
+                    <Route path="/dashboard" element={<Dashboard session={session} funcTopNav={setShowTopNav} />} />                 
                     <Route path="/dashboard/:id" element={<AddProject session={session} funcTopNav={setShowTopNav} />} />
                     <Route path="/dashboard/:id/update" element={<AddProject session={session} funcTopNav={setShowTopNav} />} />
                     <Route path="/account" element={<Account session={session} />} />
-                    <Route path="*" element={<Account session={session} />} />
+                    <Route path="*" element={<NoPage />} />
                 </Routes>
             </AnimatePresence>
         </Router>
