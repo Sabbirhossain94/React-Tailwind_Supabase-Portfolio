@@ -114,12 +114,12 @@ export default function Sidebar({ funcTopNav }) {
                 </div>
 
                 {showGallery ? <Gallery /> : (
-                    <div className="mt-[100px] flex flex-col flex-shrink w-4/5 px-4 sm:px-6 lg:px-8 ">
-                        <div className="flex flex-col items-end sm:w-full md:w-full">
+                    <div className="mt-[100px] flex flex-col justify-self-center w-11/12 px-4 sm:px-6 lg:px-8 ">
+                        <div className="flex flex-col overflow-hidden items-end sm:w-full md:w-full">
 
-                            <div className="sm:mt-0 sm:ml-16 sm:flex-none">
+                            <div className="overflow-hidden sm:mt-0 sm:ml-16 sm:flex-none">
                                 <Link to="/dashboard/addproject">
-                                    <button type="button" onClick={() => setShowProjectForm(true)} className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add projects</button>
+                                    <button type="button" onClick={() => setShowProjectForm(true)} className="overflow-hidden inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add projects</button>
                                 </Link>
                             </div>
 
@@ -150,7 +150,7 @@ export default function Sidebar({ funcTopNav }) {
                                 </thead>
                                 <tbody>
                                     {allprojects.map((item) => (
-                                        <tr key={item.id} className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                        <tr key={item.id} className="bg-white dark:bg-gray-900 dark:border-gray-700">
                                             <td className="py-4 px-6">{item.title}</td>
                                             <td className="whitespace-nowrap py-4 px-6">{item.image}</td>
                                             <td className="py-4 px-6">{item.description}</td>
