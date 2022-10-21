@@ -132,7 +132,7 @@ export default function Sidebar({ funcTopNav }) {
                                             Title
                                         </th>
                                         <th scope="col" className="py-3 px-6">
-                                            Image
+                                            Thumbnail
                                         </th>
                                         <th scope="col" className="py-3 px-6">
                                             Description
@@ -152,7 +152,7 @@ export default function Sidebar({ funcTopNav }) {
                                     {allprojects.map((item) => (
                                         <tr key={item.id} className="bg-white dark:bg-gray-900 dark:border-gray-700">
                                             <td className="py-4 px-6">{item.title}</td>
-                                            <td className="whitespace-nowrap py-4 px-6">{item.image}</td>
+                                            <td className="py-4 px-6"><img style={{width: "100px", height: "50px"}} src={item.image} /></td>
                                             <td className="py-4 px-6">{item.description}</td>
                                             <td className="py-4 px-6">{item.link}</td>
                                             <td className="py-4 px-6">{item.inserted_at}</td>

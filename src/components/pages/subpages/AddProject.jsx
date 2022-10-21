@@ -52,7 +52,7 @@ export default function AddProject({ session, funcTopNav }) {
         const { data, error } = await portfolioClient
             .from('projects')
             .insert(
-                { user_id: session.user.id, title: title, description: description, link: link, inserted_at: date }
+                { user_id: session.user.id, title: title, image: selectedImage, description: description, link: link, inserted_at: date }
             )
             .single()
 
@@ -91,31 +91,27 @@ export default function AddProject({ session, funcTopNav }) {
 
     const uploadImage = async (e) => {
 
-        try {
 
-            if (!e.target.files || e.target.files.length === 0) {
 
-                throw new Error('You must select an image to upload.')
-            }
+        if (!e.target.files || e.target.files.length === 0) {
 
-            const file = e.target.files[0]
-            const fileExt = file.name.split('.').pop()
-            const fileName = `${Math.random()}.${fileExt}`
-            const filePath = `${fileName}`
-            let { error: uploadError } = await portfolioClient.storage
-                .from('projects')
-                .upload(filePath, file)
-
-            if (uploadError) {
-                throw uploadError
-            }
-            downloadImage(filePath)
-        } catch (error) {
-            alert(error.message)
-        } finally {
-            alert("successfully uploaded the file")
-            //setUploading(false)
+            throw new Error('You must select an image to upload.')
         }
+
+        const file = e.target.files[0]
+        const fileExt = file.name.split('.').pop()
+        const fileName = `${Math.random()}.${fileExt}`
+        const filePath = `${fileName}`
+        let { error: uploadError } = await portfolioClient.storage
+            .from('projects')
+            .upload(filePath, file)
+        
+        if (uploadError) {
+            console.log(uploadError)
+        } else {
+            downloadImage(filePath)
+        }
+
     }
     useEffect(() => {
         if (params.id !== "undefined") {
@@ -154,8 +150,8 @@ export default function AddProject({ session, funcTopNav }) {
                                 {selectedImage ? (<img
                                     src={selectedImage ? selectedImage : "https://i.imgur.com/W2AT377.jpg"}
                                     alt=""
-                                    className="avatar image ring-1 flex justify-center"
-                                    style={{ width: "200px", height: "200px" }}
+                                    className="mx-auto avatar image ring-1 flex justify-center"
+                                    style={{ width: "400px", height: "200px" }}
                                 />) : (<div className=" sm:border-gray-200 sm:pt-5">
                                     <div className="mt-1 sm:mt-0">
                                         <div className="flex w-full justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
@@ -166,14 +162,20 @@ export default function AddProject({ session, funcTopNav }) {
                                                 <label htmlFor="file-upload" className="relative  rounded-md font-medium text-blue-700 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
                                                     <span>Attach an image</span>
                                                 </label>
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>)}
                                 {/* */}
 
-                                <div className="">
+                                {selectedImage ? (<div className='flex flex-row'>
+                                    {/* <button onClick={uploadImage} className=' mt-[15px] flex justify-center rounded-md border border-transparent bg-blue-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" color="white" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-3 w-4 h-4">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                                        </svg>Upload</button> */}
+                                    <button onClick={() => setSelectedImage(null)} className=' mt-[15px]  flex justify-center rounded-md border border-transparent bg-blue-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
+                                        Cancel</button>
+                                </div>) : <div className="">
                                     <input
                                         type="file"
                                         id="single"
@@ -181,11 +183,9 @@ export default function AddProject({ session, funcTopNav }) {
                                         onChange={uploadImage}
                                         className=" mt-[5px] w-full block text-sm text-gray-900 bg-blue-500 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                     />
-                                    {/* <button onClick={uploadImage} className=' mt-[15px] flex justify-center rounded-md border border-transparent bg-blue-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" color="white" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-3 w-4 h-4">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                                            </svg>Upload</button> */}
-                                </div>
+                                </div>}
+                                {/* */}
+
                             </div>
                         </div>
                         <div className='flex flex-row'>
