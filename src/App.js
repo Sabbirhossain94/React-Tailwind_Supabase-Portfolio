@@ -3,11 +3,14 @@ import Scroll_to_top from "./components/sub-components/Scroll_to_top";
 import AnimatedPage from "./components/AnimatedPages";
 import { Typewriter } from "react-simple-typewriter";
 import Footer from "./components/Footer";
+import { portfolioClient } from "./portfolioClient";
+import { useState } from "react";
+
 function App({ session, funcTopNav, funcSideNav }) {
   funcTopNav(true);
   funcSideNav(false);
-  const cvUrl =
-    "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/public/image/CV%20of%20Sabbir%20Hossain.pdf?t=2023-01-27T16%3A23%3A31.300Z";
+  const [cvUrl, setCvUrl] = useState();
+
   const certifications = [
     {
       Institution: "East West University",
@@ -40,6 +43,17 @@ function App({ session, funcTopNav, funcSideNav }) {
       Issued: "June 12,2021",
     },
   ];
+  const downloadCVUrl = () => {
+    let { data, error } = portfolioClient.storage
+      .from("image")
+      .getPublicUrl("CV/CV of Sabbir Hossain.pdf");
+    if (error) {
+      console.log(error);
+    } else {
+      setCvUrl(data);
+    }
+  };
+  
 
   return (
     <AnimatedPage>
@@ -115,7 +129,7 @@ function App({ session, funcTopNav, funcSideNav }) {
                             <svg
                               viewBox="0 0 24 24"
                               aria-hidden="true"
-                              className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300"
+                              className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-teal-400"
                             >
                               <path
                                 fillRule="evenodd"
@@ -131,7 +145,7 @@ function App({ session, funcTopNav, funcSideNav }) {
                           >
                             <svg
                               viewBox="0 0 24 24"
-                              className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300"
+                              className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-teal-400"
                             >
                               <path d="M18.335 18.339H15.67v-4.177c0-.996-.02-2.278-1.39-2.278-1.389 0-1.601 1.084-1.601 2.205v4.25h-2.666V9.75h2.56v1.17h.035c.358-.674 1.228-1.387 2.528-1.387 2.7 0 3.2 1.778 3.2 4.091v4.715zM7.003 8.575a1.546 1.546 0 01-1.548-1.549 1.548 1.548 0 111.547 1.549zm1.336 9.764H5.666V9.75H8.34v8.589zM19.67 3H4.329C3.593 3 3 3.58 3 4.297v15.406C3 20.42 3.594 21 4.328 21h15.338C20.4 21 21 20.42 21 19.703V4.297C21 3.58 20.4 3 19.666 3h.003z"></path>
                             </svg>
@@ -209,17 +223,18 @@ function App({ session, funcTopNav, funcSideNav }) {
                               ))}
                             </ol>
                             <a
-                              className="inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none bg-zinc-50 font-medium text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-6 w-full"
-                              href={cvUrl}
+                              className="inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none bg-zinc-50 font-medium text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-teal-400 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-6 w-full"
+                              href={cvUrl ? cvUrl.publicUrl : "#"}
                               target="_self"
-                              download={cvUrl}
+                              onClick={(e) => downloadCVUrl(e)}
+                              download
                             >
                               Download CV
                               <svg
                                 viewBox="0 0 16 16"
                                 fill="none"
                                 aria-hidden="true"
-                                className="animate-bounce h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50"
+                                className="animate-bounce h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-teal-400 dark:group-active:stroke-zinc-50"
                               >
                                 <path
                                   d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"

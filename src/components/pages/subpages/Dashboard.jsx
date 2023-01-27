@@ -3,14 +3,12 @@ import { useState, useEffect } from "react";
 import { portfolioClient } from "../../../portfolioClient";
 import { Link } from "react-router-dom";
 import AddProject from "./AddProject";
-import Gallery from "./Gallery";
 
 export default function Sidebar({ funcTopNav }) {
   funcTopNav(false);
   const [sideBarOpen, setSideBarOpen] = useState(false);
   const [allprojects, setAllProjects] = useState([]);
   const [showProjectForm, setShowProjectForm] = useState(false);
-  const [showGallery, setShowGallery] = useState(false);
   const storageUrl =
     "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/public/projects/Thumbnail/";
   const sideBarContents = [
@@ -55,32 +53,7 @@ export default function Sidebar({ funcTopNav }) {
           />
         </svg>
       ),
-      action: (showGallery) => {
-        setShowGallery(!showGallery);
-      },
-    },
-    {
-      name: "Gallery",
-      path: false,
-      logo: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          className="mr-3 h-6 w-6 flex-shrink-0 text-gray-300"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-          />
-        </svg>
-      ),
-      action: (showGallery) => {
-        setShowGallery(showGallery);
-      },
+      action: () => {},
     },
   ];
 
@@ -97,13 +70,25 @@ export default function Sidebar({ funcTopNav }) {
       .from("projects")
       .delete()
       .match({ id: id });
-    // if (error) {
-    //   console.log(error);
-    // } else {
-    //   setAllProjects(data);
-    // }
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(data);
+    }
   };
+  const uploadCV = async (e) => {
+    const file = e.target.files[0];
+    const filePath = `CV of Sabbir Hossain.pdf`;
 
+    const { error: uploadError } = await portfolioClient.storage
+      .from("image")
+      .upload("CV/" + filePath, file);
+    if (uploadError) {
+      console.log(uploadError);
+    } else {
+      alert("CV uploaded successfully!");
+    }
+  };
   useEffect(() => {
     getProjects();
   }, []);
@@ -186,75 +171,103 @@ export default function Sidebar({ funcTopNav }) {
           </div>
         </div>
 
-        {showGallery ? (
-          <Gallery />
-        ) : (
-          <div className="mt-[100px] flex flex-col justify-self-center w-11/12 px-4 sm:px-6 lg:px-8 ">
-            <div className="flex flex-col overflow-hidden items-end sm:w-full md:w-full">
-              <div className="overflow-hidden sm:mt-0 sm:ml-16 sm:flex-none">
-                <Link to="/dashboard/addproject">
-                  <button
-                    type="button"
-                    onClick={() => setShowProjectForm(true)}
-                    className="overflow-hidden inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                  >
-                    Add projects
-                  </button>
-                </Link>
-              </div>
+        <div className="mt-[100px] flex flex-col justify-self-center w-11/12 px-4 sm:px-6 lg:px-8 ">
+          <div className="flex flex-row overflow-hidden justify-end items-end sm:w-full md:w-full">
+            <div className="overflow-hidden sm:mt-0 sm:ml-16 sm:flex-none">
+              <label className="cursor-pointer overflow-hidden inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                <input
+                  type="file"
+                  id="file"
+                  accept="application/pdf, application/vnd.ms-excel"
+                  onChange={uploadCV}
+                  className="hidden  mt-[5px] w-full text-sm text-gray-900 bg-blue-500 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                />
+                Upload CV
+              </label>
             </div>
-            <div className="mt-[20px] overflow-x-auto relative shadow-md sm:rounded-lg">
-              {allprojects.length == 0 ? (
-                <h1>No Projects to show!</h1>
-              ) : (
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                  <thead className="font-sans text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                      <th scope="col" className="py-3 px-6">
-                        Title
-                      </th>
-                      <th scope="col" className="py-3 px-6">
-                        Thumbnail
-                      </th>
-                      <th scope="col" className="py-3 px-6">
-                        Github link
-                      </th>
-                      <th scope="col" className="py-3 px-6">
-                        Live Link
-                      </th>
-                      <th scope="col" className="py-3 px-6">
-                        Inserted at
-                      </th>
-                      <th scope="col" className="py-3 px-6">
-                        Action
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {allprojects.map((item) => (
-                      <tr
-                        key={item.id}
-                        className="bg-white dark:bg-gray-900 dark:border-gray-700"
-                      >
-                        <td className="py-4 px-6">{item.title}</td>
-                        <td className="py-4 px-6">
-                          <img
-                            style={{
-                              width: "100px",
-                              height: "50px",
-                              objectFit: "cover",
-                            }}
-                            src={`${storageUrl}` + `${item.image}`}
-                          />
-                        </td>
-                        <td className="py-4 px-6">{item.githublink}</td>
-                        <td className="py-4 px-6">{item.livelink}</td>
-                        <td className="py-4 px-6">{item.inserted_at}</td>
-                        <td className="py-4 px-6">
-                          <button
-                            onClick={() => deleteProject(item.id)}
-                            className="text-red-600 hover:text-red-900"
+            <div className="overflow-hidden sm:mt-0 sm:ml-8 sm:flex-none">
+              <Link to="/dashboard/addproject">
+                <button
+                  type="button"
+                  onClick={() => setShowProjectForm(true)}
+                  className="overflow-hidden inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                >
+                  Add projects
+                </button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-[20px] overflow-x-auto relative shadow-md sm:rounded-lg">
+            {allprojects.length === 0 ? (
+              <h1>No Projects to show!</h1>
+            ) : (
+              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead className="font-sans text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" className="py-3 px-6">
+                      Title
+                    </th>
+                    <th scope="col" className="py-3 px-6">
+                      Thumbnail
+                    </th>
+                    <th scope="col" className="py-3 px-6">
+                      Github link
+                    </th>
+                    <th scope="col" className="py-3 px-6">
+                      Live Link
+                    </th>
+                    <th scope="col" className="py-3 px-6">
+                      Inserted at
+                    </th>
+                    <th scope="col" className="py-3 px-6">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {allprojects.map((item) => (
+                    <tr
+                      key={item.id}
+                      className="bg-white dark:bg-gray-900 dark:border-gray-700"
+                    >
+                      <td className="py-4 px-6">{item.title}</td>
+                      <td className="py-4 px-6">
+                        <img
+                          style={{
+                            width: "100px",
+                            height: "50px",
+                            objectFit: "cover",
+                          }}
+                          src={`${storageUrl}` + `${item.image}`}
+                          alt="error"
+                        />
+                      </td>
+                      <td className="py-4 px-6">{item.githublink}</td>
+                      <td className="py-4 px-6">{item.livelink}</td>
+                      <td className="py-4 px-6">{item.inserted_at}</td>
+                      <td className="py-4 px-6">
+                        <button
+                          onClick={() => deleteProject(item.id)}
+                          className="text-red-600 hover:text-red-900"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="1.5"
+                            stroke="currentColor"
+                            className="w-6 h-6"
                           >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                            />
+                          </svg>
+                        </button>
+                        <Link to={`/dashboard/` + item.id + `/update`}>
+                          <button className="text-indigo-600 hover:text-indigo-900">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -266,38 +279,20 @@ export default function Sidebar({ funcTopNav }) {
                               <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
                               />
                             </svg>
                           </button>
-                          <Link to={`/dashboard/` + item.id + `/update`}>
-                            <button className="text-indigo-600 hover:text-indigo-900">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                className="w-6 h-6"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                />
-                              </svg>
-                            </button>
-                          </Link>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              )}{" "}
-              {/* */}
-            </div>
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}{" "}
+            {/* */}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
