@@ -6,7 +6,8 @@ import Footer from "./components/Footer";
 function App({ session, funcTopNav, funcSideNav }) {
   funcTopNav(true);
   funcSideNav(false);
-
+  const cvUrl =
+    "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/public/image/CV%20of%20Sabbir%20Hossain.pdf?t=2023-01-27T16%3A23%3A31.300Z";
   const certifications = [
     {
       Institution: "East West University",
@@ -62,7 +63,6 @@ function App({ session, funcTopNav, funcSideNav }) {
                         >
                           <img
                             alt=""
-                            
                             src="https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/public/image/avatar.png"
                             width="512"
                             height="512"
@@ -191,15 +191,14 @@ function App({ session, funcTopNav, funcSideNav }) {
                                     />
                                   </div>
                                   <dl className="flex flex-auto flex-wrap gap-x-2">
-                                    <dt className="sr-only">Certification</dt>
                                     <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
                                       {item.certificate}
                                     </dd>
-                                    <dt className="sr-only">Institution</dt>
+
                                     <dd className="text-xs text-zinc-500 dark:text-zinc-400">
                                       {item.Institution}
                                     </dd>
-                                    <dt className="sr-only">Date</dt>
+
                                     <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500">
                                       <span aria-hidden="true">
                                         {item.Issued}
@@ -211,9 +210,9 @@ function App({ session, funcTopNav, funcSideNav }) {
                             </ol>
                             <a
                               className="inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none bg-zinc-50 font-medium text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-6 w-full"
-                              href="https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/public/image/CV%20-%20Sabbir%20%20Hossain.pdf"
+                              href={cvUrl}
                               target="_self"
-                              download={`https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/public/image/CV%20-%20Sabbir%20%20Hossain.pdf`}
+                              download={cvUrl}
                             >
                               Download CV
                               <svg
