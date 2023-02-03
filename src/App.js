@@ -1,5 +1,5 @@
 import BlogFeed from "./components/BlogFeed";
-import Scroll_to_top from "./components/sub-components/Scroll_to_top";
+import Scroll_to_top from "./components/sub-components/ScrollToTop";
 import AnimatedPage from "./components/AnimatedPages";
 import { Typewriter } from "react-simple-typewriter";
 import Footer from "./components/Footer";
@@ -61,8 +61,8 @@ function App({ session, funcTopNav, funcSideNav }) {
         <div>
           <div className="relative">
             <header className="pointer-events-none relative z-50 flex flex-col">
-              <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"></div>
-              <div className="sm:px-8 top-0 order-last -mb-3 pt-3">
+              {/* <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"></div> */}
+              <div className="sm:px-8 top-0 order-last -mb-3 pt-3 mt-24">
                 <div className="mx-auto max-w-7xl lg:px-8">
                   <div className="relative px-4 sm:px-8 lg:px-12">
                     <div className="mx-auto max-w-2xl lg:max-w-5xl">
