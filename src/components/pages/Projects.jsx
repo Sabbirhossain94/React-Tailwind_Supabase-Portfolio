@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { portfolioClient } from "../../portfolioClient";
 import AnimatedPage from "../AnimatedPages";
-
+import Footer from "../Footer";
 export default function Projects({ funcTopNav, funcSideNav }) {
   funcTopNav(true);
   funcSideNav(false);
@@ -112,6 +112,7 @@ export default function Projects({ funcTopNav, funcSideNav }) {
               </div>
             </div>
           </main>
+          <Footer/>
         </div>
       </div>
     </AnimatedPage>

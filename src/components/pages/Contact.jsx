@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import Notification from "../sub-components/Notification";
 import AnimatedPage from "../AnimatedPages";
+import Footer from "../Footer";
 
 export default function Contact({ funcTopNav, funcSideNav }) {
   funcTopNav(true);
@@ -165,7 +166,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                               name="first_name"
                               id="first_name"
                               autoComplete="given-name"
-                              className="ring-1 dark:ring-cyan-500 mt-[10px]  dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800 focus:border-indigo-500 focus:ring-indigo-400"
+                              className="ring-1 dark:ring-cyan-500/30 mt-[10px]  dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800 focus:border-indigo-500 focus:ring-indigo-400"
                               required
                             />
                           </div>
@@ -183,7 +184,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                               name="last_name"
                               id="last_name"
                               autoComplete="family-name"
-                              className="ring-1 dark:ring-cyan-500 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
+                              className="ring-1 dark:ring-cyan-500/30 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
                               required
                             />
                           </div>
@@ -201,7 +202,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                               name="email"
                               type="email"
                               autoComplete="email"
-                              className="ring-1 dark:ring-cyan-500 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
+                              className="ring-1 dark:ring-cyan-500/30 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
                               required
                             />
                           </div>
@@ -221,7 +222,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                               name="phone"
                               id="phone"
                               autoComplete="tel"
-                              className="ring-1 dark:ring-cyan-500 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
+                              className="ring-1 dark:ring-cyan-500/30 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
                               aria-describedby="phone-optional"
                               required
                             />
@@ -239,7 +240,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                               type="text"
                               name="subject"
                               id="subject"
-                              className="ring-1 dark:ring-cyan-500 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
+                              className="ring-1 dark:ring-cyan-500/30 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
                               required
                             />
                           </div>
@@ -258,7 +259,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                               id="message"
                               name="message"
                               rows="4"
-                              className="ring-1 dark:ring-cyan-500 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
+                              className="ring-1 dark:ring-cyan-500/30 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
                               aria-describedby="message-max"
                               required
                             ></textarea>
@@ -267,7 +268,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                         <div className="sm:col-span-2 sm:flex sm:justify-end">
                           <button
                             type="submit"
-                            className="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-sky-500 hover:bg-sky-700 dark:ring-cyan-500 dark:hover:bg-cyan-700 px-6 py-3 text-base font-medium text-white shadow-sm  focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 sm:w-auto"
+                            className="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-sky-500 dark:bg-cyan-500/30 hover:bg-sky-700 dark:ring-cyan-500 dark:hover:bg-cyan-700 px-6 py-3 text-base font-medium text-white shadow-sm  focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 sm:w-auto"
                           >
                             Submit
                           </button>
@@ -281,6 +282,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
           </main>
         </div>
       </div>
+      <Footer/>
     </AnimatedPage>
   );
 }
