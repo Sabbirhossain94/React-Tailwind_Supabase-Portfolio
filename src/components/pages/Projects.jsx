@@ -9,7 +9,8 @@ export default function Projects({ funcTopNav, funcSideNav }) {
   const storageUrl =
     "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/public/projects/Thumbnail/";
   const [allprojects, setAllProjects] = useState([]);
-
+  const [details, setDetails] = useState(false);
+  const [activeElement, setActiveElement] = useState(null);
   const getProjects = async (e) => {
     let { data, error } = await portfolioClient.from("projects").select("*");
     if (error) {
@@ -21,6 +22,15 @@ export default function Projects({ funcTopNav, funcSideNav }) {
   useEffect(() => {
     getProjects();
   }, []);
+
+  const handleHover = (id) => {
+    let activeElementId = allprojects.filter((item) => {
+      if (item.id === id) {
+        return item.id;
+      }
+    });
+    setActiveElement(activeElementId[0].id);
+  };
 
   return (
     <AnimatedPage>
@@ -37,32 +47,38 @@ export default function Projects({ funcTopNav, funcSideNav }) {
                       {allprojects.map((item) => (
                         <li
                           key={item.id}
-                          className="shadow-md hover:shadow-xl ring-1 scale-95 transition hover:scale-100 dark:highlight-white/5 group relative rounded-3xl bg-slate-100 p-6 hover:bg-slate-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-900/50"
+                          className="shadow-md hover:shadow-xl ring-1 scale-95 transition  dark:highlight-white/5 group relative rounded-3xl bg-slate-100 p-6 hover:bg-slate-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-900/50"
                         >
-                          <div className="rounded-lg relative aspect-[672/400] transform overflow-hidden bg-slate-400 shadow-[0_2px_8px_rgba(15,23,42,0.08)] dark:bg-slate-700">
-                            <img
-                              alt=""
-                              src={`${storageUrl}` + `${item.image}`}
-                              
-                              className="rounded-md absolute inset-0 h-full w-full"
-                              style={{ color: "transparent" ,objectFit: "cover"}}
-                            />
+                          <div className="rounded-lg relative aspect-[672/400] transform overflow-hidden shadow-[0_2px_8px_rgba(15,23,42,0.08)] dark:bg-slate-700">
                             <div
-                              style={{
-                                opacity: "0",
-                                transition: "opacity 0.5s linear 0s",
-                              }}
+                              onMouseOver={() => handleHover(item.id)}
+                              onMouseOut={() => setActiveElement(null)}
                             >
-                              <video
-                                preload="none"
-                                playsInline=""
-                                className="absolute inset-0 h-full w-full [mask-image:radial-gradient(white,black)]"
-                              >
-                                <source
-                                  src="videos/project_showcase.mp4"
-                                  type="video/mp4"
-                                />
-                              </video>
+                              <img
+                                alt="error"
+                                src={`${storageUrl}` + `${item.image}`}
+                                className={`${
+                                  item.id === activeElement ? "blur-[4px]" : ""
+                                } rounded-md absolute h-full w-full`}
+                                style={{
+                                  color: "transparent",
+                                  objectFit: "cover",
+                                }}
+                              />
+
+                              {item.id === activeElement ? (
+                                <div
+                                  className={
+                                    " transition-opacity bg-zinc-800 hover:bg-zinc-700 cursor-pointer px-2 py-1 rounded-md absolute left-[100px] top-[60px]"
+                                  }
+                                >
+                                  <h1 className="text-lg font-semibold text-white">
+                                    Details
+                                  </h1>
+                                </div>
+                              ) : (
+                                ""
+                              )}
                             </div>
                           </div>
                           <div className="mt-6 flex flex-col items-start">
@@ -112,7 +128,7 @@ export default function Projects({ funcTopNav, funcSideNav }) {
               </div>
             </div>
           </main>
-          <Footer/>
+          <Footer />
         </div>
       </div>
     </AnimatedPage>

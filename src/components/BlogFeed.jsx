@@ -32,7 +32,7 @@ export default function BlogFeed({ session }) {
   useEffect(() => {
     getAllBlogs();
   }, []);
-  console.log(process.env.REACT_APP_STORAGE_PUBLIC_URL);
+
   return (
     <div>
       <h3 className="text-2xl font-medium mb-12 tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-3xl">
