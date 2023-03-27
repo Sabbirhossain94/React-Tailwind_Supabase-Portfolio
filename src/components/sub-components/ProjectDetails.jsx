@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { portfolioClient } from "../../portfolioClient";
 import { TiTick } from "react-icons/ti";
+
 export default function ({ setModal, activeElement }) {
   const [projectDetails, setProjectDetails] = useState([]);
   let projectId = activeElement;
@@ -23,10 +24,10 @@ export default function ({ setModal, activeElement }) {
 
   return (
     <div>
-      <div className="flex justify-center items-center ">
-        <div className="fixed inset-0 transition duration-300 ease-in-out "></div>
-        <div className="rounded-lg mx-auto absolute top-1/4 z-50 overflow-x-hidden overflow-y-auto scrollbar-thumb-teal-500 scrollbar-track-gray-800 scrollbar-thin bg-white dark:bg-slate-900 h-1/2 sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/4">
-          <div className=" flex h-full relative rounded-lg  ">
+      <div className=" flex justify-center items-center">
+        {/* <div className=" inset-0 transition duration-300 ease-in-out "></div> */}
+        <div className="rounded-lg mx-auto absolute top-1/3 z-50 overflow-x-hidden overflow-y-auto scrollbar-thumb-gray-300 dark:scrollbar-thumb-teal-500 scrollbar-track-black scrollbar-thin bg-gray-100 border-gray-200 dark:bg-slate-900 h-1/2 w-10/12 sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/4">
+          <div className="flex h-full relative rounded-lg ">
             <button
               type="button"
               className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
@@ -48,7 +49,7 @@ export default function ({ setModal, activeElement }) {
             </button>
             {currentProject
               ? currentProject.map((item) => (
-                  <div key={item.id} className="px-6 py-6 mt-8 lg:px-8">
+                  <div key={item.id} className="h-full px-6 py-6 mt-8 lg:px-8">
                     <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
                       Project Title
                     </h3>
@@ -75,7 +76,6 @@ export default function ({ setModal, activeElement }) {
                     <div className="font-medium text-gray-500 flex flex-row flex-wrap">
                       {item.technologies.split(",").map((item, key) => (
                         <div key={key} className="flex flex-row">
-                          {/* <TiTick className="mt-1 text-teal-500" /> */}
                           <li className="list-none text-md px-2 mt-1 ml-1 border border-teal-500/50 rounded-lg border-x-2">
                             <p className="px-2">{item}</p>
                           </li>

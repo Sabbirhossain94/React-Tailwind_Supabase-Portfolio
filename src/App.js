@@ -162,9 +162,9 @@ function App({ session, funcTopNav, funcSideNav }) {
                 <div className="mx-auto max-w-7xl lg:px-8">
                   <div className="relative px-4 sm:px-8 lg:px-12">
                     <div className="mx-auto max-w-2xl lg:max-w-5xl">
-                      <div className="  grid max-w-xl grid-cols-1 gap-y-10 lg:max-w-none lg:grid-cols-2">
+                      <div className=" grid max-w-xl grid-cols-1 gap-y-10 lg:max-w-none lg:grid-cols-2">
                         <BlogFeed session={session} />
-                        <div className="mt-24 space-y-6 lg:pl-12 xl:pl-18">
+                        <div className=" mt-24 space-y-6 lg:pl-12 xl:pl-18">
                           <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
                             <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                               <svg
@@ -249,7 +249,7 @@ function App({ session, funcTopNav, funcSideNav }) {
                         </div>
                       </div>
                       {/* services */}
-                       <Services/>
+                      <Services />
                       {/* skills */}
                       <div>
                         <Skills />

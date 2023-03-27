@@ -1,9 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { portfolioClient } from "../../portfolioClient";
 import AnimatedPage from "../AnimatedPages";
 import Footer from "../Footer";
 import ProjectDetails from "../sub-components/ProjectDetails";
+
 export default function Projects({ funcTopNav, funcSideNav }) {
   funcTopNav(true);
   funcSideNav(false);
@@ -12,6 +13,7 @@ export default function Projects({ funcTopNav, funcSideNav }) {
   const [allprojects, setAllProjects] = useState([]);
   const [modal, setModal] = useState(false);
   const [activeElement, setActiveElement] = useState(null);
+
   const getProjects = async (e) => {
     let { data, error } = await portfolioClient.from("projects").select("*");
     if (error) {
@@ -35,19 +37,18 @@ export default function Projects({ funcTopNav, funcSideNav }) {
 
   return (
     <AnimatedPage>
-      <div >
+      <div>
         {modal ? (
           <ProjectDetails setModal={setModal} activeElement={activeElement} />
         ) : (
           ""
         )}
-        <div className={`${modal? "blur-sm": ""}`}>
+        <div className={`${modal ? "blur-sm" : ""}`}>
           <main className="p-[50px] bg-white dark:bg-slate-800">
             <div className=" sm:px-8">
               <div className="mx-auto max-w-7xl lg:px-8">
                 <div className="relative px-4 sm:px-8 lg:px-12">
                   <div className="mx-auto max-w-2xl lg:max-w-5xl"></div>
-                  <div></div>
                   <div className="transition-opacity mt-16 sm:mt-20">
                     <ul className=" mx-auto mt-16 grid max-w-[26rem] grid-cols-1 gap-6 px-4 sm:mt-20 sm:max-w-[52.5rem] sm:grid-cols-1 sm:px-6 md:mt-32 lg:max-w-7xl md:grid-cols-2 lg:grid-cols-3 lg:gap-y-8 lg:px-8 xl:gap-x-8">
                       {allprojects.map((item) => (

@@ -19,7 +19,7 @@ export default function Skills() {
             modules={[Pagination, A11y, Autoplay]}
             spaceBetween={50}
             slidesPerView={5}
-            autoplay={{ delay: 1500 }}
+            autoplay={{ delay: 1000 }}
             pagination={{
               clickable: true,
               el: ".swiper-custom-pagination",

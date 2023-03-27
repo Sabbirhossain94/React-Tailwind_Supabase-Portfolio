@@ -9,7 +9,7 @@ import Sign from "./Sign";
 import AddProject from "./subpages/AddProject";
 import Dashboard from "./subpages/Dashboard";
 import NoPage from "./NoPage";
-
+import PrivateRoute from "./subpages/PrivateRoute"
 export default function Home() {
   const [session, setSession] = useState(null);
   const [showTopNav, setShowTopNav] = useState(true);
@@ -63,18 +63,33 @@ export default function Home() {
             />
           }
         />
-        <Route
+        {/* <Route
           path="/dashboard"
           element={<Dashboard session={session} funcTopNav={setShowTopNav} />}
-        />
+        /> */}
         <Route
-          path="/dashboard/:id"
-          element={<AddProject session={session} funcTopNav={setShowTopNav} />}
-        />
-        <Route
-          path="/dashboard/:id/update"
-          element={<AddProject session={session} funcTopNav={setShowTopNav} />}
-        />
+          exact
+          path="/dashboard"
+          element={<PrivateRoute session={session} />}
+        >
+          <Route
+            path="/dashboard"
+            element={<Dashboard session={session} funcTopNav={setShowTopNav} />}
+          />
+          <Route
+            path="/dashboard/:id"
+            element={
+              <AddProject session={session} funcTopNav={setShowTopNav} />
+            }
+          />
+          <Route
+            path="/dashboard/:id/update"
+            element={
+              <AddProject session={session} funcTopNav={setShowTopNav} />
+            }
+          />
+        </Route>
+
         <Route path="*" element={<NoPage />} />
       </Routes>
     </Router>
