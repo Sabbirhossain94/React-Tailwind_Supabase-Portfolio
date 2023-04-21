@@ -27,11 +27,11 @@ export default function Skills() {
           >
             <div className="">
               <SwiperSlide>
-                <img src="/JS.png" width="100px" height="100px" className="" />
+                <img src="/assets/JS.png" width="100px" height="100px" className="" />
               </SwiperSlide>
               <SwiperSlide>
                 <img
-                  src="/HTML5.png"
+                  src="/assets/HTML5.png"
                   width="110px"
                   height="110px"
                   className=""
@@ -39,7 +39,7 @@ export default function Skills() {
               </SwiperSlide>
               <SwiperSlide>
                 <img
-                  src="/CSS3.png"
+                  src="/assets/CSS3.png"
                   width="110px"
                   height="110px"
                   className=""
@@ -47,7 +47,7 @@ export default function Skills() {
               </SwiperSlide>
               <SwiperSlide>
                 <img
-                  src="/react.png"
+                  src="/assets/react.png"
                   width="120px"
                   height="110px"
                   className=""
@@ -55,18 +55,18 @@ export default function Skills() {
               </SwiperSlide>
               <SwiperSlide>
                 <img
-                  src="/Next.png"
+                  src="/assets/Next.png"
                   width="120px"
                   height="110px"
                   className=""
                 />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="/MUI.png" width="120px" height="110px" className="" />
+                <img src="/assets/MUI.png" width="120px" height="110px" className="" />
               </SwiperSlide>
               <SwiperSlide>
                 <img
-                  src="/Bootstrap.png"
+                  src="/assets/Bootstrap.png"
                   width="120px"
                   height="140px"
                   className=""
@@ -74,7 +74,7 @@ export default function Skills() {
               </SwiperSlide>
               <SwiperSlide>
                 <img
-                  src="/tailwind.png"
+                  src="/assets/tailwind.png"
                   width="120px"
                   height="110px"
                   className=""
@@ -85,7 +85,7 @@ export default function Skills() {
               </SwiperSlide>
               <SwiperSlide>
                 <img
-                  src="/supabase.png"
+                  src="/assets/supabase.png"
                   width="150px"
                   height="140px"
                   className=""
