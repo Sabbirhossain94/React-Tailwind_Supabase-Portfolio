@@ -24,9 +24,8 @@ export default function ({ setModal, activeElement }) {
 
   return (
     <div>
-      <div className=" flex justify-center items-center">
-        {/* <div className=" inset-0 transition duration-300 ease-in-out "></div> */}
-        <div className="rounded-lg mx-auto absolute top-1/3 z-50 overflow-x-hidden overflow-y-auto scrollbar-thumb-gray-300 dark:scrollbar-thumb-teal-500 scrollbar-track-black scrollbar-thin bg-gray-100 border-gray-200 dark:bg-slate-900 h-1/2 w-10/12 sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/4">
+      <div className=" flex justify-center items-center ">
+        <div className="m-auto rounded-lg mx-auto absolute top-1/3 z-50 overflow-x-hidden overflow-y-auto scrollbar-thumb-gray-300 dark:scrollbar-thumb-slate-700 scrollbar-track-black scrollbar-thin bg-gray-100 border-gray-200 dark:bg-slate-900 h-1/2 w-10/12 sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/4">
           <div className="flex h-full relative rounded-lg ">
             <button
               type="button"

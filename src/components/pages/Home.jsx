@@ -9,11 +9,13 @@ import Sign from "./Sign";
 import AddProject from "./subpages/AddProject";
 import Dashboard from "./subpages/Dashboard";
 import NoPage from "./NoPage";
-import PrivateRoute from "./subpages/PrivateRoute"
+import PrivateRoute from "./subpages/PrivateRoute";
+
 export default function Home() {
   const [session, setSession] = useState(null);
   const [showTopNav, setShowTopNav] = useState(true);
   const [showSideNav, setShowSideNav] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     portfolioClient.auth.getSession().then(({ data: { session } }) => {
@@ -25,6 +27,9 @@ export default function Home() {
     });
   }, []);
 
+  useEffect(() => {
+    setIsAuth(true);
+  }, [session]);
   return (
     <Router>
       {showTopNav && <Navigation session={session} />}
@@ -60,17 +65,15 @@ export default function Home() {
               session={session}
               funcTopNav={setShowTopNav}
               funcSideNav={setShowSideNav}
+              isAuth={isAuth}
             />
           }
         />
-        {/* <Route
-          path="/dashboard"
-          element={<Dashboard session={session} funcTopNav={setShowTopNav} />}
-        /> */}
+
         <Route
           exact
           path="/dashboard"
-          element={<PrivateRoute session={session} />}
+          element={<PrivateRoute session={session} isAuth={isAuth} />}
         >
           <Route
             path="/dashboard"

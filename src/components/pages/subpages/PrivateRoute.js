@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-export default function PrivateRoute({ session }) {
-    useEffect(()=> {
-       console.log(session)
-    },[])
-  return session ? <Outlet /> : <Navigate to="/" />;
+export default function PrivateRoute({ session, isAuth }) {
+  return <>{session?.access_token ? <Outlet /> : <Navigate to="/" />}</>;
 }

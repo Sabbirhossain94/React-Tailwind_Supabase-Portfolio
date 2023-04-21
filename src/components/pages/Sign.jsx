@@ -3,14 +3,14 @@ import { useState } from "react";
 import { portfolioClient } from "../../portfolioClient";
 import Notification from "../sub-components/Notification";
 
-export default function Sign({ funcTopNav, funcSideNav, session }) {
+export default function Sign({ funcTopNav, funcSideNav, session,isAuth }) {
   funcTopNav(true);
   funcSideNav(false);
 
   const [showNotification, setShowNotification] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
-
+  console.log(isAuth)
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -30,7 +30,9 @@ export default function Sign({ funcTopNav, funcSideNav, session }) {
       {session ? (
         <div className="flex justify-center">
           <button
-            onClick={() => portfolioClient.auth.signOut()}
+            onClick={() => {
+              portfolioClient.auth.signOut();
+            }}
             className="flex w-[100px] justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
             Sign Out

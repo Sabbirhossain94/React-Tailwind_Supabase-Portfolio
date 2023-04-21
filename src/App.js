@@ -60,7 +60,7 @@ function App({ session, funcTopNav, funcSideNav }) {
     <AnimatedPage>
       <div>
         <div>
-          <div className="relative">
+          <div className="relative bg-white dark:bg-slate-800">
             <header className="pointer-events-none relative z-50 flex flex-col">
               {/* <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"></div> */}
               <div className="sm:px-8 top-0 order-last -mb-3 pt-3 mt-24">
@@ -74,7 +74,7 @@ function App({ session, funcTopNav, funcSideNav }) {
                           style={{
                             transform: "var(--avatar-image-transform)",
                           }}
-                          href="/"
+                          href="#"
                         >
                           <img
                             alt=""
@@ -107,19 +107,21 @@ function App({ session, funcTopNav, funcSideNav }) {
                               typeSpeed={70}
                               deleteSpeed={50}
                               delaySpeed={1000}
+                              cursorColor="rgb(20,184,166)"
                               words={[
                                 "Front End Developer",
                                 "Full Stack Developer",
-                                "javaScript Lover",
+                                "javaScript Developer",
                               ]}
                             />
                           </span>
                         </h1>
                         <p className="typingeffect mt-6 text-base text-zinc-600 dark:text-zinc-400">
-                          I'm Sabbir, a web developer based in Dhaka,
-                          Bangladesh. I have experience building websites based
-                          on React JS, Next JS and other cool frameworks. I love
-                          to learn new things everyday.
+                          Hello, I'm <span className="text-teal-500">Sabbir</span>, a
+                          web developer based in Dhaka, Bangladesh. I have
+                          experience building websites based on React JS, Next
+                          JS and other cool frameworks. I love to learn new
+                          things everyday.
                         </p>
                         <div className="mt-6 flex gap-6">
                           <a
