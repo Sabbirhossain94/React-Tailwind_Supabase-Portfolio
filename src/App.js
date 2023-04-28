@@ -7,12 +7,14 @@ import { portfolioClient } from "./portfolioClient";
 import { useState } from "react";
 import Skills from "./components/Skills";
 import Services from "./components/Services";
+import Loader from "./components/sub-components/Loader";
 
 function App({ session, funcTopNav, funcSideNav }) {
   funcTopNav(true);
   funcSideNav(false);
   const [cvUrl, setCvUrl] = useState();
-
+  const [delay, setDelay] = useState(0);
+  const avatarUrl = process.env.REACT_APP_STORAGE_MYAVATAR_PUBLIC_URL;
   const certifications = [
     {
       Institution: "East West University",
@@ -55,8 +57,13 @@ function App({ session, funcTopNav, funcSideNav }) {
       setCvUrl(data);
     }
   };
+  setTimeout(() => {
+    setDelay(1);
+  }, 2000);
 
-  return (
+  return delay === 0 ? (
+    <Loader />
+  ) : (
     <AnimatedPage>
       <div>
         <div>
@@ -78,7 +85,7 @@ function App({ session, funcTopNav, funcSideNav }) {
                         >
                           <img
                             alt=""
-                            src="https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/public/image/avatar.png"
+                            src={avatarUrl}
                             width="512"
                             height="512"
                             className="rounded-full bg-zinc-100 object-cover dark:bg-zinc-800 h-16 w-16"
@@ -117,8 +124,9 @@ function App({ session, funcTopNav, funcSideNav }) {
                           </span>
                         </h1>
                         <p className="typingeffect mt-6 text-base text-zinc-600 dark:text-zinc-400">
-                          Hello, I'm <span className="text-teal-500">Sabbir</span>, a
-                          web developer based in Dhaka, Bangladesh. I have
+                          Hello, I'm{" "}
+                          <span className="text-teal-500">Sabbir</span>, a web
+                          developer based in Dhaka, Bangladesh. I have
                           experience building websites based on React JS, Next
                           JS and other cool frameworks. I love to learn new
                           things everyday.

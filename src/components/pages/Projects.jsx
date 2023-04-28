@@ -1,18 +1,20 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { portfolioClient } from "../../portfolioClient";
 import AnimatedPage from "../AnimatedPages";
 import Footer from "../Footer";
 import ProjectDetails from "../sub-components/ProjectDetails";
+import Loader from "../sub-components/Loader";
 
 export default function Projects({ funcTopNav, funcSideNav }) {
   funcTopNav(true);
   funcSideNav(false);
-  const storageUrl =
-    "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/public/projects/Thumbnail/";
+  const storageUrl = process.env.REACT_APP_STORAGE_PROJECTS_PUBLIC_URL;
+
   const [allprojects, setAllProjects] = useState([]);
   const [modal, setModal] = useState(false);
   const [activeElement, setActiveElement] = useState(null);
+  const [delay, setDelay] = useState(0);
 
   const getProjects = async (e) => {
     let { data, error } = await portfolioClient.from("projects").select("*");
@@ -34,8 +36,13 @@ export default function Projects({ funcTopNav, funcSideNav }) {
     });
     setActiveElement(activeElementId[0].id);
   };
+  setTimeout(() => {
+    setDelay(1);
+  }, 2000);
 
-  return (
+  return delay === 0 ? (
+    <Loader />
+  ) : (
     <AnimatedPage>
       <div>
         {modal ? (

@@ -27,7 +27,12 @@ export default function Skills() {
           >
             <div className="">
               <SwiperSlide>
-                <img src="/assets/JS.png" width="100px" height="100px" className="" />
+                <img
+                  src="/assets/JS.png"
+                  width="100px"
+                  height="100px"
+                  className=""
+                />
               </SwiperSlide>
               <SwiperSlide>
                 <img
@@ -62,7 +67,12 @@ export default function Skills() {
                 />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="/assets/MUI.png" width="120px" height="110px" className="" />
+                <img
+                  src="/assets/MUI.png"
+                  width="120px"
+                  height="110px"
+                  className=""
+                />
               </SwiperSlide>
               <SwiperSlide>
                 <img
@@ -81,7 +91,12 @@ export default function Skills() {
                 />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="/git.png" width="150px" height="140px" className="" />
+                <img
+                  src="/assets/git.png"
+                  width="150px"
+                  height="140px"
+                  className=""
+                />
               </SwiperSlide>
               <SwiperSlide>
                 <img

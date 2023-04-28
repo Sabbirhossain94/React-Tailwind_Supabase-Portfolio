@@ -30,6 +30,9 @@ export default function Home() {
   useEffect(() => {
     setIsAuth(true);
   }, [session]);
+
+
+
   return (
     <Router>
       {showTopNav && <Navigation session={session} />}

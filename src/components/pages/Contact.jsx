@@ -4,11 +4,13 @@ import emailjs from "@emailjs/browser";
 import Notification from "../sub-components/Notification";
 import AnimatedPage from "../AnimatedPages";
 import Footer from "../Footer";
+import Loader from "../sub-components/Loader";
 
 export default function Contact({ funcTopNav, funcSideNav }) {
   funcTopNav(true);
   funcSideNav(false);
   const [showNotification, setShowNotification] = useState(false);
+  const [delay, setDelay] = useState(0);
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -40,7 +42,13 @@ export default function Contact({ funcTopNav, funcSideNav }) {
     }, 4000);
   };
 
-  return (
+  setTimeout(() => {
+    setDelay(1);
+  }, 2000);
+
+  return delay === 0 ? (
+    <Loader />
+  ) : (
     <AnimatedPage>
       <div>
         <Notification
@@ -282,7 +290,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
           </main>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </AnimatedPage>
   );
 }
