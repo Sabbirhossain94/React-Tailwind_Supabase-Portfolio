@@ -4,7 +4,7 @@ import App from "../../App";
 import { portfolioClient } from "../../portfolioClient";
 import Projects from "./Projects";
 import Contact from "./Contact";
-import Navigation from "../Navigation";
+import Navigation from "../Navbar";
 import Sign from "./Sign";
 import AddProject from "./subpages/AddProject";
 import Dashboard from "./subpages/Dashboard";

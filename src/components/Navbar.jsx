@@ -18,7 +18,6 @@ export default function Navigation({ session }) {
       navLinkStyles: ({ isActive }) => {
         return {
           color: isActive ? "rgb(56,189,248)" : "white",
-          background: isActive ? "rgb(55,65,81)" : "none",
         };
       },
     },
@@ -29,7 +28,6 @@ export default function Navigation({ session }) {
       navLinkStyles: ({ isActive }) => {
         return {
           color: isActive ? "rgb(56,189,248)" : "white",
-          background: isActive ? "rgb(55,65,81)" : "none",
         };
       },
     },
@@ -40,7 +38,6 @@ export default function Navigation({ session }) {
       navLinkStyles: ({ isActive }) => {
         return {
           color: isActive ? "rgb(56,189,248)" : "white",
-          background: isActive ? "rgb(55,65,81)" : "none",
         };
       },
     },
@@ -51,7 +48,6 @@ export default function Navigation({ session }) {
       navLinkStyles: ({ isActive }) => {
         return {
           color: isActive ? "rgb(56,189,248)" : "white",
-          background: isActive ? "rgb(55,65,81)" : "none",
         };
       },
     },
@@ -62,7 +58,6 @@ export default function Navigation({ session }) {
       navLinkStyles: ({ isActive }) => {
         return {
           color: isActive ? "rgb(56,189,248)" : "white",
-          background: isActive ? "rgb(55,65,81)" : "none",
         };
       },
     },
@@ -73,7 +68,6 @@ export default function Navigation({ session }) {
       navLinkStyles: ({ isActive }) => {
         return {
           color: isActive ? "rgb(56,189,248)" : "white",
-          background: isActive ? "rgb(55,65,81)" : "none",
         };
       },
     },
@@ -93,9 +87,9 @@ export default function Navigation({ session }) {
 
   return (
     <div>
-      <nav className="shadow-xl bg-zinc-800 dark:bg-slate-900">
+      <nav className="shadow-xl bg-zinc-800 dark:bg-slate-900 ">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
+          <div className="flex h-20 items-center justify-between">
             <div className="flex items-center md:ml-[80px]">
               <div className="flex-shrink-0 sm:hidden">
                 <button className="rounded-md hover:bg-gray-800 px-1 py-1">
@@ -147,7 +141,7 @@ export default function Navigation({ session }) {
                         <NavLink
                           key={item.id}
                           to={item.Link}
-                          className="font-bold rounded-md px-3 py-2 text-sm"
+                          className="font-bold  px-3 py-2 text-sm"
                           style={item.navLinkStyles}
                           end
                         >
@@ -256,7 +250,7 @@ export default function Navigation({ session }) {
                   <NavLink
                     key={key}
                     to={item.Link}
-                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-300"
+                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 "
                     style={item.navLinkStyles}
                     end
                   >
