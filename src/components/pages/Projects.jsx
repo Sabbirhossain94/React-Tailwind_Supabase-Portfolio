@@ -5,6 +5,7 @@ import AnimatedPage from "../AnimatedPages";
 import Footer from "../Footer";
 import ProjectDetails from "../sub-components/ProjectDetails";
 import Loader from "../sub-components/Loader";
+import { Button, Modal } from "antd";
 
 export default function Projects({ funcTopNav, funcSideNav }) {
   funcTopNav(true);
@@ -15,6 +16,7 @@ export default function Projects({ funcTopNav, funcSideNav }) {
   const [modal, setModal] = useState(false);
   const [activeElement, setActiveElement] = useState(null);
   const [delay, setDelay] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getProjects = async (e) => {
     let { data, error } = await portfolioClient.from("projects").select("*");
@@ -39,6 +41,10 @@ export default function Projects({ funcTopNav, funcSideNav }) {
   setTimeout(() => {
     setDelay(1);
   }, 2000);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
 
   return delay === 0 ? (
     <Loader />
@@ -85,7 +91,10 @@ export default function Projects({ funcTopNav, funcSideNav }) {
                                   className={
                                     " transition-opacity bg-zinc-800 hover:bg-zinc-700 cursor-pointer px-2 py-1 rounded-md absolute left-[100px] top-[60px]"
                                   }
-                                  onClick={() => setModal(true)}
+                                  onClick={() => {
+                                    showModal();
+                                    setModal(true);
+                                  }}
                                 >
                                   <h1 className="text-lg font-semibold text-white">
                                     Details

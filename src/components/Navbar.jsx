@@ -86,8 +86,8 @@ export default function Navigation({ session }) {
   }, [location.pathname]);
 
   return (
-    <div>
-      <nav className="shadow-xl bg-zinc-800 dark:bg-slate-900 ">
+    <div >
+      <nav className=" shadow-xl bg-zinc-800 dark:bg-slate-900 ">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
             <div className="flex items-center md:ml-[80px]">

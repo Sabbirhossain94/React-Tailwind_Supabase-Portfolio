@@ -15,7 +15,6 @@ export default function Home() {
   const [session, setSession] = useState(null);
   const [showTopNav, setShowTopNav] = useState(true);
   const [showSideNav, setShowSideNav] = useState(false);
-  const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     portfolioClient.auth.getSession().then(({ data: { session } }) => {
@@ -27,12 +26,7 @@ export default function Home() {
     });
   }, []);
 
-  useEffect(() => {
-    setIsAuth(true);
-  }, [session]);
-
-
-
+  const isAuth = localStorage.getItem(process.env.REACT_APP_LOCAL_STORAGE_KEY);
   return (
     <Router>
       {showTopNav && <Navigation session={session} />}
@@ -73,13 +67,10 @@ export default function Home() {
           }
         />
 
-        <Route
-          exact
-          path="/dashboard"
-          element={<PrivateRoute session={session} isAuth={isAuth} />}
-        >
+        <Route element={<PrivateRoute session={session} isAuth={isAuth} />}>
           <Route
             path="/dashboard"
+            exact
             element={<Dashboard session={session} funcTopNav={setShowTopNav} />}
           />
           <Route

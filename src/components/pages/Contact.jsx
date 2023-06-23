@@ -171,8 +171,8 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                           <div className="mt-1">
                             <input
                               type="text"
-                              name="first_name"
-                              id="first_name"
+                              name="first-name"
+                              id="first-name"
                               autoComplete="given-name"
                               className="ring-1 dark:ring-cyan-500/30 mt-[10px]  dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800 focus:border-indigo-500 focus:ring-indigo-400"
                               required
@@ -189,8 +189,8 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                           <div className="mt-1">
                             <input
                               type="text"
-                              name="last_name"
-                              id="last_name"
+                              name="last-name"
+                              id="last-name"
                               autoComplete="family-name"
                               className="ring-1 dark:ring-cyan-500/30 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
                               required

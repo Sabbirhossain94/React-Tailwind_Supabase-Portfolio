@@ -16,7 +16,7 @@ export default function AddProject({ session, funcTopNav }) {
   const [previewImage, setPreviewImage] = useState(null);
   const [sendImage, setSendImage] = useState(null);
   const date = new Date().toLocaleDateString();
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -85,7 +85,7 @@ export default function AddProject({ session, funcTopNav }) {
       .from("projects")
       .update(`Thumbnail/${updateImage}`, sendImage, {
         cacheControl: "3600",
-        upsert: false,
+        upsert: true,
       });
     if (imageError) {
       console.log(imageError);
@@ -156,7 +156,7 @@ export default function AddProject({ session, funcTopNav }) {
               </label>
               <input
                 type="text"
-                id="text"
+                id="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -166,14 +166,14 @@ export default function AddProject({ session, funcTopNav }) {
 
             <div className="mb-6">
               <label
-                htmlFor="description"
+                htmlFor="github"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Github link
               </label>
               <input
                 type="text"
-                id="text"
+                id="github"
                 value={githubLink}
                 onChange={(e) => setGithubLink(e.target.value)}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -182,14 +182,14 @@ export default function AddProject({ session, funcTopNav }) {
             </div>
             <div className="mb-6">
               <label
-                htmlFor="link"
+                htmlFor="live"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Live link
               </label>
               <input
                 type="text"
-                id="text"
+                id="live"
                 value={liveLink}
                 onChange={(e) => setLiveLink(e.target.value)}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

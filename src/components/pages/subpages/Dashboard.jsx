@@ -9,8 +9,7 @@ export default function Sidebar({ funcTopNav }) {
   const [sideBarOpen, setSideBarOpen] = useState(false);
   const [allprojects, setAllProjects] = useState([]);
   const [showProjectForm, setShowProjectForm] = useState(false);
-  const storageUrl =
-    "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/public/projects/Thumbnail/";
+  const storageUrl = process.env.REACT_APP_STORAGE_PROJECTS_PUBLIC_URL;
   const sideBarContents = [
     {
       name: "Home",
@@ -78,15 +77,18 @@ export default function Sidebar({ funcTopNav }) {
   };
   const uploadCV = async (e) => {
     const file = e.target.files[0];
-    const filePath = `CV of Sabbir Hossain.pdf`;
-
-    const { error: uploadError } = await portfolioClient.storage
+    const filePath = `CV/CV of Sabbir Hossain.pdf`;
+    console.log(file);
+    const { data, error } = await portfolioClient.storage
       .from("image")
-      .upload("CV/" + filePath, file);
-    if (uploadError) {
-      console.log(uploadError);
+      .update(filePath, file, {
+        cacheControl: "3600",
+        upsert: true,
+      });
+    if (error) {
+      console.log(error);
     } else {
-      alert("CV uploaded successfully!");
+      console.log(data);
     }
   };
   useEffect(() => {

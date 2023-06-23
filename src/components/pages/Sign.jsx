@@ -3,14 +3,13 @@ import { useState } from "react";
 import { portfolioClient } from "../../portfolioClient";
 import Notification from "../sub-components/Notification";
 
-export default function Sign({ funcTopNav, funcSideNav, session,isAuth }) {
+export default function Sign({ funcTopNav, funcSideNav, session }) {
   funcTopNav(true);
   funcSideNav(false);
 
   const [showNotification, setShowNotification] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
-  console.log(isAuth)
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
