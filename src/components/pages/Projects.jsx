@@ -5,7 +5,6 @@ import AnimatedPage from "../AnimatedPages";
 import Footer from "../Footer";
 import ProjectDetails from "../sub-components/ProjectDetails";
 import Loader from "../sub-components/Loader";
-import { Button, Modal } from "antd";
 
 export default function Projects({ funcTopNav, funcSideNav }) {
   funcTopNav(true);

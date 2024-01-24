@@ -1,7 +1,6 @@
 import React from "react";
 import { BsLinkedin } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
-import { MdWork } from "react-icons/md";
 import { SiGmail } from "react-icons/si";
 
 export default function Footer() {

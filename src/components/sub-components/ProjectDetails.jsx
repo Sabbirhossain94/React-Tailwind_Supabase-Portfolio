@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { portfolioClient } from "../../portfolioClient";
 import { TiTick } from "react-icons/ti";
 import { AnimatePresence, motion } from "framer-motion";
+
 export default function ({ setModal, activeElement }) {
   const [projectDetails, setProjectDetails] = useState([]);
   let projectId = activeElement;
