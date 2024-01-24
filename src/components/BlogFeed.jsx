@@ -1,5 +1,5 @@
 import React from "react";
-import { supabase } from "../supabaseClient";
+// import { supabase } from "../supabaseClient";
 import { useState, useEffect } from "react";
 
 export default function BlogFeed() {
@@ -7,28 +7,28 @@ export default function BlogFeed() {
   const [loading, setLoading] = useState(true);
   const blogCoverUrl = process.env.REACT_APP_STORAGE_PUBLIC_URL;
 
-  const getAllBlogs = async () => {
-    try {
-      setLoading(true);
-      let { data, error } = await supabase
-        .from("blogs")
-        .select("*")
-        .range(0, 2);
-      if (error) {
-        throw error;
-      } else {
-        setAllBlog(data);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const getAllBlogs = async () => {
+  //   try {
+  //     setLoading(true);
+  //     let { data, error } = await supabase
+  //       .from("blogs")
+  //       .select("*")
+  //       .range(0, 2);
+  //     if (error) {
+  //       throw error;
+  //     } else {
+  //       setAllBlog(data);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    getAllBlogs();
-  }, []);
+  // useEffect(() => {
+  //   getAllBlogs();
+  // }, []);
 
   return (
     <div className="w-2/3">

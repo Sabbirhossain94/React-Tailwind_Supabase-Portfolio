@@ -17,6 +17,7 @@ export default function Projects({ funcTopNav, funcSideNav }) {
   const [delay, setDelay] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  console.log(typeof process.env.REACT_APP_SUPABASE_URL)
   const getProjects = async (e) => {
     let { data, error } = await portfolioClient.from("projects").select("*");
     if (error) {
