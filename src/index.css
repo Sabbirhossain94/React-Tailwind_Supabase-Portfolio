@@ -5,3 +5,11 @@
     --tw-text-opacity: 1;
     background-color: #1E293B;
 }
+
+nav {
+    @apply fixed w-full z-50 transition duration-300;
+}
+
+.blur-background {
+    @apply backdrop-blur-md; 
+}

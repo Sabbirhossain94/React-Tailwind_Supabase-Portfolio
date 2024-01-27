@@ -8,7 +8,7 @@ export default function Navigation({ session }) {
   const location = useLocation();
   const [openMenuIcon, setOpenMenuIcon] = useState(false);
   const [dark, setDark] = useState(true);
-
+  
   const navigation = [
     {
       Name: "About",
@@ -17,7 +17,7 @@ export default function Navigation({ session }) {
       property: "end",
       navLinkStyles: ({ isActive }) => {
         return {
-          color: isActive ? "rgb(56,189,248)" : "white",
+          color: isActive ? "rgb(20,184,166)" : dark ? "white" : "black",
         };
       },
     },
@@ -27,7 +27,7 @@ export default function Navigation({ session }) {
       isSession: false,
       navLinkStyles: ({ isActive }) => {
         return {
-          color: isActive ? "rgb(56,189,248)" : "white",
+          color: isActive ? "rgb(20,184,166)" : dark ? "white" : "black",
         };
       },
     },
@@ -37,7 +37,7 @@ export default function Navigation({ session }) {
       isSession: false,
       navLinkStyles: ({ isActive }) => {
         return {
-          color: isActive ? "rgb(56,189,248)" : "white",
+          color: isActive ? "rgb(20,184,166)" : dark ? "white" : "black",
         };
       },
     },
@@ -85,24 +85,41 @@ export default function Navigation({ session }) {
     setOpenMenuIcon(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const navbar = document.getElementById('navbar');
+
+      if (scrollPosition > 0) {
+        navbar.classList.add('blur-background backdrop-blur-md');
+      } else {
+        navbar.classList.remove('blur-background');
+      }
+    };
+    document.addEventListener('scroll', handleScroll);
+    return () => {
+      document.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div >
-      <nav className=" shadow-xl bg-zinc-800 dark:bg-slate-900 ">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-20 items-center justify-between">
-            <div className="flex items-center md:ml-[80px]">
+      <nav id="navbar" className="shadow-md bg-white dark:bg-slate-800 z-[1000] fixed top-0 left-0 right-0">
+        <div className="mx-auto max-w-7xl sm:px-12 lg:px-6 bg-opacity-50">
+          <div className="flex h-20 items-center justify-between px-5">
+            <div className="flex md:ml-[80px]">
               <div className="flex-shrink-0 sm:hidden">
-                <button className="rounded-md hover:bg-gray-800 px-1 py-1">
+                <button className="rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 px-1 py-1 transition duration-300">
                   {openMenuIcon ? (
                     <svg
                       onClick={() => setOpenMenuIcon(false)}
                       xmlns="http://www.w3.org/2000/svg"
-                      color="white"
+                      color="black"
                       fill="none"
                       viewBox="0 0 24 24"
                       strokeWidth="1.5"
                       stroke="currentColor"
-                      className="w-8 h-8"
+                      className="w-8 h-8 dark:text-white"
                     >
                       <path
                         strokeLinecap="round"
@@ -113,9 +130,8 @@ export default function Navigation({ session }) {
                   ) : (
                     <svg
                       onClick={() => setOpenMenuIcon(true)}
-                      className=" block h-8 w-8"
+                      className="dark:text-white block h-8 w-8"
                       xmlns="http://www.w3.org/2000/svg"
-                      color="white"
                       fill="none"
                       viewBox="0 0 24 24"
                       strokeWidth="1.5"
@@ -131,17 +147,22 @@ export default function Navigation({ session }) {
                   )}
                 </button>
               </div>
+              <div className=" flex items-center">
+                <h1 className="ml-4 sm:ml-0 font-poppins font-semibold tracking-[1px] dark:text-white text-xl sm:text-2xl">Sabbir Hossain</h1>
+              </div>
+            </div>
+            <div className="sm:ml-6 flex items-center justify-end">
               <div className="hidden sm:ml-6 sm:block">
-                <div className="flex space-x-4">
+                <div className="flex space-x-4 ">
                   {navigation.map((item, key) =>
                     item.isSession ? (
                       ""
                     ) : (
-                      <li key={key} className="list-none">
+                      <li key={key} className="list-none hover:bg-slate-700 rounded-md p-0.5 transition duration-300">
                         <NavLink
                           key={item.id}
                           to={item.Link}
-                          className="font-bold  px-3 py-2 text-sm"
+                          className=" px-3 py-2 text-md "
                           style={item.navLinkStyles}
                           end
                         >
@@ -152,20 +173,18 @@ export default function Navigation({ session }) {
                   )}
                 </div>
               </div>
-            </div>
-            <div className="hidden sm:ml-6 sm:block">
-              <div className="flex items-center">
+              <div className="ml-4 items-center">
                 <button
                   type="button"
                   onClick={() => setDark(!dark)}
                   aria-label="Toggle dark mode"
-                  className="rounded-md px-3 py-2 hover:bg-gray-700"
+                  className="rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300"
                 >
                   {dark ? (
                     <svg
                       viewBox="0 0 24 24"
                       aria-hidden="true"
-                      className=" stroke-sky-500  h-8 w-8"
+                      className=" stroke-sky-500 h-6 w-6"
                     >
                       <path
                         d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z"
@@ -181,7 +200,7 @@ export default function Navigation({ session }) {
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="w-8 h-8"
+                      className="w-6 h-6"
                     >
                       <path
                         d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
@@ -197,47 +216,6 @@ export default function Navigation({ session }) {
                 <div className="relative ml-3"></div>
               </div>
             </div>
-            <div className="-mr-2 flex sm:hidden">
-              <button
-                type="button"
-                onClick={() => setDark(!dark)}
-                aria-label="Toggle dark mode"
-                className="rounded-md px-3 py-2 hover:bg-gray-700"
-              >
-                {dark ? (
-                  <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    className=" stroke-sky-500  h-8 w-8"
-                  >
-                    <path
-                      d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    ></path>
-                  </svg>
-                ) : (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="w-8 h-8"
-                  >
-                    <path
-                      d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                      className="fill-sky-400/20 stroke-sky-500"
-                    ></path>
-                    <path
-                      d="M12 4v1M17.66 6.344l-.828.828M20.005 12.004h-1M17.66 17.664l-.828-.828M12 20.01V19M6.34 17.664l.835-.836M3.995 12.004h1.01M6 6l.835.836"
-                      className="stroke-sky-500"
-                    ></path>
-                  </svg>
-                )}
-              </button>
-            </div>
           </div>
         </div>
         <div className="sm:hidden">
@@ -247,15 +225,17 @@ export default function Navigation({ session }) {
                 item.isSession ? (
                   ""
                 ) : (
+                  <li key={key} className="list-none hover:bg-gray-100 dark:hover:bg-slate-700 rounded-md p-0.5 transition duration-300">
                   <NavLink
                     key={key}
                     to={item.Link}
-                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 "
+                    className={`rounded-md px-3 py-2 text-base font-medium text-gray-300 ${openMenuIcon ? "block": "hidden"}`}
                     style={item.navLinkStyles}
                     end
                   >
                     {item.Name}
                   </NavLink>
+                  </li>
                 )
               )}
             </div>

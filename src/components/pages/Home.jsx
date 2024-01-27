@@ -14,7 +14,7 @@ import PrivateRoute from "./subpages/PrivateRoute";
 export default function Home() {
   const [session, setSession] = useState(null);
   const [showTopNav, setShowTopNav] = useState(true);
-  const [showSideNav, setShowSideNav] = useState(false);
+  const [_, setShowSideNav] = useState(false);
 
   useEffect(() => {
     portfolioClient.auth.getSession().then(({ data: { session } }) => {

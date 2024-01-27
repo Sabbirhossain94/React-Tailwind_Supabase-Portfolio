@@ -1,34 +1,36 @@
 import React from "react";
-// import { supabase } from "../supabaseClient";
+import { supabase } from "../supabaseClient";
 import { useState, useEffect } from "react";
 
 export default function BlogFeed() {
   const [allBlog, setAllBlog] = useState([]);
   const [loading, setLoading] = useState(true);
+
   const blogCoverUrl = process.env.REACT_APP_STORAGE_PUBLIC_URL;
+  const blogAppUrl = process.env.REACT_APP_BLOG_APP_URL;
 
-  // const getAllBlogs = async () => {
-  //   try {
-  //     setLoading(true);
-  //     let { data, error } = await supabase
-  //       .from("blogs")
-  //       .select("*")
-  //       .range(0, 2);
-  //     if (error) {
-  //       throw error;
-  //     } else {
-  //       setAllBlog(data);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+  const getAllBlogs = async () => {
+    try {
+      setLoading(true);
+      let { data, error } = await supabase
+        .from("blogs")
+        .select("*")
+        .range(0, 2);
+      if (error) {
+        throw error;
+      } else {
+        setAllBlog(data);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  // useEffect(() => {
-  //   getAllBlogs();
-  // }, []);
+  useEffect(() => {
+    getAllBlogs();
+  }, []);
 
   return (
     <div className="w-2/3">
@@ -84,7 +86,7 @@ export default function BlogFeed() {
                 <div className="w-[200px] md:w-[400px] text-base flex flex-col justify-center  ">
                   <div className="">
                     <h2 className="text-sm md:text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-                      <a href="https://blog.sabbirontheweb.com/">
+                      <a href={blogAppUrl} target="_blank">
                         <span className="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
                         <span className="relative z-10">{item.title}</span>
                       </a>

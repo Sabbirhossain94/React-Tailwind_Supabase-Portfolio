@@ -15,6 +15,7 @@ function App({ session, funcTopNav, funcSideNav }) {
   const [cvUrl, setCvUrl] = useState();
   const [delay, setDelay] = useState(0);
   const avatarUrl = process.env.REACT_APP_STORAGE_MYAVATAR_PUBLIC_URL;
+
   const certifications = [
     {
       Institution: "East West University",
@@ -66,7 +67,6 @@ function App({ session, funcTopNav, funcSideNav }) {
   ) : (
     <AnimatedPage>
       <div>
-        <div>
           <div className="relative bg-white dark:bg-slate-800">
             <header className="pointer-events-none relative z-50 flex flex-col">
               {/* <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"></div> */}
@@ -167,14 +167,13 @@ function App({ session, funcTopNav, funcSideNav }) {
                   </div>
                 </div>
               </div>
-
               <div className="sm:px-8 mt-16 md:mt-24">
                 <div className="mx-auto max-w-7xl lg:px-8">
                   <div className="relative px-4 sm:px-8 lg:px-12">
                     <div className="mx-auto max-w-2xl lg:max-w-5xl">
-                      <div className=" grid max-w-xl grid-cols-1 gap-y-10 lg:max-w-none lg:grid-cols-2">
+                      <div className="grid max-w-xl grid-cols-1 gap-y-10 lg:max-w-none lg:grid-cols-2">
                         <BlogFeed session={session} />
-                        <div className=" mt-24 space-y-6 lg:pl-12 xl:pl-18">
+                        <div className="mt-24 space-y-6 lg:pl-12 xl:pl-18">
                           <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
                             <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                               <svg
@@ -195,7 +194,7 @@ function App({ session, funcTopNav, funcSideNav }) {
                                   className="stroke-zinc-400 dark:stroke-zinc-500"
                                 ></path>
                               </svg>
-                              <span className="ml-3">
+                              <span className="ml-3 mt-1">
                                 Education and Certifications
                               </span>
                             </h2>
@@ -219,11 +218,9 @@ function App({ session, funcTopNav, funcSideNav }) {
                                     <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
                                       {item.certificate}
                                     </dd>
-
                                     <dd className="text-xs text-zinc-500 dark:text-zinc-400">
                                       {item.Institution}
                                     </dd>
-
                                     <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500">
                                       <span aria-hidden="true">
                                         {item.Issued}
@@ -272,7 +269,6 @@ function App({ session, funcTopNav, funcSideNav }) {
             <ScrollToTop />
             <Footer />
           </div>
-        </div>
       </div>
     </AnimatedPage>
   );
