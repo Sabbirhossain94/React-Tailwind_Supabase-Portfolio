@@ -12,14 +12,13 @@ export default function AddProject({ session, funcTopNav }) {
   const [title, setTitle] = useState("");
   const [githubLink, setGithubLink] = useState(" ");
   const [liveLink, setLiveLink] = useState("");
-  const [updateImage, setUpdateImage] = useState(null);
+  const [_, setUpdateImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [sendImage, setSendImage] = useState(null);
   const date = new Date().toLocaleDateString();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (params.id === "addproject") {
       createProjects(e);
     } else {
@@ -43,7 +42,6 @@ export default function AddProject({ session, funcTopNav }) {
 
   const createProjects = async (e) => {
     e.preventDefault();
-
     const { data, error } = await portfolioClient
       .from("projects")
       .insert({
@@ -58,60 +56,65 @@ export default function AddProject({ session, funcTopNav }) {
   };
 
   //when updating project fields will be pre-loaded
-  const loadBlogContent = async (e) => {
+  const loadProjectContent = async (e) => {
     try {
       let { data, error } = await portfolioClient
         .from("projects")
         .select("*")
         .match({ id: params.id });
+      const [projectInfo] = data;
       if (error) {
         console.log(error);
       } else {
-        // setPreviewImage(URL.createObjectURL(data[0].image));
+        loadProjectCoverImage(projectInfo.image)
         setUpdateImage(data[0].image);
-        setTitle(data[0].title);
-        setGithubLink(data[0].githublink);
-        setLiveLink(data[0].livelink);
-       
+        setTitle(projectInfo?.title);
+        setGithubLink(projectInfo?.githublink);
+        setLiveLink(projectInfo?.livelink);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
+  const loadProjectCoverImage = async (image) => {
+    const { data, error } = await portfolioClient.storage
+      .from("projects")
+      .download(`Thumbnail/${image}`);
+    setPreviewImage(URL.createObjectURL(data));
+  }
+
+
   //to update a project
   const updateProject = async (e) => {
-    const { imageData, imageError } = await portfolioClient
-      .from("projects")
-      .update(`Thumbnail/${updateImage}`, sendImage, {
-        cacheControl: "3600",
-        upsert: true,
-      });
-    if (imageError) {
-      console.log(imageError);
-    } else {
-      setUpdateImage(imageData);
-      console.log(imageData);
+    try {
+      const { data, error } = await portfolioClient
+        .from("projects")
+        .update({
+          user_id: session.user.id,
+          title: title,
+          image: sendImage,
+          githublink: githubLink,
+          livelink: liveLink,
+          inserted_at: date,
+        })
+        .match({ id: params.id });
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(error)
+      }
+    }
+    catch (error) {
+      console.log(error)
     }
 
-    const { data, error } = await portfolioClient
-      .from("projects")
-      .update({
-        user_id: session.user.id,
-        title: title,
-        image: sendImage,
-        githublink: githubLink,
-        livelink: liveLink,
-        inserted_at: date,
-      })
-      .match({ id: params.id });
   };
 
   const uploadImage = async (e) => {
     if (!e.target.files || e.target.files.length === 0) {
       throw new Error("You must select an image to upload.");
     }
-
     const file = e.target.files[0];
     const fileExt = file.name.split(".").pop();
     const fileName = `${Math.random()}.${fileExt}`;
@@ -129,19 +132,32 @@ export default function AddProject({ session, funcTopNav }) {
         setSendImage(filePath);
       }
     } else {
-      loadBlogContent()
+      let { error: uploadError } = await portfolioClient.storage
+        .from("projects")
+        .upload("Thumbnail/" + filePath, file);
+
+      if (uploadError) {
+        console.log(uploadError);
+      } else {
+        downloadImage(filePath);
+        setPreviewImage(filePath);
+        setSendImage(filePath);
+      }
     }
   };
+
   useEffect(() => {
-    if (params.id !== "undefined") {
-      loadBlogContent();
+    if (params.id !== "addproject") {
+      loadProjectContent();
     }
   }, []);
+
+
   return (
     <AnimatedPage>
       <div>
         <h1 className="mt-[50px] p-5 flex justify-center text-gray-300 text-2xl items-center">
-          Add Your Project Details
+          {params.id === "addproject" ? "Add Your Project Details" : "Update Your Project Details"}
         </h1>
         <div
           className={`mx-auto ring-1 p-6 mt-[0px] rounded-lg w-2/3 sm:w-2/3 md:w-1/2 lg:w-1/3`}
@@ -197,9 +213,6 @@ export default function AddProject({ session, funcTopNav }) {
               />
             </div>
             <div className="mb-6">
-              {/* <label htmlFor="imageUrl" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Image URL</label>
-                            <input type="text" id="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required /> */}
-              {/* "https://i.imgur.com/W2AT377.jpg" */}
               <div>
                 {previewImage ? (
                   <img

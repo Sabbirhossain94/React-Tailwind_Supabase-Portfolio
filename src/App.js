@@ -267,7 +267,9 @@ function App({ session, funcTopNav, funcSideNav }) {
               </div>
             </main>
             <ScrollToTop />
+            <div className="mt-32">
             <Footer />
+            </div>
           </div>
       </div>
     </AnimatedPage>

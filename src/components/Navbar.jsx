@@ -158,7 +158,7 @@ export default function Navigation({ session }) {
                     item.isSession ? (
                       ""
                     ) : (
-                      <li key={key} className="list-none hover:bg-slate-700 rounded-md p-0.5 transition duration-300">
+                        <li key={key} className="list-none hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md p-0.5 transition duration-300">
                         <NavLink
                           key={item.id}
                           to={item.Link}
@@ -184,7 +184,7 @@ export default function Navigation({ session }) {
                     <svg
                       viewBox="0 0 24 24"
                       aria-hidden="true"
-                      className=" stroke-sky-500 h-6 w-6"
+                      className=" stroke-teal-500 h-6 w-6"
                     >
                       <path
                         d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z"
@@ -204,11 +204,11 @@ export default function Navigation({ session }) {
                     >
                       <path
                         d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                        className="fill-sky-400/20 stroke-sky-500"
+                        className="fill-sky-400/20 stroke-teal-500"
                       ></path>
                       <path
                         d="M12 4v1M17.66 6.344l-.828.828M20.005 12.004h-1M17.66 17.664l-.828-.828M12 20.01V19M6.34 17.664l.835-.836M3.995 12.004h1.01M6 6l.835.836"
-                        className="stroke-sky-500"
+                        className="stroke-teal-500"
                       ></path>
                     </svg>
                   )}
