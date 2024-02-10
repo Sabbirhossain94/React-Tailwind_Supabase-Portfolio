@@ -129,9 +129,7 @@ export default function Projects({ funcTopNav, funcSideNav }) {
                         </li>
                       ))}
                       <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null}>
-                        <div>
-                          <ProjectDetails setModal={setModal} selectedProjectId={selectedProjectId} />
-                        </div>
+                        <ProjectDetails setModal={setModal} selectedProjectId={selectedProjectId} />
                       </Modal>
                     </ul>
                   </div>

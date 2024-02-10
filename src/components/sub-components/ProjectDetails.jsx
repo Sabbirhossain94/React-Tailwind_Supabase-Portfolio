@@ -33,7 +33,7 @@ export default function ({ selectedProjectId }) {
   }, [selectedProjectId]);
 
   return (
-    <div>
+    <div className=" ">
       <div className=" h-full relative rounded-lg ">
         {loading ?
           <div role="status" className="h-[500px] mt-8 flex justify-center items-center">
@@ -66,7 +66,7 @@ export default function ({ selectedProjectId }) {
               </div>
             </div>
             <h3 className="mb-4 mt-4 text-xl font-medium text-gray-400 dark:text-white">
-              Technologies Used
+              Technologies
             </h3>
             <div className="font-medium text-gray-500 flex flex-row flex-wrap">
               {projectDetails?.projectdetails?.technologies.split(",").map((item, key) => (
