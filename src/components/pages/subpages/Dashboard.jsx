@@ -83,15 +83,16 @@ export default function Sidebar({ funcTopNav }) {
 
   const deleteProject = async (id) => {
     setIsModalOpen(true);
-    // const { data, error } = await portfolioClient
-    //   .from("projects")
-    //   .delete()
-    //   .match({ id: id });
-    // if (error) {
-    //   console.log(error);
-    // } else {
-    //   console.log(data);
-    // }
+    console.log(id)
+    const { data, error } = await portfolioClient
+      .from("projects")
+      .delete()
+      .match({ id: id });
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(data);
+    }
   };
 
   const handleOk = () => {
@@ -178,7 +179,7 @@ export default function Sidebar({ funcTopNav }) {
         <>
           <button
             onClick={() => {
-              // deleteProject(record.id);
+              deleteProject(record.id);
               setIsModalOpen(true)
 
             }}

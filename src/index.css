@@ -13,3 +13,7 @@ nav {
 .blur-background {
     @apply backdrop-blur-md; 
 }
+
+.ant-modal-content {
+    background-color: rgb(30,41,59);
+}
