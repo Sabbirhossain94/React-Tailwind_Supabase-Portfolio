@@ -1,14 +1,14 @@
-import "../../src/animation.css";
+// import "../../src/animation.css";
 import React from "react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-export default function Navigation({ session }) {
+export default function Navbar() {
   const location = useLocation();
   const [openMenuIcon, setOpenMenuIcon] = useState(false);
   const [dark, setDark] = useState(true);
-  
+
   const navigation = [
     {
       Name: "About",
@@ -17,7 +17,7 @@ export default function Navigation({ session }) {
       property: "end",
       navLinkStyles: ({ isActive }) => {
         return {
-          color: isActive ? "rgb(20,184,166)" : dark ? "white" : "black",
+          color: isActive ? dark ? "rgb(20,184,166)" : "rgb(6,182,212)" :  dark ? "white": "black",
         };
       },
     },
@@ -27,7 +27,7 @@ export default function Navigation({ session }) {
       isSession: false,
       navLinkStyles: ({ isActive }) => {
         return {
-          color: isActive ? "rgb(20,184,166)" : dark ? "white" : "black",
+          color: isActive ? dark ? "rgb(20,184,166)" : "rgb(6,182,212)" : dark ? "white" : "black",
         };
       },
     },
@@ -37,7 +37,7 @@ export default function Navigation({ session }) {
       isSession: false,
       navLinkStyles: ({ isActive }) => {
         return {
-          color: isActive ? "rgb(20,184,166)" : dark ? "white" : "black",
+          color: isActive ? dark ? "rgb(20,184,166)" : "rgb(6,182,212)" : dark ? "white" : "black",
         };
       },
     },
@@ -158,7 +158,7 @@ export default function Navigation({ session }) {
                     item.isSession ? (
                       ""
                     ) : (
-                        <li key={key} className="list-none hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md p-0.5 transition duration-300">
+                      <li key={key} className="list-none hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md p-0.5 transition duration-300">
                         <NavLink
                           key={item.id}
                           to={item.Link}
@@ -204,11 +204,11 @@ export default function Navigation({ session }) {
                     >
                       <path
                         d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                        className="fill-sky-400/20 stroke-teal-500"
+                        className="fill-cyan-400/20 stroke-cyan-500"
                       ></path>
                       <path
                         d="M12 4v1M17.66 6.344l-.828.828M20.005 12.004h-1M17.66 17.664l-.828-.828M12 20.01V19M6.34 17.664l.835-.836M3.995 12.004h1.01M6 6l.835.836"
-                        className="stroke-teal-500"
+                        className="stroke-cyan-500"
                       ></path>
                     </svg>
                   )}
@@ -226,15 +226,15 @@ export default function Navigation({ session }) {
                   ""
                 ) : (
                   <li key={key} className="list-none hover:bg-gray-100 dark:hover:bg-slate-700 rounded-md p-0.5 transition duration-300">
-                  <NavLink
-                    key={key}
-                    to={item.Link}
-                    className={`rounded-md px-3 py-2 text-base font-medium text-gray-300 ${openMenuIcon ? "block": "hidden"}`}
-                    style={item.navLinkStyles}
-                    end
-                  >
-                    {item.Name}
-                  </NavLink>
+                    <NavLink
+                      key={key}
+                      to={item.Link}
+                      className={`rounded-md px-3 py-2 text-base font-medium text-gray-300 ${openMenuIcon ? "block" : "hidden"}`}
+                      style={item.navLinkStyles}
+                      end
+                    >
+                      {item.Name}
+                    </NavLink>
                   </li>
                 )
               )}

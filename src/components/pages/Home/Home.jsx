@@ -1,15 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import App from "../../App";
-import { portfolioClient } from "../../portfolioClient";
-import Projects from "./Projects";
-import Contact from "./Contact";
-import Navigation from "../Navbar";
-import Sign from "./Sign";
-import AddProject from "./subpages/AddProject";
-import Dashboard from "./subpages/Dashboard";
-import NoPage from "./NoPage";
-import PrivateRoute from "./subpages/PrivateRoute";
+import App from "../../../App";
+import { portfolioClient } from "../../../portfolioClient";
+import Projects from "../Projects/Projects";
+import Contact from "../Contact/Contact";
+import Navbar from "../../Navbar/Navbar";
+import Sign from "../Authentication/Sign";
+import AddProject from "../Dashboard/AddProject";
+import Dashboard from "../Dashboard/Dashboard";
+import NoPage from "../NoPage/NoPage";
+import PrivateRoute from "../Dashboard/PrivateRoute";
 
 export default function Home() {
   const [session, setSession] = useState(null);
@@ -29,8 +29,7 @@ export default function Home() {
   const isAuth = localStorage.getItem(process.env.REACT_APP_LOCAL_STORAGE_KEY);
   return (
     <Router>
-      {showTopNav && <Navigation session={session} />}
-
+      {showTopNav && <Navbar session={session} />}
       <Routes>
         <Route
           exact
@@ -66,7 +65,6 @@ export default function Home() {
             />
           }
         />
-
         <Route element={<PrivateRoute session={session} isAuth={isAuth} />}>
           <Route
             path="/dashboard"
@@ -86,7 +84,6 @@ export default function Home() {
             }
           />
         </Route>
-
         <Route path="*" element={<NoPage />} />
       </Routes>
     </Router>

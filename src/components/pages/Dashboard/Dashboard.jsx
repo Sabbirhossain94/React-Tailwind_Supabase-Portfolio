@@ -4,13 +4,14 @@ import { portfolioClient } from "../../../portfolioClient";
 import { Link } from "react-router-dom";
 import AddProject from "./AddProject";
 import { Table, Modal, Image } from 'antd';
-import Footer from "../../Footer";
+import Footer from "../../Footer/Footer";
 import './Table.css'
 export default function Sidebar({ funcTopNav }) {
 
   funcTopNav(false);
   const [sideBarOpen, setSideBarOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
   const [allprojects, setAllProjects] = useState([]);
   const [showProjectForm, setShowProjectForm] = useState(false);
   const storageUrl = process.env.REACT_APP_STORAGE_PROJECTS_PUBLIC_URL;
@@ -227,16 +228,10 @@ export default function Sidebar({ funcTopNav }) {
   return (
     <>
       <div>
-        {showProjectForm && (
-          <AddProject
-            showProjectForm={showProjectForm}
-            setShowProjectForm={setShowProjectForm}
-          />
-        )}
         <div className="flex">
           <div
             className={`${sideBarOpen ? "w-[60px]" : "w-[200px]"
-              } min-h-screen bg-slate-800 py-4 px-3 border-r shadow-[rgba(0,0,15,0.5)_10px_-10px_10px_0px] border-zinc-700/40 duration-300`}
+              } min-h-screen  py-4 px-3 border-r shadow-[rgba(0,0,15,0.5)_10px_-10px_10px_0px] border-zinc-700/40 duration-300`}
           >
             <div className="flex justify-end">
               {sideBarOpen ? (
@@ -315,15 +310,15 @@ export default function Sidebar({ funcTopNav }) {
                 </label>
               </div>
               <div className="overflow-hidden sm:mt-0 sm:ml-8 sm:flex-none">
-                <Link to="/dashboard/addproject">
-                  <button
-                    type="button"
-                    onClick={() => setShowProjectForm(true)}
-                    className="overflow-hidden inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                  >
-                    Add projects
-                  </button>
-                </Link>
+                <button
+                  type="button"
+                  // onClick={() => setShowProjectForm(true)}
+                  onClick={() => setIsProjectModalOpen(true)}
+                  className="overflow-hidden inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                >
+                  Add projects
+                </button>
+                {/* </Link> */}
               </div>
             </div>
             <Table
@@ -335,6 +330,12 @@ export default function Sidebar({ funcTopNav }) {
             />
             <Modal title="Delete Project" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
               <p>Are you sure you want to delete this project?</p>
+            </Modal>
+            <Modal title="Add Project Details" open={isProjectModalOpen} onCancel={() => setIsProjectModalOpen(false)} footer={null}>
+              <AddProject
+                setIsProjectModalOpen={setIsProjectModalOpen}
+                funcTopNav={funcTopNav}
+              />
             </Modal>
           </div>
         </div>

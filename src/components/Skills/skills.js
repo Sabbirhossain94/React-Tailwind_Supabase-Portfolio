@@ -1,0 +1,1 @@
+export const skillslist = ['JS', 'HTML5', 'CSS3', 'Bootstrap', 'tailwind', 'MUI', 'ant-design', 'react', 'Next', 'supabase','git']

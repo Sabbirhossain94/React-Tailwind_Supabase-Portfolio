@@ -1,11 +1,9 @@
 import React from "react";
 import { useEffect, useState, useRef } from "react";
 import { portfolioClient } from "../../../portfolioClient";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import AnimatedPage from "../../AnimatedPages";
 
-export default function AddProject({ session, funcTopNav }) {
+export default function AddProject({ session, funcTopNav, setIsProjectModalOpen }) {
   funcTopNav(false);
   const params = useParams();
   const formData = useRef();
@@ -154,19 +152,15 @@ export default function AddProject({ session, funcTopNav }) {
 
 
   return (
-    <AnimatedPage>
       <div>
-        <h1 className="mt-[50px] p-5 flex justify-center text-gray-300 text-2xl items-center">
-          {params.id === "addproject" ? "Add Your Project Details" : "Update Your Project Details"}
-        </h1>
         <div
-          className={`mx-auto ring-1 p-6 mt-[0px] rounded-lg w-2/3 sm:w-2/3 md:w-1/2 lg:w-1/3`}
+          className={`mx-auto mt-[20px] rounded-lg `}
         >
           <form ref={formData} onSubmit={handleSubmit}>
             <div className="mb-6">
               <label
                 htmlFor="title"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="block mb-2 text-sm font-medium text-gray-900 "
               >
                 Title
               </label>
@@ -175,7 +169,7 @@ export default function AddProject({ session, funcTopNav }) {
                 id="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
               />
             </div>
@@ -183,7 +177,7 @@ export default function AddProject({ session, funcTopNav }) {
             <div className="mb-6">
               <label
                 htmlFor="github"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="block mb-2 text-sm font-medium text-gray-900 "
               >
                 Github link
               </label>
@@ -192,14 +186,14 @@ export default function AddProject({ session, funcTopNav }) {
                 id="github"
                 value={githubLink}
                 onChange={(e) => setGithubLink(e.target.value)}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
               />
             </div>
             <div className="mb-6">
               <label
                 htmlFor="live"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="block mb-2 text-sm font-medium text-gray-900 "
               >
                 Live link
               </label>
@@ -208,7 +202,7 @@ export default function AddProject({ session, funcTopNav }) {
                 id="live"
                 value={liveLink}
                 onChange={(e) => setLiveLink(e.target.value)}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
               />
             </div>
@@ -222,8 +216,7 @@ export default function AddProject({ session, funcTopNav }) {
                         : "https://i.imgur.com/W2AT377.jpg"
                     }
                     alt=""
-                    className="mx-auto avatar image ring-1 flex justify-center"
-                    style={{ width: "400px", height: "200px" }}
+                    className=" avatar image ring-1 flex justify-center"
                   />
                 ) : (
                   <div className=" sm:border-gray-200 sm:pt-5">
@@ -246,7 +239,7 @@ export default function AddProject({ session, funcTopNav }) {
                           </svg>
                           <label
                             htmlFor="file-upload"
-                            className="relative  rounded-md font-medium text-blue-700 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+                            className="relative  rounded-md font-medium text-sky-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-sky-700"
                           >
                             <span>Attach an image</span>
                           </label>
@@ -261,7 +254,7 @@ export default function AddProject({ session, funcTopNav }) {
                   <div className="flex flex-row">
                     <button
                       onClick={() => setPreviewImage(null)}
-                      className=" mt-[15px]  flex justify-center rounded-md border border-transparent bg-blue-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className=" mt-[25px]  flex justify-center rounded-md border border-transparent bg-blue-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
                       Cancel
                     </button>
@@ -273,31 +266,27 @@ export default function AddProject({ session, funcTopNav }) {
                       id="single"
                       accept="image/*"
                       onChange={uploadImage}
-                      className=" mt-[5px] w-full block text-sm text-gray-900 bg-blue-500 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                      className=" w-full block text-sm text-gray-900  bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none  "
                     />
                   </div>
                 )}
-                {/* */}
               </div>
             </div>
-            <div className="flex flex-row">
+            <div className="flex flex-col items-center mb-4">
               <button
                 type="submit"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm sm:w-1/4  px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="bg-gray-100 border border-gray-300 hover:bg-gray-200 focus:outline-none  font-medium rounded-md text-sm w-full px-5 py-2.5 text-center "
               >
                 Submit
               </button>
-
-              <Link
-                to="/dashboard"
-                className="ml-[20px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm sm:w-1/4  px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              <button type="button"
+                onClick={() => setIsProjectModalOpen(false)}
+              className="mt-4 bg-gray-100 border border-gray-300 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full px-5 py-2.5 text-center"
               >
-                <button type="button">Close</button>
-              </Link>
+                Close</button>
             </div>
           </form>
         </div>
       </div>
-    </AnimatedPage>
   );
 }

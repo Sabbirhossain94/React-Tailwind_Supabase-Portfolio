@@ -1,5 +1,5 @@
 import React from "react";
-import { supabase } from "../supabaseClient";
+import { supabase } from "../../supabaseClient";
 import { useState, useEffect } from "react";
 
 export default function BlogFeed() {
@@ -68,9 +68,9 @@ export default function BlogFeed() {
             >
               <div className=" group relative grid grid-cols-2  gap-x-4">
                 <div className="inline-flex flex-col  ">
-                  <time className=" relative z-10 order-first mb-3 flex items-center text-sm text-teal-500 dark:text-zinc-500 pl-3.5">
+                  <time className=" relative z-10 order-first mb-3 flex items-center text-sm text-sky-400 dark:text-teal-500 pl-3.5">
                     <span className=" absolute inset-y-0 left-0 flex items-center">
-                      <span className=" h-4 w-0.5 rounded-full bg-zinc-300 dark:bg-teal-500"></span>
+                      <span className=" h-4 w-0.5 rounded-full bg-cyan-500 dark:bg-zinc-500"></span>
                     </span>
                     <span className="font-medium">{item.inserted_at}</span>
                   </time>
@@ -85,14 +85,14 @@ export default function BlogFeed() {
 
                 <div className="w-[200px] md:w-[400px] text-base flex flex-col justify-center  ">
                   <div className="">
-                    <h2 className="text-sm md:text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-                      <a href={blogAppUrl} target="_blank">
+                    <h2 className="text-sm md:text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100 w-[250px]">
+                      <a href={blogAppUrl} target="_blank" >
                         <span className="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
-                        <span className="relative z-10">{item.title}</span>
+                        <span className="relative z-10 ">{item.title}</span>
                       </a>
                     </h2>
 
-                    <div className=" relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500">
+                    <div className=" relative z-10 mt-4 flex items-center text-sm font-medium text-sky-400 dark:text-teal-500">
                       Read article
                       <svg
                         viewBox="0 0 16 16"
@@ -114,9 +114,8 @@ export default function BlogFeed() {
             </li>
           ))
         )}
-
         <a
-          className=" inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none bg-zinc-50 font-medium text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-teal-500 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-2 w-full"
+          className=" inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none bg-zinc-100 font-medium text-zinc-900 hover:text-sky-400 hover:bg-zinc-200 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-teal-500 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-2 w-full"
           href="https://blog.sabbirontheweb.com/"
         >
           Read all blogs

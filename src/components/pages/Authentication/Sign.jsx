@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { portfolioClient } from "../../portfolioClient";
-import Notification from "../sub-components/Notification";
+import { portfolioClient } from "../../../portfolioClient";
+import Notification from "../../helpers/Notification";
 
 export default function Sign({ funcTopNav, funcSideNav, session }) {
   funcTopNav(true);
@@ -38,7 +38,7 @@ export default function Sign({ funcTopNav, funcSideNav, session }) {
           </button>
         </div>
       ) : (
-        <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8 sm:w-3/4 sm:mx-auto">
+        <div className="flex min-h-full flex-col justify-center py-44 sm:px-6 lg:px-8 sm:w-3/4 sm:mx-auto">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
             <h3 className="text-center text-xl font-bold tracking-tight dark:text-white">
               Sign in to your account

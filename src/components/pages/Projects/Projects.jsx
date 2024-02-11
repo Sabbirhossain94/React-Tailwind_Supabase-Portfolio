@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { portfolioClient } from "../../portfolioClient";
-import AnimatedPage from "../AnimatedPages";
-import Footer from "../Footer";
-import ProjectDetails from "../sub-components/ProjectDetails";
-import Loader from "../sub-components/Loader";
+import { portfolioClient } from "../../../portfolioClient";
+import AnimatedPage from "../../helpers/AnimatedPages";
+import Footer from "../../Footer/Footer";
+import ProjectDetails from "../../ProjectDetails/ProjectDetails";
+import Loader from "../../helpers/Loader";
 import { Modal } from 'antd';
 
 export default function Projects({ funcTopNav, funcSideNav }) {
@@ -63,7 +63,7 @@ export default function Projects({ funcTopNav, funcSideNav }) {
                       {allprojects.map((project) => (
                         <li
                           key={project.id}
-                          className="shadow-md hover:shadow-xl ring-1 scale-95 transition  dark:highlight-white/5 group relative rounded-3xl bg-slate-100 p-6 hover:bg-slate-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-900/50"
+                          className="shadow-md hover:shadow-xl ring-1 scale-95 transition dark:highlight-white/5 group relative rounded-3xl bg-slate-100 p-6 hover:scale-100 duration-300 hover:bg-slate-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-900/50"
                         >
                           <div className="rounded-lg aspect-[672/400] transform overflow-hidden shadow-[0_2px_8px_rgba(15,23,42,0.08)] dark:bg-slate-700">
                             <div
@@ -81,43 +81,30 @@ export default function Projects({ funcTopNav, funcSideNav }) {
                           </div>
                           <div className="mt-6 flex flex-col items-start">
                             <div className="flex flex-row">
-                              <h2 className="text-sm font-semibold leading-6 text-slate-900 group-hover:text-sky-500 dark:text-white dark:group-hover:text-sky-400">
+                              <h2 className="text-sm font-semibold leading-6 text-slate-900 group-hover:text-sky-500 dark:text-white dark:group-hover:text-teal-500">
                                 <p target="_blank">
                                   <span className="inset-0 rounded-3xl"></span>
                                   {project.title}
                                 </p>
                               </h2>
-                              <svg
-                                className="h-6 w-6 flex-none opacity-0 group-hover:opacity-100"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                              >
-                                <path
-                                  d="M9.75 15.25L15.25 9.75M15.25 9.75H10.85M15.25 9.75V14.15"
-                                  stroke="#0EA5E9"
-                                  strokeWidth="1.5"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                ></path>
-                              </svg>
                             </div>
                             <div>
                               <a
                                 href={project.livelink}
                                 target="_blank"
-                                className="group-hover:cursor-pointer w-full pr-2 border-r border-slate-900 dark:border-white group-hover:dark:border-sky-500 group-hover:border-sky-500 flex-none text-[0.8125rem] leading-6 text-slate-500 group-hover:text-teal-500 dark:text-slate-400"
+                                className="group-hover:cursor-pointer w-full transition duration-300 pr-2 border-r border-slate-900 dark:border-white group-hover:dark:border-sky-500 group-hover:border-sky-500 flex-none text-[0.8125rem] leading-6 text-slate-500 group-hover:text-sky-500 dark:group-hover:text-teal-500 dark:text-slate-400"
                               >
                                 Live Demo
                               </a>
                               <a
                                 href={project.githublink}
                                 target="_blank"
-                                className="ml-2 group-hover:cursor-pointer w-full pr-2 border-r border-slate-900 dark:border-white group-hover:dark:border-sky-500 group-hover:border-sky-500 flex-none text-[0.8125rem] leading-6 text-slate-500 group-hover:text-teal-500 dark:text-slate-400"
+                                className="ml-2 group-hover:cursor-pointer w-full pr-2 border-r border-slate-900 dark:border-white group-hover:dark:border-sky-500 group-hover:border-sky-500 flex-none text-[0.8125rem] leading-6 text-slate-500 group-hover:text-sky-500 dark:group-hover:text-teal-500 dark:text-slate-400"
                               >
                                 Github
                               </a>
                               <a
-                                className="group-hover:cursor-pointer w-full pl-2 flex-none text-[0.8125rem] leading-6 text-slate-500 group-hover:text-teal-500 dark:text-slate-400"
+                                className="group-hover:cursor-pointer w-full pl-2 flex-none text-[0.8125rem] leading-6 text-slate-500 group-hover:text-sky-500 dark:group-hover:text-teal-500 dark:text-slate-400"
                                 onClick={() => {
                                   handleProjectDetailsModal(project.id)
                                 }}

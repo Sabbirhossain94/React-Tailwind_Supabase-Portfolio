@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
-import Notification from "../sub-components/Notification";
-import AnimatedPage from "../AnimatedPages";
-import Footer from "../Footer";
-import Loader from "../sub-components/Loader";
+import Notification from "../../helpers/Notification";
+import AnimatedPage from "../../helpers/AnimatedPages";
+import Footer from "../../Footer/Footer";
+import Loader from "../../helpers/Loader";
 
 export default function Contact({ funcTopNav, funcSideNav }) {
   funcTopNav(true);
@@ -55,8 +55,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
           showNotification={showNotification}
           setShowNotification={setShowNotification}
         />
-
-        <div className="bg-white  dark:bg-slate-800  ">
+        <div className="bg-white  dark:bg-slate-800 mt-32">
           <main className="overflow-hidden ">
             <div className=" mt-[50px] relative bg-white  dark:bg-slate-800">
               <div className=" mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -290,7 +289,9 @@ export default function Contact({ funcTopNav, funcSideNav }) {
           </main>
         </div>
       </div>
-      <Footer />
+      <div className="mt-32">
+        <Footer />
+      </div>
     </AnimatedPage>
   );
 }
