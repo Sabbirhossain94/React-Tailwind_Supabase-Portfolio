@@ -16,7 +16,7 @@ export default function Skills() {
         <h2 className="text-2xl text-center font-medium mb-4 tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-3xl">
           Skills
         </h2>
-        <div className="mt-12">
+        <div className="mt-24">
           <Swiper
             modules={[Pagination, A11y, Autoplay]}
             spaceBetween={50}

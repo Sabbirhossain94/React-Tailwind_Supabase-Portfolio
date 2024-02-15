@@ -32,12 +32,12 @@ export default function BlogFeed() {
   }, []);
 
   return (
-    <section className="bg-white dark:bg-slate-800">
+    <section className="bg-white dark:bg-slate-800 py-24">
       <div className="py-8 px-4 max-w-7xl xl:max-w-6xl mx-auto  lg:py-16 lg:px-6">
         <div className="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
           <h2 className="text-2xl text-center font-medium mb-12 tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-3xl">Recent Blogs</h2>
         </div>
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-2 mt-24">
           {loading ? (
             <div className=" h-96 flex justify-center items-center">
               <div role="status">
