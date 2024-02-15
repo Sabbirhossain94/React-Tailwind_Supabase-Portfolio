@@ -16,8 +16,7 @@ export default function Footer() {
                     <div className="flex flex-col items-center justify-center">
                       <p className="dark:text-zinc-200 font-medium text-sm">
                         {" "}
-                        {/* <span className="text-teal-500">©</span> 2023 Personal
-                      Portfolio. All Rights Reserved. */}
+                       
                         Designed and created by:
                       </p>
                       <span className="text-sky-400 dark:text-teal-500 font-semibold text-sm mt-2">
@@ -28,6 +27,12 @@ export default function Footer() {
                       <a
                         className="transition hover:text-sky-400 dark:hover:text-teal-400"
                         href="/"
+                      >
+                        Home
+                      </a>
+                      <a
+                        className="transition hover:text-sky-400 dark:hover:text-teal-400"
+                        href="/about"
                       >
                         About
                       </a>
@@ -46,7 +51,6 @@ export default function Footer() {
                     </div>
                     <div className="flex flex-row p-2">
                       <a href="https://www.linkedin.com/in/sabbir-hossain-b73726214/">
-                        {" "}
                         <BsLinkedin className="cursor-pointer text-sm text-gray-500 hover:text-sky-400 dark:hover:text-teal-400 scale-100 hover:scale-105 transition" />
                       </a>
                       <a href="https://github.com/Sabbirhossain97">

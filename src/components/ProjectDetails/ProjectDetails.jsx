@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { portfolioClient } from "../../portfolioClient";
 import { TiTick } from "react-icons/ti";
+import { TfiHandPointRight } from "react-icons/tfi";
 
 export default function ({ selectedProjectId }) {
 
   const [projectDetails, setProjectDetails] = useState([]);
   const [loading, setLoading] = useState(false);
+  const storageUrl = process.env.REACT_APP_STORAGE_PROJECTS_PUBLIC_URL;
 
   const getProjectsDetails = async () => {
     try {
       setLoading(true)
       let { data, error } = await portfolioClient
         .from("projects")
-        .select(`id,projectdetails(*)`)
+        .select("*")
         .match({ id: selectedProjectId });
       if (error) {
         console.log(error);
@@ -32,6 +34,7 @@ export default function ({ selectedProjectId }) {
     getProjectsDetails();
   }, [selectedProjectId]);
 
+
   return (
     <div className=" ">
       <div className=" h-full relative rounded-lg ">
@@ -46,30 +49,64 @@ export default function ({ selectedProjectId }) {
           <div
             className="h-full mt-8 mb-8"
           >
-            <h3 className="mb-4 text-xl font-medium text-gray-400 dark:text-white">
+            <h3 className="mb-4 text-xl font-medium text-gray-900 ">
+              Thumbnail
+            </h3>
+            <img
+              style={{
+                objectFit: "cover",
+                width: "100%",
+              }}
+              src={`${storageUrl}` + `${projectDetails?.image}`}
+              className="rounded-md"
+              alt="error"
+            />
+            <h3 className="mt-4 mb-4 text-xl font-medium text-gray-900 ">
               Project Title
             </h3>
-            <p className="text-lg font-medium text-gray-500">
-              {projectDetails?.projectdetails?.project_title}
+            <p className="text-lg font-medium text-gray-400">
+              {projectDetails?.title}
             </p>
-            <h3 className="mb-4 mt-4 text-xl font-medium text-gray-400 dark:text-white">
-              Project Features
+            <h3 className="mt-4 mb-4 text-xl font-medium text-gray-900 ">
+              Project Type
             </h3>
-            <div className="flex">
-              <div className="font-medium text-md text-gray-500 text-left">
-                {projectDetails?.projectdetails?.features.split(".").map((item, key) => (
-                  <div key={key} className="flex flex-row">
-                    <TiTick className="mt-3 text-teal-500" />
-                    <li className="list-none ml-1 mt-2">{item}</li>
+            <p className="text-lg font-medium text-gray-400">
+              {projectDetails?.project_type}
+            </p>
+            {projectDetails?.project_type !== "Design" &&
+              <>
+                <h3 className="mb-4 mt-4 text-xl font-medium text-gray-900 ">
+                  Project Features
+                </h3>
+                <div className="flex">
+                  <div className="font-medium text-md text-gray-500 text-left">
+                    {projectDetails && projectDetails?.features?.split(".").map((item, key) => (
+                      <div key={key} className="flex flex-row">
+                        <TiTick className="mt-3 text-teal-500" />
+                        <li className="list-none ml-1 mt-2">{item}</li>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
-            <h3 className="mb-4 mt-4 text-xl font-medium text-gray-400 dark:text-white">
+                </div>
+              </>
+            }
+            {
+              projectDetails?.project_type === "Design" &&
+              <>
+                <h3 className="mb-4 mt-4 text-xl font-medium text-gray-900 ">
+                  Design Source
+                </h3>
+                <div className="flex flex-row">
+                  <TfiHandPointRight className="mt-3 text-teal-500 text-lg" />
+                  <li className="list-none ml-1 mt-2 text-lg text-gray-400">Find Figma <span className="text-blue-500"><a target="_blank" href={projectDetails?.design_source}>{projectDetails?.design_source.substring(0, 50)}</a></span></li>
+                </div>
+              </>
+            }
+            <h3 className="mb-4 mt-4 text-xl font-medium text-gray-900 ">
               Technologies
             </h3>
             <div className="font-medium text-gray-500 flex flex-row flex-wrap">
-              {projectDetails?.projectdetails?.technologies.split(",").map((item, key) => (
+              {projectDetails && projectDetails?.technologies?.split(",").map((item, key) => (
                 <div key={key} className="flex flex-row">
                   <li className="list-none text-md px-2 mt-1 ml-1 border border-teal-500/50 rounded-lg border-x-2">
                     <p className="px-2">{item}</p>

@@ -10,6 +10,7 @@ import AddProject from "../Dashboard/AddProject";
 import Dashboard from "../Dashboard/Dashboard";
 import NoPage from "../NoPage/NoPage";
 import PrivateRoute from "../Dashboard/PrivateRoute";
+import AboutMe from "../../About Me/AboutMe";
 
 export default function Home() {
   const [session, setSession] = useState(null);
@@ -43,6 +44,12 @@ export default function Home() {
           }
         />
         <Route
+          path="/about"
+          element={
+            <AboutMe funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />
+          }
+        />
+        <Route
           path="/projects"
           element={
             <Projects funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />
@@ -70,18 +77,6 @@ export default function Home() {
             path="/dashboard"
             exact
             element={<Dashboard session={session} funcTopNav={setShowTopNav} />}
-          />
-          <Route
-            path="/dashboard/:id"
-            element={
-              <AddProject session={session} funcTopNav={setShowTopNav} />
-            }
-          />
-          <Route
-            path="/dashboard/:id/update"
-            element={
-              <AddProject session={session} funcTopNav={setShowTopNav} />
-            }
           />
         </Route>
         <Route path="*" element={<NoPage />} />

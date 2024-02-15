@@ -1,28 +1,26 @@
 import React from "react";
 import { useEffect, useState, useRef } from "react";
 import { portfolioClient } from "../../../portfolioClient";
-import { useParams } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
 
-export default function AddProject({ session, funcTopNav, setIsProjectModalOpen }) {
+export default function AddProject({ funcTopNav, addProject, setAddProject, editProjectId, isProjectModalOpen, setIsProjectModalOpen, action }) {
   funcTopNav(false);
-  const params = useParams();
   const formData = useRef();
-  const [title, setTitle] = useState("");
-  const [githubLink, setGithubLink] = useState(" ");
-  const [liveLink, setLiveLink] = useState("");
-  const [_, setUpdateImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [sendImage, setSendImage] = useState(null);
+  const [userInfo, setUserInfo] = useState(null)
   const date = new Date().toLocaleDateString();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (params.id === "addproject") {
+    if (action === "create") {
       createProjects(e);
-    } else {
-      updateProject(e);
+    } else if (action === "edit") {
+      updateProject(e)
     }
   };
+
+  console.log(action)
 
   const downloadImage = async (path) => {
     try {
@@ -40,40 +38,81 @@ export default function AddProject({ session, funcTopNav, setIsProjectModalOpen 
 
   const createProjects = async (e) => {
     e.preventDefault();
-    const { data, error } = await portfolioClient
-      .from("projects")
-      .insert({
-        user_id: session.user.id,
-        title: title,
-        image: sendImage,
-        githublink: githubLink,
-        livelink: liveLink,
-        inserted_at: date,
-      })
-      .single();
+    try {
+      const { data, error } = await portfolioClient
+        .from("projects")
+        .insert({
+          user_id: userInfo.id,
+          title: addProject.title,
+          image: sendImage,
+          githublink: addProject.githublink,
+          livelink: addProject.livelink,
+          project_type: addProject.project_type,
+          features: addProject.features,
+          technologies: addProject.technologies,
+          design_source: addProject.design_source,
+          inserted_at: date,
+        })
+        .single();
+      if (error) {
+        console.error("Error inserting project:", error.message);
+      } else {
+        setIsProjectModalOpen(false)
+        console.log("Project inserted successfully:", data);
+      }
+    }
+    catch (error) {
+      console.log(error)
+    } finally {
+      toast.success('Successfully created!')
+    }
   };
 
+  const getUser = async () => {
+    const { data: { user } } = await portfolioClient.auth.getUser();
+    if (user) {
+      setUserInfo(user)
+    }
+  }
+
+  useEffect(() => {
+    getUser()
+  }, [])
+
   //when updating project fields will be pre-loaded
-  const loadProjectContent = async (e) => {
+  const loadProjectContent = async () => {
     try {
       let { data, error } = await portfolioClient
         .from("projects")
         .select("*")
-        .match({ id: params.id });
+        .match({ id: editProjectId });
       const [projectInfo] = data;
       if (error) {
         console.log(error);
       } else {
-        loadProjectCoverImage(projectInfo.image)
-        setUpdateImage(data[0].image);
-        setTitle(projectInfo?.title);
-        setGithubLink(projectInfo?.githublink);
-        setLiveLink(projectInfo?.livelink);
+        setAddProject({
+          title: projectInfo?.title,
+          image: projectInfo?.image,
+          githublink: projectInfo?.githublink,
+          livelink: projectInfo?.livelink,
+          project_type: projectInfo?.project_type,
+          features: projectInfo?.features,
+          technologies: projectInfo?.technologies,
+          design_source: projectInfo?.design_source
+        })
+        loadProjectCoverImage(projectInfo?.image)
       }
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (action === "edit" && editProjectId) {
+      loadProjectContent();
+    }
+  }, [action, editProjectId, isProjectModalOpen]);
+
 
   const loadProjectCoverImage = async (image) => {
     const { data, error } = await portfolioClient.storage
@@ -82,31 +121,33 @@ export default function AddProject({ session, funcTopNav, setIsProjectModalOpen 
     setPreviewImage(URL.createObjectURL(data));
   }
 
-
   //to update a project
   const updateProject = async (e) => {
     try {
       const { data, error } = await portfolioClient
         .from("projects")
         .update({
-          user_id: session.user.id,
-          title: title,
-          image: sendImage,
-          githublink: githubLink,
-          livelink: liveLink,
+          user_id: userInfo.id,
+          title: addProject?.title,
+          image: sendImage ? sendImage : addProject?.image,
+          githublink: addProject?.githublink,
+          livelink: addProject?.livelink,
+          project_type: addProject?.project_type,
+          features: addProject?.features,
+          technologies: addProject?.technologies,
           inserted_at: date,
         })
-        .match({ id: params.id });
+        .match({ id: editProjectId });
       if (error) {
         console.log(error);
       } else {
-        console.log(error)
+        setIsProjectModalOpen(false)
+        console.log(data)
       }
     }
     catch (error) {
       console.log(error)
     }
-
   };
 
   const uploadImage = async (e) => {
@@ -117,98 +158,145 @@ export default function AddProject({ session, funcTopNav, setIsProjectModalOpen 
     const fileExt = file.name.split(".").pop();
     const fileName = `${Math.random()}.${fileExt}`;
     const filePath = `${fileName}`;
-    if (params.id === "addproject") {
-      let { error: uploadError } = await portfolioClient.storage
-        .from("projects")
-        .upload("Thumbnail/" + filePath, file);
+    let { error: uploadError } = await portfolioClient.storage
+      .from("projects")
+      .upload("Thumbnail/" + filePath, file);
 
-      if (uploadError) {
-        console.log(uploadError);
-      } else {
-        downloadImage(filePath);
-        setPreviewImage(filePath);
-        setSendImage(filePath);
-      }
+    if (uploadError) {
+      console.log(uploadError);
     } else {
-      let { error: uploadError } = await portfolioClient.storage
-        .from("projects")
-        .upload("Thumbnail/" + filePath, file);
-
-      if (uploadError) {
-        console.log(uploadError);
-      } else {
-        downloadImage(filePath);
-        setPreviewImage(filePath);
-        setSendImage(filePath);
-      }
+      downloadImage(filePath);
+      setPreviewImage(filePath);
+      setSendImage(filePath);
     }
   };
 
-  useEffect(() => {
-    if (params.id !== "addproject") {
-      loadProjectContent();
-    }
-  }, []);
-
 
   return (
-      <div>
-        <div
-          className={`mx-auto mt-[20px] rounded-lg `}
-        >
-          <form ref={formData} onSubmit={handleSubmit}>
-            <div className="mb-6">
-              <label
-                htmlFor="title"
-                className="block mb-2 text-sm font-medium text-gray-900 "
-              >
-                Title
-              </label>
-              <input
-                type="text"
-                id="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
-              />
-            </div>
+    <div>
+      <Toaster />
+      <div
+        className={`mx-auto mt-[20px] rounded-lg `}
+      >
+        <form ref={formData} onSubmit={handleSubmit}>
+          <div className="mb-6">
+            <label
+              htmlFor="title"
+              className="block mb-2 text-sm font-medium text-gray-900 "
+            >
+              Title
+            </label>
+            <input
+              type="text"
+              id="title"
+              value={addProject?.title}
+              onChange={(e) => setAddProject({ ...addProject, title: e.target.value })}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
 
-            <div className="mb-6">
-              <label
-                htmlFor="github"
-                className="block mb-2 text-sm font-medium text-gray-900 "
-              >
-                Github link
-              </label>
-              <input
-                type="text"
-                id="github"
-                value={githubLink}
-                onChange={(e) => setGithubLink(e.target.value)}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
-              />
-            </div>
-            <div className="mb-6">
-              <label
-                htmlFor="live"
-                className="block mb-2 text-sm font-medium text-gray-900 "
-              >
-                Live link
-              </label>
-              <input
-                type="text"
-                id="live"
-                value={liveLink}
-                onChange={(e) => setLiveLink(e.target.value)}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
-              />
-            </div>
-            <div className="mb-6">
-              <div>
-                {previewImage ? (
+          <div className="mb-6">
+            <label
+              htmlFor="github"
+              className="block mb-2 text-sm font-medium text-gray-900 "
+            >
+              Github link
+            </label>
+            <input
+              type="text"
+              id="github"
+              value={addProject?.githublink}
+              onChange={(e) => setAddProject({ ...addProject, githublink: e.target.value })}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              htmlFor="live"
+              className="block mb-2 text-sm font-medium text-gray-900 "
+            >
+              Live link
+            </label>
+            <input
+              type="text"
+              id="live"
+              value={addProject?.livelink}
+              onChange={(e) => setAddProject({ ...addProject, livelink: e.target.value })}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              htmlFor="project_type"
+              className="block mb-2 text-sm font-medium text-gray-900 "
+            >
+              Project Type
+            </label>
+            <input
+              type="text"
+              id="live"
+              value={addProject?.project_type}
+              onChange={(e) => setAddProject({ ...addProject, project_type: e.target.value })}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              htmlFor="project_type"
+              className={`block mb-2 text-sm font-medium ${addProject.project_type === "Design" ? "text-gray-900" : "text-gray-300 "} `}
+            >
+              Design Source
+            </label>
+            <input
+              type="link"
+              id="design_source"
+              value={addProject?.design_source}
+              placeholder="https://www.figma.com/file/"
+              onChange={(e) => setAddProject({ ...addProject, design_source: e.target.value })}
+              className={`${addProject.project_type === "Design" ? "bg-gray-50 cursor-default" : "cursor-not-allowed bg-gray-300"}  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+              disabled={addProject.project_type === "Design" ? false : true}
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              htmlFor="project_type"
+              className="block mb-2 text-sm font-medium text-gray-900 "
+            >
+              Project Features
+            </label>
+            <textarea
+              type="text"
+              id="live"
+              value={addProject?.features}
+              onChange={(e) => setAddProject({ ...addProject, features: e.target.value })}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              htmlFor="project_type"
+              className="block mb-2 text-sm font-medium text-gray-900 "
+            >
+              Technologies Used
+            </label>
+            <textarea
+              type="text"
+              id="live"
+              value={addProject?.technologies}
+              onChange={(e) => setAddProject({ ...addProject, technologies: e.target.value })}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
+          <div className="mb-6">
+            <div>
+              {previewImage ? (
+                <>
                   <img
                     src={
                       previewImage
@@ -216,12 +304,24 @@ export default function AddProject({ session, funcTopNav, setIsProjectModalOpen 
                         : "https://i.imgur.com/W2AT377.jpg"
                     }
                     alt=""
-                    className=" avatar image ring-1 flex justify-center"
+                    className="avatar image ring-1 flex justify-center"
                   />
-                ) : (
-                  <div className=" sm:border-gray-200 sm:pt-5">
-                    <div className="mt-1 sm:mt-0">
-                      <div className="flex w-full justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                  <div className="flex flex-row">
+                    <button
+                      onClick={() => {
+                        setPreviewImage(null);
+                      }}
+                      className=" mt-[25px]  flex justify-center rounded-md border border-transparent bg-blue-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    >
+                      {action === "create" ? "Cancel" : "Change"}
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <div className=" sm:border-gray-200 sm:pt-5">
+                  <div className="mt-1 sm:mt-0">
+                    <label htmlFor="file-upload" className="relative rounded-md font-medium text-sky-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-sky-700">
+                      <div className="flex w-full justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6 cursor-pointer">
                         <div className="space-y-1 text-center">
                           <svg
                             className="mx-auto h-12 w-12 text-gray-400"
@@ -237,56 +337,30 @@ export default function AddProject({ session, funcTopNav, setIsProjectModalOpen 
                               strokeLinejoin="round"
                             />
                           </svg>
-                          <label
-                            htmlFor="file-upload"
-                            className="relative  rounded-md font-medium text-sky-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-sky-700"
-                          >
-                            <span>Attach an image</span>
-                          </label>
+                          <span>Attach an image</span>
+                          <input id="file-upload"
+                            type="file"
+                            accept="image/*"
+                            onChange={uploadImage}
+                            className="hidden" />
                         </div>
                       </div>
-                    </div>
+                    </label>
                   </div>
-                )}
-                {/* */}
-
-                {previewImage ? (
-                  <div className="flex flex-row">
-                    <button
-                      onClick={() => setPreviewImage(null)}
-                      className=" mt-[25px]  flex justify-center rounded-md border border-transparent bg-blue-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                ) : (
-                  <div className="">
-                    <input
-                      type="file"
-                      id="single"
-                      accept="image/*"
-                      onChange={uploadImage}
-                      className=" w-full block text-sm text-gray-900  bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none  "
-                    />
-                  </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
-            <div className="flex flex-col items-center mb-4">
-              <button
-                type="submit"
-                className="bg-gray-100 border border-gray-300 hover:bg-gray-200 focus:outline-none  font-medium rounded-md text-sm w-full px-5 py-2.5 text-center "
-              >
-                Submit
-              </button>
-              <button type="button"
-                onClick={() => setIsProjectModalOpen(false)}
-              className="mt-4 bg-gray-100 border border-gray-300 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full px-5 py-2.5 text-center"
-              >
-                Close</button>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div className="flex flex-col items-center mb-4">
+            <button
+              type="submit"
+              className="bg-gray-100 border border-gray-300 hover:bg-gray-200 focus:outline-none font-medium rounded-md text-sm w-full px-5 py-2.5 text-center "
+            >
+              {action === "create" ? "Submit" : "Update"}
+            </button>
+          </div>
+        </form>
       </div>
+    </div>
   );
 }

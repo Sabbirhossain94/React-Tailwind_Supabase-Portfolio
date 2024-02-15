@@ -6,6 +6,7 @@ import Footer from "../../Footer/Footer";
 import ProjectDetails from "../../ProjectDetails/ProjectDetails";
 import Loader from "../../helpers/Loader";
 import { Modal } from 'antd';
+import ScrollToTop from ".././../helpers/ScrollToTop"
 
 export default function Projects({ funcTopNav, funcSideNav }) {
   funcTopNav(true);
@@ -115,8 +116,12 @@ export default function Projects({ funcTopNav, funcSideNav }) {
                           </div>
                         </li>
                       ))}
-                      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null}>
-                        <ProjectDetails setModal={setModal} selectedProjectId={selectedProjectId} />
+                      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null} width={800}
+                      >
+                        <ProjectDetails
+                          setModal={setModal}
+                          selectedProjectId={selectedProjectId}
+                        />
                       </Modal>
                     </ul>
                   </div>
@@ -124,6 +129,7 @@ export default function Projects({ funcTopNav, funcSideNav }) {
               </div>
             </div>
           </main>
+          <ScrollToTop />
           <div className="mt-32">
             <Footer />
           </div>

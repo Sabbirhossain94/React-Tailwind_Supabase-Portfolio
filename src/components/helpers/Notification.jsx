@@ -5,7 +5,6 @@ export default function Notification({ showNotification, setShowNotification }) 
     const location = useLocation();
 
     return (
-
         <div>
             <div className="fixed z-10 right-0  p-5 ">
                 <div className={`${showNotification ? " opacity-1 mr-[0px] transition-all duration-1000 ease-in-out" : "overflow-hidden opacity-0 mr-[-380px] transition-all duration-1000 ease-in-out "}`}>

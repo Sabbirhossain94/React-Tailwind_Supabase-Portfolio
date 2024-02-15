@@ -5,69 +5,34 @@ import { Link } from "react-router-dom";
 import AddProject from "./AddProject";
 import { Table, Modal, Image } from 'antd';
 import Footer from "../../Footer/Footer";
+import { sideBarContents } from "./SidebarContents";
 import './Table.css'
 export default function Sidebar({ funcTopNav }) {
 
   funcTopNav(false);
   const [sideBarOpen, setSideBarOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
   const [allprojects, setAllProjects] = useState([]);
-  const [showProjectForm, setShowProjectForm] = useState(false);
+  const [addProject, setAddProject] = useState({
+    title: "",
+    image: "",
+    githublink: "",
+    livelink: "",
+    project_type: "",
+    features: "",
+    technologies: "",
+    design_source: ""
+  });
+  const [action, setAction] = useState(null);
+  const [editProjectId, setEditProjectId] = useState(null)
   const storageUrl = process.env.REACT_APP_STORAGE_PROJECTS_PUBLIC_URL;
-
-  const sideBarContents = [
-    {
-      name: "Home",
-      path: true,
-      logo: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          color="white"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          className="mr-3 h-6 w-6 flex-shrink-0 text-gray-300"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-          />
-        </svg>
-      ),
-      action: () => { },
-    },
-    {
-      name: "Projects",
-      path: false,
-      logo: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          className="mr-3 h-6 w-6 flex-shrink-0 text-gray-300"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
-          />
-        </svg>
-      ),
-      action: () => { },
-    },
-  ];
 
   const getProjects = async (e) => {
     let { data, error } = await portfolioClient.from("projects").select("*");
     if (error) {
       console.log(error);
     } else {
-      console.log(data)
       const mappedData = data.map((project) => {
         return {
           id: project.id,
@@ -75,6 +40,9 @@ export default function Sidebar({ funcTopNav }) {
           image: project.image,
           githublink: project.githublink,
           livelink: project.livelink,
+          project_type: project.project_type,
+          features: project.features,
+          technologies: project.technologies,
           inserted_at: project.inserted_at
         }
       })
@@ -82,9 +50,8 @@ export default function Sidebar({ funcTopNav }) {
     }
   };
 
-  const deleteProject = async (id) => {
-    setIsModalOpen(true);
-    console.log(id)
+
+  const handleDelete = async (id) => {
     const { data, error } = await portfolioClient
       .from("projects")
       .delete()
@@ -92,17 +59,36 @@ export default function Sidebar({ funcTopNav }) {
     if (error) {
       console.log(error);
     } else {
-      console.log(data);
+      setIsDeleteModalOpen(false);
     }
   };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
+  const handleDeleteCancel = () => {
+    setIsDeleteModalOpen(false);
+
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+  const handleProjectAddCancel = () => {
+    setIsProjectModalOpen(false);
+
+  }
+
+  useEffect(() => {
+    if (!isProjectModalOpen) {
+      setAddProject({
+        title: "",
+        image: "",
+        githublink: "",
+        livelink: "",
+        project_type: "",
+        features: "",
+        technologies: "",
+        design_source: ""
+      })
+      setAction(null);
+      setEditProjectId(null)
+    }
+  }, [isProjectModalOpen])
 
   const uploadCV = async (e) => {
     const file = e.target.files[0];
@@ -122,7 +108,7 @@ export default function Sidebar({ funcTopNav }) {
 
   useEffect(() => {
     getProjects();
-  }, []);
+  }, [isProjectModalOpen, isDeleteModalOpen]);
 
   const columns = [
     {
@@ -143,7 +129,6 @@ export default function Sidebar({ funcTopNav }) {
           }}
           src={`${storageUrl}` + `${record}`}
           alt="error"
-          onClick={() => console.log(record)}
         />
     },
     {
@@ -168,21 +153,34 @@ export default function Sidebar({ funcTopNav }) {
       width: 150
     },
     {
-      title: 'Updated at',
-      dataIndex: 'updated',
-      width: 150
+      title: 'Project Type',
+      dataIndex: 'project_type',
+      width: 150,
+      render: (text) =>
+        <p >{text}</p>
+    },
+    {
+      title: 'Project Features',
+      dataIndex: 'features',
+      render: (text) =>
+        <p >{text}</p>
+    },
+    {
+      title: 'Technologies',
+      dataIndex: 'technologies',
+      width: 150,
+      render: (text) =>
+        <p >{text}</p>
     },
     {
       title: 'Action',
       dataIndex: 'action',
       width: 150,
       render: (_, record) => (
-        <>
+        <div>
           <button
             onClick={() => {
-              deleteProject(record.id);
-              setIsModalOpen(true)
-
+              setIsDeleteModalOpen(true);
             }}
             className="text-red-600 hover:text-red-900"
           >
@@ -201,29 +199,36 @@ export default function Sidebar({ funcTopNav }) {
               />
             </svg>
           </button>
-          <Link to={`/dashboard/` + record.id + `/update`}>
-            <button className="text-indigo-600 hover:text-indigo-900"
+          <button className="text-indigo-600 hover:text-indigo-900"
+            onClick={() => {
+              setIsProjectModalOpen(true);
+              setAction("edit");
+              setEditProjectId(record.id)
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                />
-              </svg>
-            </button>
-          </Link>
-        </>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+              />
+            </svg>
+          </button>
+          <Modal title="Delete Project" open={isDeleteModalOpen} onOk={() => handleDelete(record.id)} onCancel={handleDeleteCancel}>
+            <p>Are you sure you want to delete this project?</p>
+          </Modal>
+        </div>
       )
     },
   ];
+
 
   return (
     <>
@@ -312,13 +317,15 @@ export default function Sidebar({ funcTopNav }) {
               <div className="overflow-hidden sm:mt-0 sm:ml-8 sm:flex-none">
                 <button
                   type="button"
-                  // onClick={() => setShowProjectForm(true)}
-                  onClick={() => setIsProjectModalOpen(true)}
+                  onClick={() => {
+                    setIsProjectModalOpen(true);
+                    setAction("create")
+                  }
+                  }
                   className="overflow-hidden inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                 >
                   Add projects
                 </button>
-                {/* </Link> */}
               </div>
             </div>
             <Table
@@ -328,13 +335,16 @@ export default function Sidebar({ funcTopNav }) {
               dataSource={allprojects}
               pagination={false}
             />
-            <Modal title="Delete Project" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-              <p>Are you sure you want to delete this project?</p>
-            </Modal>
-            <Modal title="Add Project Details" open={isProjectModalOpen} onCancel={() => setIsProjectModalOpen(false)} footer={null}>
+            <Modal title={action === "create" ? "Add Project Details" : "Edit Project Details"} width={800} open={isProjectModalOpen} onCancel={handleProjectAddCancel} footer={null}>
               <AddProject
+                isProjectModalOpen={isProjectModalOpen}
                 setIsProjectModalOpen={setIsProjectModalOpen}
                 funcTopNav={funcTopNav}
+                addProject={addProject}
+                setAddProject={setAddProject}
+                editProjectId={editProjectId}
+                action={action}
+                setAction={setAction}
               />
             </Modal>
           </div>

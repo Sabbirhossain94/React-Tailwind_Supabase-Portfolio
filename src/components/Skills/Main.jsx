@@ -10,9 +10,8 @@ import { skillslist } from "./skills";
 
 
 export default function Skills() {
-  console.log(skillslist)
   return (
-    <div>
+    <div className="max-w-6xl mx-auto lg:px-8 mt-8 py-24">
       <div className="mt-32">
         <h2 className="text-2xl text-center font-medium mb-4 tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-3xl">
           Skills

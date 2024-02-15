@@ -62,14 +62,14 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                 <div className="relative ">
                   <div className="grid grid-cols-1 lg:grid-cols-3">
                     {/* left section */}
-                    <div className="rounded-md relative overflow-hidden bg-zinc-100/50 dark:bg-slate-900/20 py-10 px-6 sm:px-10 xl:p-12">
+                    <div className="rounded-md relative overflow-hidden bg-zinc-200/30 dark:bg-slate-900/30 py-10 px-6 sm:px-10 xl:p-12">
                       <h3 className="text-lg font-medium dark:text-white text-zinc-800">
                         Contact information
                       </h3>
                       <dl className="mt-8 space-y-6">
                         <dd className="flex text-base text-teal-50">
                           <svg
-                            className="h-6 w-6 flex-shrink-0 text-sky-500 dark:text-cyan-400"
+                            className="h-6 w-6 flex-shrink-0 text-sky-500 dark:text-teal-400"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -90,7 +90,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
 
                         <dd className="flex text-base text-teal-50">
                           <svg
-                            className="h-6 w-6 flex-shrink-0 text-sky-500 dark:text-cyan-400"
+                            className="h-6 w-6 flex-shrink-0 text-sky-500 dark:text-teal-400"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -108,16 +108,10 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                             sabbirhossainbd199@gmail.com
                           </span>
                         </dd>
-                      </dl>
-                      <ul role="list" className="mt-8 flex space-x-12">
-                        <li>
-                          <a
-                            className="text-teal-200 hover:text-teal-100"
-                            href="https://github.com/Sabbirhossain94"
-                          >
-                            <span className="sr-only">GitHub</span>
+
+                          <dd className="flex  text-teal-50">
                             <svg
-                              className="h-7 w-7 text-sky-500 dark:text-cyan-400"
+                              className="h-6 w-6 flex-shrink-0 text-sky-500 dark:text-teal-400"
                               fill="currentColor"
                               viewBox="0 0 24 24"
                               aria-hidden="true"
@@ -128,25 +122,27 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                                 clipRule="evenodd"
                               />
                             </svg>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            className="text-teal-200 hover:text-teal-100"
-                            href="https://www.linkedin.com/in/sabbir-hossain-b73726214/"
-                          >
-                            <span className="sr-only">LinkedIn</span>
+                            
+                            <span className="ml-3 dark:text-white text-zinc-800">
+                              <a target="_blank" href="https://github.com/Sabbirhossain97">https://github.com/Sabbirhossain97</a>
+                            </span>
+                          </dd>
+
+                          <dd className="flex  text-teal-50">
                             <svg
-                              className="h-7 w-7 text-sky-500 dark:text-cyan-400"
+                              className="h-6 w-6 flex-shrink-0 text-sky-500 dark:text-teal-400"
                               fill="currentColor"
                               viewBox="0 0 24 24"
                               aria-hidden="true"
                             >
                               <path d="M18.335 18.339H15.67v-4.177c0-.996-.02-2.278-1.39-2.278-1.389 0-1.601 1.084-1.601 2.205v4.25h-2.666V9.75h2.56v1.17h.035c.358-.674 1.228-1.387 2.528-1.387 2.7 0 3.2 1.778 3.2 4.091v4.715zM7.003 8.575a1.546 1.546 0 01-1.548-1.549 1.548 1.548 0 111.547 1.549zm1.336 9.764H5.666V9.75H8.34v8.589zM19.67 3H4.329C3.593 3 3 3.58 3 4.297v15.406C3 20.42 3.594 21 4.328 21h15.338C20.4 21 21 20.42 21 19.703V4.297C21 3.58 20.4 3 19.666 3h.003z"></path>
                             </svg>
-                          </a>
-                        </li>
-                      </ul>
+
+                            <span className="ml-3 dark:text-white text-zinc-800">
+                              <a target="_blank" href="https://www.linkedin.com/in/sabbir-hossain-b73726214/">https://www.linkedin.com/in/sabbir-hossain-b73726214/</a>
+                            </span>
+                          </dd>
+                      </dl>
                     </div>
                     {/* left section */}
 
@@ -162,7 +158,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                       >
                         <div>
                           <label
-                            htmlFor="first-name"
+                            htmlFor="first_name"
                             className="text-warm-gray-900 block text-sm font-medium dark:text-white"
                           >
                             First name
@@ -170,17 +166,17 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                           <div className="mt-1">
                             <input
                               type="text"
-                              name="first-name"
-                              id="first-name"
+                              name="first_name"
+                              id="first_name"
                               autoComplete="given-name"
-                              className="ring-1 dark:ring-cyan-500/30 mt-[10px]  dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800 focus:border-indigo-500 focus:ring-indigo-400"
+                                className="ring-1 ring-sky-400 dark:ring-teal-400/50 mt-[10px]  dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800 focus:border-indigo-500 focus:ring-indigo-400"
                               required
                             />
                           </div>
                         </div>
                         <div>
                           <label
-                            htmlFor="last-name"
+                            htmlFor="last_name"
                             className="text-warm-gray-900 block text-sm font-medium dark:text-white"
                           >
                             Last name
@@ -188,10 +184,10 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                           <div className="mt-1">
                             <input
                               type="text"
-                              name="last-name"
-                              id="last-name"
+                              name="last_name"
+                              id="last_name"
                               autoComplete="family-name"
-                              className="ring-1 dark:ring-cyan-500/30 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
+                                className="ring-1 ring-sky-400 dark:ring-teal-400/50 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
                               required
                             />
                           </div>
@@ -209,7 +205,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                               name="email"
                               type="email"
                               autoComplete="email"
-                              className="ring-1 dark:ring-cyan-500/30 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
+                                className="ring-1 ring-sky-400 dark:ring-teal-400/50 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
                               required
                             />
                           </div>
@@ -229,7 +225,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                               name="phone"
                               id="phone"
                               autoComplete="tel"
-                              className="ring-1 dark:ring-cyan-500/30 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
+                                className="ring-1 ring-sky-400 dark:ring-teal-400/50 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
                               aria-describedby="phone-optional"
                               required
                             />
@@ -247,7 +243,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                               type="text"
                               name="subject"
                               id="subject"
-                              className="ring-1 dark:ring-cyan-500/30 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
+                                className="ring-1 ring-sky-400 dark:ring-teal-400/50 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
                               required
                             />
                           </div>
@@ -266,7 +262,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                               id="message"
                               name="message"
                               rows="4"
-                              className="ring-1 dark:ring-cyan-500/30 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
+                                className="ring-1 ring-sky-400 dark:ring-teal-400/50 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm dark:bg-slate-800"
                               aria-describedby="message-max"
                               required
                             ></textarea>
@@ -275,7 +271,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                         <div className="sm:col-span-2 sm:flex sm:justify-end">
                           <button
                             type="submit"
-                            className="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-sky-500 dark:bg-cyan-500/30 hover:bg-sky-700 dark:ring-cyan-500 dark:hover:bg-cyan-700 px-6 py-3 text-base font-medium text-white shadow-sm  focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 sm:w-auto"
+                              className=" inline-flex items-center gap-2 justify-center rounded-md py-3 px-8 text-sm outline-offset-2 transition active:transition-none bg-zinc-100 font-medium text-zinc-900 hover:text-sky-400 hover:bg-zinc-200 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-900/50 dark:hover:text-teal-500 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-2 w-1/4"
                           >
                             Submit
                           </button>

@@ -1,4 +1,3 @@
-// import "../../src/animation.css";
 import React from "react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -11,13 +10,24 @@ export default function Navbar() {
 
   const navigation = [
     {
-      Name: "About",
+      Name: "Home",
       Link: "/",
       isSession: false,
       property: "end",
       navLinkStyles: ({ isActive }) => {
         return {
-          color: isActive ? dark ? "rgb(20,184,166)" : "rgb(6,182,212)" :  dark ? "white": "black",
+          color: isActive ? dark ? "rgb(20,184,166)" : "rgb(6,182,212)" : dark ? "white" : "black",
+        };
+      },
+    },
+    {
+      Name: "About",
+      Link: "/about",
+      isSession: false,
+      property: "end",
+      navLinkStyles: ({ isActive }) => {
+        return {
+          color: isActive ? dark ? "rgb(20,184,166)" : "rgb(6,182,212)" : dark ? "white" : "black",
         };
       },
     },
@@ -85,30 +95,13 @@ export default function Navbar() {
     setOpenMenuIcon(false);
   }, [location.pathname]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const navbar = document.getElementById('navbar');
-
-      if (scrollPosition > 0) {
-        navbar.classList.add('blur-background backdrop-blur-md');
-      } else {
-        navbar.classList.remove('blur-background');
-      }
-    };
-    document.addEventListener('scroll', handleScroll);
-    return () => {
-      document.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
     <div >
       <nav id="navbar" className="shadow-md bg-white dark:bg-slate-800 z-[1000] fixed top-0 left-0 right-0">
         <div className="mx-auto max-w-7xl sm:px-12 lg:px-6 bg-opacity-50">
-          <div className="flex h-20 items-center justify-between px-5">
+          <div className="flex h-20 py-2 items-center justify-between px-5">
             <div className="flex md:ml-[80px]">
-              <div className="flex-shrink-0 sm:hidden">
+              <div className="flex-shrink-0 sm:hidden ">
                 <button className="rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 px-1 py-1 transition duration-300">
                   {openMenuIcon ? (
                     <svg
@@ -218,29 +211,25 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-        <div className="sm:hidden">
-          <div className={openMenuIcon ? "slide-down " : "slide-up"}>
-            <div className="space-y-1 px-2 pt-2 pb-3">
-              {navigation.map((item, key) =>
-                item.isSession ? (
-                  ""
-                ) : (
-                  <li key={key} className="list-none hover:bg-gray-100 dark:hover:bg-slate-700 rounded-md p-0.5 transition duration-300">
-                    <NavLink
-                      key={key}
-                      to={item.Link}
-                      className={`rounded-md px-3 py-2 text-base font-medium text-gray-300 ${openMenuIcon ? "block" : "hidden"}`}
-                      style={item.navLinkStyles}
-                      end
-                    >
-                      {item.Name}
-                    </NavLink>
-                  </li>
-                )
-              )}
-            </div>
+        <div className={openMenuIcon ? "translate-y-2 opacity-100 transition-height duration-300 pb-2" : "translate-y-0 opacity-0 transition-height duration-300"}>
+            {navigation.map((item, key) =>
+              item.isSession ? (
+                ""
+              ) : (
+                <li key={key} className="list-none hover:bg-gray-100 dark:hover:bg-slate-700 rounded-md p-0.5 transition duration-300">
+                  <NavLink
+                    key={key}
+                    to={item.Link}
+                    className={`rounded-md px-3 py-2 text-base font-medium text-gray-300 ${openMenuIcon ? "block" : "hidden"}`}
+                    style={item.navLinkStyles}
+                    end
+                  >
+                    {item.Name}
+                  </NavLink>
+                </li>
+              )
+            )}
           </div>
-        </div>
       </nav>
     </div>
   );
