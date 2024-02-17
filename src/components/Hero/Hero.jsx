@@ -30,8 +30,7 @@ function Hero() {
                             <p className="typingeffect mt-6 text-base text-zinc-600 dark:text-zinc-400">
                                 <span className="text-sky-400 dark:text-teal-500"></span> A web
                                 developer based in Dhaka, Bangladesh. I have
-                                experience building websites based on React JS, Next
-                                JS and other cool frameworks. I love to learn new
+                                experience building websites based on <span className='text-sky-400 dark:text-teal-500'>ReactJS</span>, <span className='text-sky-400 dark:text-teal-500'>NextJS</span> and other cool frameworks. I love to learn new
                                 things everyday.
                             </p>
                             <div className="mt-6 flex gap-6">
