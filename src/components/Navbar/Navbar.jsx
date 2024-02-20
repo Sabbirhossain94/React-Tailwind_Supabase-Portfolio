@@ -16,7 +16,7 @@ export default function Navbar() {
       property: "end",
       navLinkStyles: ({ isActive }) => {
         return {
-          color: isActive ? dark ? "rgb(20,184,166)" : "rgb(6,182,212)" : dark ? "white" : "black",
+          color: isActive ? dark ? "rgb(20,184,166)" : "rgb(56,189,248)" : dark ? "white" : "black",
         };
       },
     },
@@ -27,7 +27,7 @@ export default function Navbar() {
       property: "end",
       navLinkStyles: ({ isActive }) => {
         return {
-          color: isActive ? dark ? "rgb(20,184,166)" : "rgb(6,182,212)" : dark ? "white" : "black",
+          color: isActive ? dark ? "rgb(20,184,166)" : "rgb(56,189,248)" : dark ? "white" : "black",
         };
       },
     },
@@ -37,7 +37,7 @@ export default function Navbar() {
       isSession: false,
       navLinkStyles: ({ isActive }) => {
         return {
-          color: isActive ? dark ? "rgb(20,184,166)" : "rgb(6,182,212)" : dark ? "white" : "black",
+          color: isActive ? dark ? "rgb(20,184,166)" : "rgb(56,189,248)" : dark ? "white" : "black",
         };
       },
     },
@@ -47,7 +47,7 @@ export default function Navbar() {
       isSession: false,
       navLinkStyles: ({ isActive }) => {
         return {
-          color: isActive ? dark ? "rgb(20,184,166)" : "rgb(6,182,212)" : dark ? "white" : "black",
+          color: isActive ? dark ? "rgb(20,184,166)" : "rgb(56,189,248)" : dark ? "white" : "black",
         };
       },
     },
@@ -197,11 +197,11 @@ export default function Navbar() {
                     >
                       <path
                         d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                        className="fill-cyan-400/20 stroke-cyan-500"
+                        className="fill-sky-400/20 stroke-sky-400"
                       ></path>
                       <path
                         d="M12 4v1M17.66 6.344l-.828.828M20.005 12.004h-1M17.66 17.664l-.828-.828M12 20.01V19M6.34 17.664l.835-.836M3.995 12.004h1.01M6 6l.835.836"
-                        className="stroke-cyan-500"
+                        className="stroke-sky-400"
                       ></path>
                     </svg>
                   )}
@@ -212,24 +212,24 @@ export default function Navbar() {
           </div>
         </div>
         <div className={openMenuIcon ? "translate-y-2 opacity-100 transition-height duration-300 pb-2" : "translate-y-0 opacity-0 transition-height duration-300"}>
-            {navigation.map((item, key) =>
-              item.isSession ? (
-                ""
-              ) : (
-                <li key={key} className="list-none hover:bg-gray-100 dark:hover:bg-slate-700 rounded-md p-0.5 transition duration-300">
-                  <NavLink
-                    key={key}
-                    to={item.Link}
-                    className={`rounded-md px-3 py-2 text-base font-medium text-gray-300 ${openMenuIcon ? "block" : "hidden"}`}
-                    style={item.navLinkStyles}
-                    end
-                  >
-                    {item.Name}
-                  </NavLink>
-                </li>
-              )
-            )}
-          </div>
+          {navigation.map((item, key) =>
+            item.isSession ? (
+              ""
+            ) : (
+              <li key={key} className="list-none hover:bg-gray-100 dark:hover:bg-slate-700 rounded-md p-0.5 transition duration-300">
+                <NavLink
+                  key={key}
+                  to={item.Link}
+                  className={`rounded-md px-3 py-2 text-base font-medium text-gray-300 ${openMenuIcon ? "block" : "hidden"}`}
+                  style={item.navLinkStyles}
+                  end
+                >
+                  {item.Name}
+                </NavLink>
+              </li>
+            )
+          )}
+        </div>
       </nav>
     </div>
   );

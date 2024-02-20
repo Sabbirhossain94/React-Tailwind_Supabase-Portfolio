@@ -8,6 +8,7 @@ import Loader from '../helpers/Loader';
 import { certifications } from './certification';
 import Footer from '../Footer/Footer';
 import { saveAs } from 'file-saver';
+import ScrollToTop from "../helpers/ScrollToTop"
 
 function AboutMe() {
     const params = useLocation();
@@ -55,10 +56,10 @@ function AboutMe() {
                             {params.pathname === "/about" &&
                                 <>
                                     <p className="mb-4 leading-relaxed text-zinc-800 dark:text-zinc-400">
-                                        I have expertise in crafting dynamic user experiences using <span className='text-teal-500'>ReactJS</span> and <span className='text-teal-500'>NextJS</span>. I thrive on creating sleek and responsive designs, powered by modern CSS frameworks like <span className='text-teal-500'>TailwindCSS</span> and <span className='text-teal-500'>Ant Design</span>.With a keen eye for detail, I specialize in <span className='text-teal-500'>HTML5</span> and <span className='text-teal-500'>CSS3</span> to bring designs to life, while my GitHub profile reflects my dedication to collaboration and version control.
+                                        I have expertise in crafting dynamic user experiences using <span className='text-sky-400 dark:text-teal-500'>ReactJS</span> and <span className='text-sky-400 dark:text-teal-500'>NextJS</span>. I thrive on creating sleek and responsive designs, powered by modern CSS frameworks like <span className='text-sky-400 dark:text-teal-500'>TailwindCSS</span> and <span className='text-sky-400 dark:text-teal-500'>Ant Design</span>.With a keen eye for detail, I specialize in <span className='text-sky-400 dark:text-teal-500'>HTML5</span> and <span className='text-sky-400 dark:text-teal-500'>CSS3</span> to bring designs to life, while my <span className='text-sky-400 dark:text-teal-500'>GitHub</span> profile reflects my dedication to collaboration and version control.
                                     </p>
                                     <p className="mb-4 leading-relaxed text-zinc-800 dark:text-zinc-400">
-                                        Outside of coding, you'll often find me refining APIs and testing endpoints with Postman, ensuring smooth communication between front and backend systems. Get in touch, and let's build something incredible!
+                                        Outside of coding, you'll often find me refining APIs and testing endpoints with <span className='text-sky-400 dark:text-teal-500'>Postman</span>, ensuring smooth communication between front and backend systems. Get in touch, and let's build something incredible!
                                     </p>
 
                                 </>
@@ -173,7 +174,7 @@ function AboutMe() {
                 }
             </div>
             {params.pathname === "/about" && <Footer />}
-
+            <ScrollToTop />
         </AnimatedPage>
     )
 }
