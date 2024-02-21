@@ -53,18 +53,18 @@ export default function Projects({ funcTopNav, funcSideNav }) {
   ) : (
     <AnimatedPage>
       <div>
-        <div className={`${modal ? "blur-sm" : ""}`}>
+        <div>
           <main className="p-[50px] bg-white dark:bg-slate-800">
             <div className=" sm:px-8">
               <div className="mx-auto max-w-7xl lg:px-8">
                 <div className="relative px-4 sm:px-8 lg:px-12">
                   <div className="mx-auto max-w-2xl lg:max-w-5xl"></div>
                   <div className="transition-opacity mt-16 sm:mt-20">
-                    <ul className=" mx-auto mt-16 grid max-w-[26rem] grid-cols-1 gap-6 px-4 sm:mt-20 sm:max-w-[52.5rem] sm:grid-cols-1 sm:px-6 md:mt-32 lg:max-w-7xl md:grid-cols-2 lg:grid-cols-3 lg:gap-y-8 lg:px-8 xl:gap-x-8">
+                    <ul className=" mx-auto mt-16 grid max-w-[26rem] grid-cols-1 gap-6 sm:mt-20 sm:max-w-[52.5rem] sm:grid-cols-1 sm:px-6 md:mt-32 lg:max-w-7xl md:grid-cols-2 lg:grid-cols-3 lg:gap-y-8 lg:px-8 xl:gap-x-8">
                       {allprojects.map((project) => (
                         <li
                           key={project.id}
-                          className="shadow-md hover:shadow-xl ring-1 scale-95 transition dark:highlight-white/5 group relative rounded-3xl bg-slate-100 p-6 hover:scale-100 duration-300 hover:bg-slate-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-900/50"
+                          className=" shadow-md hover:shadow-xl ring-1 scale-95 transition dark:highlight-white/5 group relative rounded-3xl bg-slate-100 p-6 hover:scale-100 duration-300 hover:bg-slate-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-900/50"
                         >
                           <div className="rounded-lg aspect-[672/400] transform overflow-hidden shadow-[0_2px_8px_rgba(15,23,42,0.08)] dark:bg-slate-700">
                             <div
