@@ -1,12 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import App from "../../../App";
-import { portfolioClient } from "../../../portfolioClient";
+import { portfolioClient } from "../../../server/portfolioClient";
 import Projects from "../Projects/Projects";
 import Contact from "../Contact/Contact";
 import Navbar from "../../Navbar/Navbar";
 import Sign from "../Authentication/Sign";
-import AddProject from "../Dashboard/AddProject";
 import Dashboard from "../Dashboard/Dashboard";
 import NoPage from "../NoPage/NoPage";
 import PrivateRoute from "../Dashboard/PrivateRoute";
@@ -15,7 +14,7 @@ import AboutMe from "../../About Me/AboutMe";
 export default function Home() {
   const [session, setSession] = useState(null);
   const [showTopNav, setShowTopNav] = useState(true);
-  const [_, setShowSideNav] = useState(false);
+  const [, setShowSideNav] = useState(false);
 
   useEffect(() => {
     portfolioClient.auth.getSession().then(({ data: { session } }) => {

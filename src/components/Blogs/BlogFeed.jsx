@@ -1,5 +1,5 @@
 import React from "react";
-import { supabase } from "../../supabaseClient";
+import { supabase } from "../../server/supabaseClient";
 import { useState, useEffect } from "react";
 import { Spinner, ArrowRight } from "../SVG/SvgComponents";
 
@@ -70,7 +70,7 @@ export default function BlogFeed() {
                   <div className="w-[200px] md:w-[400px] text-base flex flex-col justify-center  ">
                     <div className="">
                       <h2 className="text-sm md:text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100 max-w-[250px]">
-                        <a href={blogAppUrl} target="_blank" >
+                        <a href={blogAppUrl} target="_blank" rel="noreferrer">
                           <span className="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
                           <span className="relative z-10 ">{item.title}</span>
                         </a>

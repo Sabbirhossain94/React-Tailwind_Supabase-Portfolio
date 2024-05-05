@@ -1,36 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { portfolioClient } from "../../portfolioClient";
+import { portfolioClient } from "../../server/portfolioClient";
 import { TiTick } from "react-icons/ti";
 import { TfiHandPointRight } from "react-icons/tfi";
 
-export default function ({ selectedProjectId }) {
+export default function ProjectDetails({ selectedProjectId }) {
 
   const [projectDetails, setProjectDetails] = useState([]);
   const [loading, setLoading] = useState(false);
   const storageUrl = process.env.REACT_APP_STORAGE_PROJECTS_PUBLIC_URL;
 
-  const getProjectsDetails = async () => {
-    try {
-      setLoading(true)
-      let { data, error } = await portfolioClient
-        .from("projects")
-        .select("*")
-        .match({ id: selectedProjectId });
-      if (error) {
-        console.log(error);
-      } else {
-        const [getProjectDetails] = data;
-        setProjectDetails(getProjectDetails);
-      }
-    }
-    catch (error) {
-      console.log(error)
-    } finally {
-      setLoading(false)
-    }
-  };
+
 
   useEffect(() => {
+    
+    const getProjectsDetails = async () => {
+      try {
+        setLoading(true)
+        let { data, error } = await portfolioClient
+          .from("projects")
+          .select("*")
+          .match({ id: selectedProjectId });
+        if (error) {
+          console.log(error);
+        } else {
+          const [getProjectDetails] = data;
+          setProjectDetails(getProjectDetails);
+        }
+      }
+      catch (error) {
+        console.log(error)
+      } finally {
+        setLoading(false)
+      }
+    };
+
     getProjectsDetails();
   }, [selectedProjectId]);
 
@@ -57,7 +60,7 @@ export default function ({ selectedProjectId }) {
                 objectFit: "cover",
                 width: "100%",
               }}
-              src={`${storageUrl}` + `${projectDetails?.image}`}
+              src={`${storageUrl + projectDetails?.image}`}
               className="rounded-md"
               alt="error"
             />
@@ -98,7 +101,7 @@ export default function ({ selectedProjectId }) {
                 </h3>
                 <div className="flex flex-row">
                   <TfiHandPointRight className="mt-3 text-teal-500 text-lg" />
-                  <li className="list-none ml-1 mt-2 text-lg text-gray-400">Find Figma <span className="text-blue-500"><a target="_blank" href={projectDetails?.design_source}>{projectDetails?.design_source.substring(0, 50)}</a></span></li>
+                  <li className="list-none ml-1 mt-2 text-lg text-gray-400">Find Figma <span className="text-blue-500"><a target="_blank" rel="noreferrer" href={projectDetails?.design_source}>{projectDetails?.design_source.substring(0, 50)}</a></span></li>
                 </div>
               </>
             }

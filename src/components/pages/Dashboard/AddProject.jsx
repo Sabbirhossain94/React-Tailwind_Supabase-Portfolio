@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect, useState, useRef } from "react";
-import { portfolioClient } from "../../../portfolioClient";
+import { portfolioClient } from "../../../server/portfolioClient";
 import toast, { Toaster } from 'react-hot-toast';
+import { Attachments } from "../../SVG/SvgComponents";
 
 export default function AddProject({ funcTopNav, addProject, setAddProject, editProjectId, isProjectModalOpen, setIsProjectModalOpen, action }) {
   funcTopNav(false);
@@ -80,42 +81,45 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
   }, [])
 
   //when updating project fields will be pre-loaded
-  const loadProjectContent = async () => {
-    try {
-      let { data, error } = await portfolioClient
-        .from("projects")
-        .select("*")
-        .match({ id: editProjectId });
-      const [projectInfo] = data;
-      if (error) {
-        console.log(error);
-      } else {
-        setAddProject({
-          title: projectInfo?.title,
-          image: projectInfo?.image,
-          githublink: projectInfo?.githublink,
-          livelink: projectInfo?.livelink,
-          project_type: projectInfo?.project_type,
-          features: projectInfo?.features,
-          technologies: projectInfo?.technologies,
-          design_source: projectInfo?.design_source
-        })
-        loadProjectCoverImage(projectInfo?.image)
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
 
   useEffect(() => {
+
+    const loadProjectContent = async () => {
+      try {
+        let { data, error } = await portfolioClient
+          .from("projects")
+          .select("*")
+          .match({ id: editProjectId });
+        const [projectInfo] = data;
+        if (error) {
+          console.log(error);
+        } else {
+          setAddProject({
+            title: projectInfo?.title,
+            image: projectInfo?.image,
+            githublink: projectInfo?.githublink,
+            livelink: projectInfo?.livelink,
+            project_type: projectInfo?.project_type,
+            features: projectInfo?.features,
+            technologies: projectInfo?.technologies,
+            design_source: projectInfo?.design_source
+          })
+          loadProjectCoverImage(projectInfo?.image)
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     if (action === "edit" && editProjectId) {
       loadProjectContent();
     }
-  }, [action, editProjectId, isProjectModalOpen]);
+  }, [action, editProjectId, isProjectModalOpen, setAddProject]);
 
 
   const loadProjectCoverImage = async (image) => {
-    const { data, error } = await portfolioClient.storage
+    const { data } = await portfolioClient.storage
       .from("projects")
       .download(`Thumbnail/${image}`);
     setPreviewImage(URL.createObjectURL(data));
@@ -274,7 +278,7 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
               value={addProject?.features}
               onChange={(e) => setAddProject({ ...addProject, features: e.target.value })}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              
+
             />
           </div>
           <div className="mb-6">
@@ -323,20 +327,7 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
                     <label htmlFor="file-upload" className="relative rounded-md font-medium text-sky-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-sky-700">
                       <div className="flex w-full justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6 cursor-pointer">
                         <div className="space-y-1 text-center">
-                          <svg
-                            className="mx-auto h-12 w-12 text-gray-400"
-                            stroke="currentColor"
-                            fill="none"
-                            viewBox="0 0 48 48"
-                            aria-hidden="true"
-                          >
-                            <path
-                              d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
+                          <Attachments />
                           <span>Attach an image</span>
                           <input id="file-upload"
                             type="file"

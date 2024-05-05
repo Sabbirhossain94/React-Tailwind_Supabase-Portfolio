@@ -34,6 +34,7 @@ export default function Skills() {
                     src={`/assets/${skill}.png`}
                     width="100px"
                     height="100px"
+                    alt="error"
                   />
                 </SwiperSlide>
               ))}

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { portfolioClient } from "../../../portfolioClient";
+import { portfolioClient } from "../../../server/portfolioClient";
 import AnimatedPage from "../../helpers/AnimatedPages";
 import Footer from "../../Footer/Footer";
 import ProjectDetails from "../../ProjectDetails/ProjectDetails";
@@ -13,7 +13,7 @@ export default function Projects({ funcTopNav, funcSideNav }) {
   funcSideNav(false);
   const storageUrl = process.env.REACT_APP_STORAGE_PROJECTS_PUBLIC_URL;
   const [allprojects, setAllProjects] = useState([]);
-  const [modal, setModal] = useState(false);
+  const [, setModal] = useState(false);
   const [delay, setDelay] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProjectId, setSelectedProjectId] = useState(null);
@@ -71,7 +71,7 @@ export default function Projects({ funcTopNav, funcSideNav }) {
                             >
                               <img
                                 alt="error"
-                                src={`${storageUrl}` + `${project.image}`}
+                                src={`${storageUrl + project.image}`}
                                 className={` rounded-md absolute h-full w-full`}
                                 style={{
                                   color: "transparent",
@@ -93,6 +93,7 @@ export default function Projects({ funcTopNav, funcSideNav }) {
                               <a
                                 href={project.livelink}
                                 target="_blank"
+                                rel="noreferrer"
                                 className="group-hover:cursor-pointer w-full transition duration-300 pr-2 border-r border-slate-900 dark:border-white group-hover:dark:border-sky-500 group-hover:border-sky-500 flex-none text-[0.8125rem] leading-6 text-slate-500 group-hover:text-sky-500 dark:group-hover:text-teal-500 dark:text-slate-400"
                               >
                                 Live Demo
@@ -100,18 +101,19 @@ export default function Projects({ funcTopNav, funcSideNav }) {
                               <a
                                 href={project.githublink}
                                 target="_blank"
+                                rel="noreferrer"
                                 className="ml-2 group-hover:cursor-pointer w-full pr-2 border-r border-slate-900 dark:border-white group-hover:dark:border-sky-500 group-hover:border-sky-500 flex-none text-[0.8125rem] leading-6 text-slate-500 group-hover:text-sky-500 dark:group-hover:text-teal-500 dark:text-slate-400"
                               >
                                 Github
                               </a>
-                              <a
+                              <span
                                 className="group-hover:cursor-pointer w-full pl-2 flex-none text-[0.8125rem] leading-6 text-slate-500 group-hover:text-sky-500 dark:group-hover:text-teal-500 dark:text-slate-400"
                                 onClick={() => {
                                   handleProjectDetailsModal(project.id)
                                 }}
                               >
                                 Details
-                              </a>
+                              </span>
                             </div>
                           </div>
                         </li>

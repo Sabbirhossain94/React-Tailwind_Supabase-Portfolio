@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { portfolioClient } from "../../../portfolioClient";
+import { portfolioClient } from "../../../server/portfolioClient";
 import Notification from "../../helpers/Notification";
 
 export default function Sign({ funcTopNav, funcSideNav, session }) {

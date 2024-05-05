@@ -1,12 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { portfolioClient } from "../../../portfolioClient";
-import { Link } from "react-router-dom";
+import { portfolioClient } from "../../../server/portfolioClient";
 import AddProject from "./AddProject";
 import { Table, Modal, Image } from 'antd';
 import Footer from "../../Footer/Footer";
 import { sideBarContents } from "./SidebarContents";
 import './Table.css'
+import { Tooltip } from 'antd';
+
 export default function Sidebar({ funcTopNav }) {
 
   funcTopNav(false);
@@ -28,7 +29,7 @@ export default function Sidebar({ funcTopNav }) {
   const [editProjectId, setEditProjectId] = useState(null)
   const storageUrl = process.env.REACT_APP_STORAGE_PROJECTS_PUBLIC_URL;
 
-  const getProjects = async (e) => {
+  const getProjects = async () => {
     let { data, error } = await portfolioClient.from("projects").select("*");
     if (error) {
       console.log(error);
@@ -52,7 +53,7 @@ export default function Sidebar({ funcTopNav }) {
 
 
   const handleDelete = async (id) => {
-    const { data, error } = await portfolioClient
+    const { error } = await portfolioClient
       .from("projects")
       .delete()
       .match({ id: id });
@@ -127,7 +128,7 @@ export default function Sidebar({ funcTopNav }) {
             height: "50px",
             objectFit: "cover",
           }}
-          src={`${storageUrl}` + `${record}`}
+          src={`${storageUrl + record}`}
           alt="error"
         />
     },
@@ -162,8 +163,15 @@ export default function Sidebar({ funcTopNav }) {
     {
       title: 'Project Features',
       dataIndex: 'features',
-      render: (text) =>
-        <p >{text}</p>
+      width: 250,
+      ellipsis: true,
+      render: (text) => (
+        <div>
+          <Tooltip title={text}>
+            <p className="truncate ...">{text}</p>
+          </Tooltip>
+        </div>
+      )
     },
     {
       title: 'Technologies',
@@ -300,8 +308,8 @@ export default function Sidebar({ funcTopNav }) {
             </div>
           </div>
 
-          <div className="mt-[100px] flex flex-col justify-self-center w-11/12 px-4 sm:px-6 lg:px-8 ">
-            <div className="flex flex-row overflow-hidden justify-end items-end sm:w-full md:w-full">
+          <div className="mt-[100px] flex flex-col justify-self-center w-11/12 px-6 sm:px-6 lg:px-8 ">
+            <div className=" flex flex-row gap-4 sm:gap-0 overflow-hidden justify-end items-end sm:w-full md:w-full">
               <div className="overflow-hidden sm:mt-0 sm:ml-16 sm:flex-none">
                 <label className="cursor-pointer overflow-hidden inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                   <input

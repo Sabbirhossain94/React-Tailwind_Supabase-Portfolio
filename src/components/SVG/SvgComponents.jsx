@@ -1,4 +1,4 @@
-export const WebDesign = (props) => {
+export const WebDesign = () => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +93,7 @@ export const Download = () => {
     )
 }
 
-export const Experience = ()=>{
+export const Experience = () => {
     return (
         <svg
             viewBox="0 0 24 24"
@@ -116,7 +116,7 @@ export const Experience = ()=>{
     )
 }
 
-export const Spinner = ()=> {
+export const Spinner = () => {
     return (
         <svg
             aria-hidden="true"
@@ -137,7 +137,7 @@ export const Spinner = ()=> {
     )
 }
 
-export const ArrowRight = ()=> {
+export const ArrowRight = () => {
     return (
         <svg
             viewBox="0 0 16 16"
@@ -155,7 +155,7 @@ export const ArrowRight = ()=> {
     )
 }
 
-export const ArrowTop = ()=> {
+export const ArrowTop = () => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -167,6 +167,106 @@ export const ArrowTop = ()=> {
                 fillRule="evenodd"
                 d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z"
                 clipRule="evenodd"
+            />
+        </svg>
+    )
+}
+
+export const CloseIcon = ({ setOpenMenuIcon })=> {
+    return (
+        <svg
+            onClick={() => setOpenMenuIcon(false)}
+            xmlns="http://www.w3.org/2000/svg"
+            color="black"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-8 h-8 dark:text-white"
+        >
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+            />
+        </svg>
+    )
+}
+
+export const MenuIcon = ({ setOpenMenuIcon })=> {
+    return (
+        <svg
+            onClick={() => setOpenMenuIcon(true)}
+            className="dark:text-white block h-8 w-8"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+        >
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+        </svg>
+    )
+}
+
+export const DarkThemeIcon = ()=> {
+    return (
+        <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            className=" stroke-teal-500 h-6 w-6"
+        >
+            <path
+                d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            ></path>
+        </svg>
+    )
+}
+
+export const LightThemeIcon = ()=> {
+    return (
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-6 h-6"
+        >
+            <path
+                d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                className="fill-sky-400/20 stroke-sky-400"
+            ></path>
+            <path
+                d="M12 4v1M17.66 6.344l-.828.828M20.005 12.004h-1M17.66 17.664l-.828-.828M12 20.01V19M6.34 17.664l.835-.836M3.995 12.004h1.01M6 6l.835.836"
+                className="stroke-sky-400"
+            ></path>
+        </svg>
+    )
+}
+
+export const Attachments = ()=> {
+    return (
+        <svg
+            className="mx-auto h-12 w-12 text-gray-400"
+            stroke="currentColor"
+            fill="none"
+            viewBox="0 0 48 48"
+            aria-hidden="true"
+        >
+            <path
+                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
         </svg>
     )

@@ -5,7 +5,6 @@ import Notification from "../../helpers/Notification";
 import AnimatedPage from "../../helpers/AnimatedPages";
 import Footer from "../../Footer/Footer";
 import Loader from "../../helpers/Loader";
-import { IoSend } from "react-icons/io5";
 
 export default function Contact({ funcTopNav, funcSideNav }) {
   funcTopNav(true);
@@ -125,7 +124,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                           </svg>
 
                           <span className="ml-3 dark:text-white text-zinc-800">
-                            <a target="_blank" href="https://github.com/Sabbirhossain97">https://github.com/Sabbirhossain97</a>
+                              <a target="_blank" rel="noreferrer" href="https://github.com/Sabbirhossain97">https://github.com/Sabbirhossain97</a>
                           </span>
                         </dd>
 
@@ -140,7 +139,7 @@ export default function Contact({ funcTopNav, funcSideNav }) {
                           </svg>
 
                           <span className="ml-3 dark:text-white text-zinc-800">
-                            <a target="_blank" href="https://www.linkedin.com/in/sabbir-hossain-b73726214/">https://www.linkedin.com/in/sabbir-hossain-b73726214/</a>
+                              <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/sabbir-hossain-b73726214/">https://www.linkedin.com/in/sabbir-hossain-b73726214/</a>
                           </span>
                         </dd>
                       </dl>
