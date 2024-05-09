@@ -98,7 +98,6 @@ export default function Sidebar({ funcTopNav }) {
     setEditProjectId(null);
   }
 
-
   const uploadCV = async (e) => {
     const file = e.target.files[0];
     try {
