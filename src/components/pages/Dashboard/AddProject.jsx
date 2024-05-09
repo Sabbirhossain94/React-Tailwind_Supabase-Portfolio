@@ -1,13 +1,12 @@
 import React from "react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { portfolioClient } from "../../../server/portfolioClient";
-import toast, { Toaster } from 'react-hot-toast';
 import { Attachments } from "../../SVG/SvgComponents";
+import { message } from 'antd';
 
-export default function AddProject({ funcTopNav, addProject, setAddProject, editProjectId, isProjectModalOpen, setIsProjectModalOpen, action }) {
+export default function AddProject({ funcTopNav, addProject, setAddProject, editProjectId, isProjectModalOpen, setIsProjectModalOpen, action, loading, previewImage, setPreviewImage, setLoading }) {
   funcTopNav(false);
   const formData = useRef();
-  const [previewImage, setPreviewImage] = useState(null);
   const [sendImage, setSendImage] = useState(null);
   const [userInfo, setUserInfo] = useState(null)
   const date = new Date().toLocaleDateString();
@@ -21,26 +20,11 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
     }
   };
 
-  console.log(action)
-
-  const downloadImage = async (path) => {
-    try {
-      const { data, error } = await portfolioClient.storage
-        .from("projects")
-        .download(`Thumbnail/${path}`);
-      if (error) {
-        throw error;
-      }
-      setPreviewImage(URL.createObjectURL(data));
-    } catch (error) {
-      console.log("Error downloading image: ", error.message);
-    }
-  };
-
   const createProjects = async (e) => {
     e.preventDefault();
     try {
-      const { data, error } = await portfolioClient
+      setLoading(true)
+      const { error } = await portfolioClient
         .from("projects")
         .insert({
           user_id: userInfo.id,
@@ -56,16 +40,27 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
         })
         .single();
       if (error) {
-        console.error("Error inserting project:", error.message);
+        message.error("Error inserting project:", error.message);
       } else {
         setIsProjectModalOpen(false)
-        console.log("Project inserted successfully:", data);
+        message.success("Project inserted successfully");
       }
     }
     catch (error) {
-      console.log(error)
+      message.error(error)
     } finally {
-      toast.success('Successfully created!')
+      setLoading(false)
+      message.success('Project Successfully added!');
+      setAddProject({
+        title: "",
+        image: "",
+        githublink: "",
+        livelink: "",
+        project_type: "",
+        features: "",
+        technologies: "",
+        design_source: ""
+      })
     }
   };
 
@@ -80,44 +75,6 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
     getUser()
   }, [])
 
-  //when updating project fields will be pre-loaded
-
-
-  useEffect(() => {
-
-    const loadProjectContent = async () => {
-      try {
-        let { data, error } = await portfolioClient
-          .from("projects")
-          .select("*")
-          .match({ id: editProjectId });
-        const [projectInfo] = data;
-        if (error) {
-          console.log(error);
-        } else {
-          setAddProject({
-            title: projectInfo?.title,
-            image: projectInfo?.image,
-            githublink: projectInfo?.githublink,
-            livelink: projectInfo?.livelink,
-            project_type: projectInfo?.project_type,
-            features: projectInfo?.features,
-            technologies: projectInfo?.technologies,
-            design_source: projectInfo?.design_source
-          })
-          loadProjectCoverImage(projectInfo?.image)
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    if (action === "edit" && editProjectId) {
-      loadProjectContent();
-    }
-  }, [action, editProjectId, isProjectModalOpen, setAddProject]);
-
-
   const loadProjectCoverImage = async (image) => {
     const { data } = await portfolioClient.storage
       .from("projects")
@@ -125,10 +82,45 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
     setPreviewImage(URL.createObjectURL(data));
   }
 
+  //when updating project fields will be pre-loaded
+  const loadProjectContent = useCallback(async () => {
+    try {
+      let { data, error } = await portfolioClient
+        .from("projects")
+        .select("*")
+        .match({ id: editProjectId });
+      const [projectInfo] = data;
+      if (error) {
+        console.log(error);
+      } else {
+        setAddProject({
+          title: projectInfo?.title,
+          image: projectInfo?.image,
+          githublink: projectInfo?.githublink,
+          livelink: projectInfo?.livelink,
+          project_type: projectInfo?.project_type,
+          features: projectInfo?.features,
+          technologies: projectInfo?.technologies,
+          design_source: projectInfo?.design_source
+        });
+        loadProjectCoverImage(projectInfo?.image);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [isProjectModalOpen, action, editProjectId, setAddProject]);
+
+  useEffect(() => {
+    if (action === "edit" && editProjectId) {
+      loadProjectContent();
+    }
+  }, [isProjectModalOpen, action, editProjectId, loadProjectContent])
+
+
   //to update a project
   const updateProject = async (e) => {
     try {
-      const { data, error } = await portfolioClient
+      const { error } = await portfolioClient
         .from("projects")
         .update({
           user_id: userInfo.id,
@@ -146,12 +138,29 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
         console.log(error);
       } else {
         setIsProjectModalOpen(false)
-        console.log(data)
       }
     }
     catch (error) {
       console.log(error)
     }
+  };
+
+
+  const downloadImage = async (path) => {
+    try {
+      const { data, error } = await portfolioClient.storage
+        .from("projects")
+        .download(`Thumbnail/${path}`);
+      if (error) {
+        throw error;
+      }
+      else {
+        setPreviewImage(URL.createObjectURL(data));
+      }
+    } catch (error) {
+      console.log("Error downloading image: ", error.message);
+    }
+
   };
 
   const uploadImage = async (e) => {
@@ -175,10 +184,8 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
     }
   };
 
-
   return (
     <div>
-      <Toaster />
       <div
         className={`mx-auto mt-[20px] rounded-lg `}
       >

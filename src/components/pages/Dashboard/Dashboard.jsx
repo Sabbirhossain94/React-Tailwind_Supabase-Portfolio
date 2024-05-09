@@ -7,12 +7,16 @@ import Footer from "../../Footer/Footer";
 import { sideBarContents } from "./SidebarContents";
 import './Table.css'
 import { Tooltip } from 'antd';
+import { Edit, Delete } from "../../SVG/SvgComponents";
+import { Button, message, Popconfirm } from 'antd';
+import { Spin } from 'antd';
+import Spinner from "../../helpers/Spinner";
 
 export default function Sidebar({ funcTopNav }) {
 
   funcTopNav(false);
   const [sideBarOpen, setSideBarOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
   const [allprojects, setAllProjects] = useState([]);
   const [addProject, setAddProject] = useState({
@@ -25,8 +29,10 @@ export default function Sidebar({ funcTopNav }) {
     technologies: "",
     design_source: ""
   });
-  const [action, setAction] = useState(null);
-  const [editProjectId, setEditProjectId] = useState(null)
+  const [action, setAction] = useState("create");
+  const [previewImage, setPreviewImage] = useState(null);
+  const [editProjectId, setEditProjectId] = useState(null);
+  const [isCvUploaded, setIsCvUploaded] = useState(false)
   const storageUrl = process.env.REACT_APP_STORAGE_PROJECTS_PUBLIC_URL;
 
   const getProjects = async () => {
@@ -51,65 +57,93 @@ export default function Sidebar({ funcTopNav }) {
     }
   };
 
-
-  const handleDelete = async (id) => {
-    const { error } = await portfolioClient
-      .from("projects")
-      .delete()
-      .match({ id: id });
-    if (error) {
-      console.log(error);
-    } else {
-      setIsDeleteModalOpen(false);
-    }
+  const confirm = (id) => {
+    handleDelete(id)
   };
 
-  const handleDeleteCancel = () => {
-    setIsDeleteModalOpen(false);
+  const handleDelete = async (id) => {
+    try {
+      setLoading(true)
+      const { error } = await portfolioClient
+        .from("projects")
+        .delete()
+        .match({ id: id });
 
+      if (error) {
+        message.error(error);
+      } else {
+        message.success("successfully deleted")
+      }
+    } catch (error) {
+      message.error(error);
+    } finally {
+      setLoading(false)
+    }
   };
 
   const handleProjectAddCancel = () => {
-    setIsProjectModalOpen(false);
-
+    setAddProject({
+      title: "",
+      image: "",
+      githublink: "",
+      livelink: "",
+      project_type: "",
+      features: "",
+      technologies: "",
+      design_source: ""
+    })
+    setPreviewImage(null);
+    setIsProjectModalOpen(!isProjectModalOpen);
+    setAction("create");
+    setEditProjectId(null);
   }
 
-  useEffect(() => {
-    if (!isProjectModalOpen) {
-      setAddProject({
-        title: "",
-        image: "",
-        githublink: "",
-        livelink: "",
-        project_type: "",
-        features: "",
-        technologies: "",
-        design_source: ""
-      })
-      setAction(null);
-      setEditProjectId(null)
-    }
-  }, [isProjectModalOpen])
 
   const uploadCV = async (e) => {
     const file = e.target.files[0];
-    const filePath = `CV/CV of Sabbir Hossain.pdf`;
-    const { data, error } = await portfolioClient.storage
-      .from("image")
-      .update(filePath, file, {
-        cacheControl: "3600",
-        upsert: true,
-      });
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(data);
+    try {
+      setIsCvUploaded(true)
+      const { data: existingFiles } = await portfolioClient.storage
+        .from('image')
+        .list('CV/');
+      const isFileExist = existingFiles.find((f) => f.name).name === file.name
+      console.log(isFileExist)
+      if (!isFileExist) {
+        const { data, error } = await portfolioClient.storage
+          .from("image")
+          .upload(`CV/${file.name}`, file);
+        if (error) {
+          message.error(error);
+        } else {
+          message.success(data);
+        }
+      } else {
+        const { data, error } = await portfolioClient.storage
+          .from("image")
+          .update(`CV/${file.name}`, file);
+        if (error) {
+          message.error(error);
+        } else {
+          message.success(data);
+        }
+      }
+
+    } catch (error) {
+      message.error(error)
+    } finally {
+      setIsCvUploaded(false)
+      message.success("CV Uploaded Successfully")
     }
+
   };
 
   useEffect(() => {
     getProjects();
-  }, [isProjectModalOpen, isDeleteModalOpen]);
+  }, [isProjectModalOpen, loading]);
+
+  const handleProjectEdit = (id) => {
+    setEditProjectId(id)
+  }
 
   const columns = [
     {
@@ -186,57 +220,28 @@ export default function Sidebar({ funcTopNav }) {
       width: 150,
       render: (_, record) => (
         <div>
-          <button
-            onClick={() => {
-              setIsDeleteModalOpen(true);
-            }}
-            className="text-red-600 hover:text-red-900"
+          <Popconfirm
+            title="Delete the task"
+            description="Are you sure to delete this task?"
+            onConfirm={() => confirm(record.id)}
+            okText="Yes"
+            cancelText="No"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-              />
-            </svg>
-          </button>
+            <Button style={{ border: 'none', boxShadow: "none", padding: '5px' }}><Delete /></Button>
+          </Popconfirm>
           <button className="text-indigo-600 hover:text-indigo-900"
             onClick={() => {
-              setIsProjectModalOpen(true);
+              setIsProjectModalOpen(!isProjectModalOpen)
               setAction("edit");
-              setEditProjectId(record.id)
+              handleProjectEdit(record.id)
             }}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-              />
-            </svg>
+            <Edit />
           </button>
-          <Modal title="Delete Project" open={isDeleteModalOpen} onOk={() => handleDelete(record.id)} onCancel={handleDeleteCancel}>
-            <p>Are you sure you want to delete this project?</p>
-          </Modal>
         </div>
       )
     },
   ];
-
 
   return (
     <>
@@ -319,15 +324,16 @@ export default function Sidebar({ funcTopNav }) {
                     onChange={uploadCV}
                     className="hidden  mt-[5px] w-full text-sm text-gray-900 bg-blue-500 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   />
-                  Upload CV
+                  {isCvUploaded ? <><Spinner /> <span className="pl-3">Processing</span> </> : "Upload CV"}
                 </label>
               </div>
               <div className="overflow-hidden sm:mt-0 sm:ml-8 sm:flex-none">
                 <button
                   type="button"
                   onClick={() => {
-                    setIsProjectModalOpen(true);
-                    setAction("create")
+                    setIsProjectModalOpen(!isProjectModalOpen);
+                    setAction("create");
+                    setEditProjectId(null)
                   }
                   }
                   className="overflow-hidden inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
@@ -336,13 +342,16 @@ export default function Sidebar({ funcTopNav }) {
                 </button>
               </div>
             </div>
-            <Table
-              scroll={{ x: 1000 }}
-              style={{ marginTop: '20px' }}
-              columns={columns}
-              dataSource={allprojects}
-              pagination={false}
-            />
+            <div className="relative">
+              <Table
+                scroll={{ x: 1000 }}
+                style={{ marginTop: '20px' }}
+                columns={columns}
+                dataSource={allprojects}
+                pagination={false}
+              />
+              {loading ? <Spin className="absolute top-1/2 left-1/2" /> : ""}
+            </div>
             <Modal title={action === "create" ? "Add Project Details" : "Edit Project Details"} width={800} open={isProjectModalOpen} onCancel={handleProjectAddCancel} footer={null}>
               <AddProject
                 isProjectModalOpen={isProjectModalOpen}
@@ -352,7 +361,11 @@ export default function Sidebar({ funcTopNav }) {
                 setAddProject={setAddProject}
                 editProjectId={editProjectId}
                 action={action}
+                previewImage={previewImage}
+                setPreviewImage={setPreviewImage}
                 setAction={setAction}
+                loading={loading}
+                setLoading={setLoading}
               />
             </Modal>
           </div>

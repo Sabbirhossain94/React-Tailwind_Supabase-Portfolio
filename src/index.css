@@ -19,3 +19,11 @@ nav {
     background-color: rgb(30, 41, 59);
     font-family: 'Poppins';
 }
+
+.ant-btn-primary {
+    background-color: #1677ff !important;
+}
+
+.ant-btn-primary:hover {
+    background-color: #2a72d6 !important;
+}
