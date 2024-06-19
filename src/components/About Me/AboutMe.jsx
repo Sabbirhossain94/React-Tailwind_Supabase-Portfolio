@@ -10,11 +10,11 @@ import Footer from '../Footer/Footer';
 import { saveAs } from 'file-saver';
 import ScrollToTop from "../helpers/ScrollToTop"
 import { Download, Experience } from '../SVG/SvgComponents';
+import { portfolioClient } from '../../server/portfolioClient';
 
 function AboutMe() {
     const params = useLocation();
     const [delay, setDelay] = useState(0);
-    const storageUrl = process.env.REACT_APP_STORAGE_CV_URL
 
     let timeoutValue = 2000;
     if (params.pathname === '/') {
@@ -26,21 +26,18 @@ function AboutMe() {
         setDelay(1);
     }, timeoutValue);
 
-    const handleCVDownload = () => {
-        const fileUrl = `${storageUrl}CV%20of%20Sabbir%20Hossain.pdf?t=2024-02-15T07%3A35%3A56.150Z`
-        fetch(fileUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.blob();
-            })
-            .then(blob => {
-                saveAs(blob, 'CV of Sabbir Hossain.pdf');
-            })
-            .catch(error => {
-                console.error('There was a problem with your fetch operation:', error);
-            });
+    const handleCVDownload = async () => {
+        try {
+            const { data, error } = await portfolioClient.storage
+                .from('image')
+                .download('CV/CV of Sabbir Hossain.pdf')
+            if (error) {
+                throw error
+            }
+            saveAs(data, 'CV of Sabbir Hossain.pdf');
+        } catch (error) {
+            console.log(error)
+        }
     };
 
     return delay === 0 ? (
