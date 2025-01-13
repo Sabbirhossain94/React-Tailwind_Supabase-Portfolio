@@ -1,15 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { portfolioClient } from "../../../server/portfolioClient";
-import Notification from "../../helpers/Notification";
+import { portfolioClient } from "../../../services/portfolioClient";
 
-export default function Sign({ funcTopNav, funcSideNav, session }) {
-  funcTopNav(true);
-  funcSideNav(false);
+export default function Sign({ session }) {
 
-  const [showNotification, setShowNotification] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -17,15 +14,12 @@ export default function Sign({ funcTopNav, funcSideNav, session }) {
     if (error) {
       console.log(error);
     } else {
-      setShowNotification(true);
+      console.error("error")
     }
   };
+
   return (
     <div>
-      <Notification
-        showNotification={showNotification}
-        setShowNotification={setShowNotification}
-      />
       {session ? (
         <div className="flex justify-center">
           <button

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { portfolioClient } from "../../server/portfolioClient";
+import { portfolioClient } from "../../services/portfolioClient";
 import { TiTick } from "react-icons/ti";
 import { TfiHandPointRight } from "react-icons/tfi";
 

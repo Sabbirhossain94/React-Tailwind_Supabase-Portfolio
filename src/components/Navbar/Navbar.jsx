@@ -19,8 +19,8 @@ export default function Navbar() {
 
   return (
     <div className="fixed left-0 right-0 top-20 z-[2000] bg-white dark:bg-slate-800/50">
-      <nav className="mx-auto max-w-7xl px-4 py-2 sm:px-10 xl:px-24 bg-opacity-50 backdrop-blur-md fixed -top-4 left-0 right-0">
-        <div className="flex h-12 mt-6 items-start justify-between">
+      <nav className="mx-auto max-w-7xl px-4 py-2 sm:px-10 xl:px-24 bg-opacity-50 backdrop-blur-md fixed -top-2 left-0 right-0">
+        <div className="flex h-14 mt-6 items-start justify-between">
           <div className="flex gap-6">
             <div className="flex-shrink-0 md:hidden">
               <button className="rounded-md hover:text-sky-400 dark:hover:text-teal-500 py-1 transition duration-300">
