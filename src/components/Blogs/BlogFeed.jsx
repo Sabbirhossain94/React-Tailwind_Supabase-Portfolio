@@ -1,7 +1,8 @@
-import React from "react";
 import { supabase } from "../../server/supabaseClient";
 import { useState, useEffect } from "react";
-import { Spinner, ArrowRight } from "../SVG/SvgComponents";
+import { Spinner } from "../SVG/SvgComponents";
+import { BsArrowRight } from "react-icons/bs";
+import moment from "moment";
 
 export default function BlogFeed() {
   const [allBlog, setAllBlog] = useState([]);
@@ -33,57 +34,57 @@ export default function BlogFeed() {
   }, []);
 
   return (
-    <section className="bg-white dark:bg-slate-800 py-24">
-      <div className="py-8 px-4 max-w-7xl xl:max-w-6xl mx-auto  lg:py-16 lg:px-6">
-        <div className="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-          <h2 className="text-2xl text-center font-medium mb-12 tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-3xl">Recent Blogs</h2>
+    <section className="bg-white dark:bg-slate-800 p-10 xl:p-24 mx-auto max-w-7xl">
+      <div>
+        <div className="mx-auto max-w-screen-sm text-center">
+          <h2 data-aos="fade-up" className="text-center font-semibold mb-12 tracking-normal text-zinc-800 dark:text-zinc-100 text-3xl">Recent Blogs</h2>
         </div>
-        <div className="grid gap-8 lg:grid-cols-2 mt-24">
+        <div className="grid gap-8 grid-cols-1 md:grid-cols-2 mx-auto">
           {loading ? (
-            <div className=" h-96 flex justify-center items-center">
+            <div className="h-96 flex justify-center items-center">
               <div role="status">
                 <Spinner />
               </div>
             </div>
           ) :
-            allBlog.map((item) => (
-              <li
-                key={item.id}
-                className=" cursor-pointer scale-100 hover:scale-105 transition duration-300 ease-in-out list-none "
-              >
-                <div className=" group relative grid grid-cols-2  gap-x-4">
-                  <div className="inline-flex flex-col ">
-                    <time className=" relative z-10 order-first mb-3 flex items-center text-sm text-sky-400 dark:text-teal-500 pl-3.5">
-                      <span className=" absolute inset-y-0 left-0 flex items-center">
-                        <span className=" h-4 w-0.5 rounded-full bg-cyan-500 dark:bg-zinc-500"></span>
-                      </span>
-                      <span className="font-medium">{item.inserted_at}</span>
-                    </time>
+            allBlog.map((blog, index) => (
+              <div data-aos="flip-left" key={index} className="relative col-span-2 lg:col-span-1">
+                <div
+                  className="flex flex-col sm:flex-row rounded-xl overflow-hidden border border-zinc-300 dark:border-zinc-100/10"
+                >
+                  <div className="flex-shrink-0">
                     <img
-                      src={blogCoverUrl + item.thumbnail}
-                      alt="error"
-
-                      className="rounded-md "
+                      className="h-48 w-full sm:w-auto object-cover"
+                      src={blogCoverUrl + blog.thumbnail}
+                      loading="lazy"
+                      alt="blog cover"
                     />
                   </div>
-
-                  <div className="w-[200px] md:w-[400px] text-base flex flex-col justify-center  ">
-                    <div className="">
-                      <h2 className="text-sm md:text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100 max-w-[250px]">
-                        <a href={blogAppUrl} target="_blank" rel="noreferrer">
-                          <span className="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
-                          <span className="relative z-10 ">{item.title}</span>
-                        </a>
-                      </h2>
-
-                      <div className=" relative z-10 mt-4 flex items-center text-sm font-medium text-sky-400 dark:text-teal-500">
-                        Read article
-                        <ArrowRight />
+                  <div className="flex items-center dark:bg-slate-800 bg-white px-4 py-4 sm:py-0">
+                    <div className="flex-1">
+                      <div className="block">
+                        <p className="text-xl font-semibold dark:text-gray-200">
+                          {blog.title}
+                        </p>
+                        <p className="mt-2 text-md  gap-4 dark:text-teal-600 text-sky-400">
+                          {moment(blog.inserted_at).format("MMMM D, YYYY")}
+                        </p>
+                        <p className="mt-2 block sm:hidden dark:text-white">
+                          {blog.introduction}
+                        </p>
+                        <div className="mt-6 flex items-center">
+                          <a href={blogAppUrl + 'blog/' + blog.slug}>
+                            <button className="bg-zinc-200 rounded-xl flex items-center group bg-sky-400/10 hover:bg-sky-400/20 dark:bg-teal-500/10 text-sky-400 dark:text-teal-500 text-md px-4  py-2 cursor-pointer dark:hover:bg-teal-500/30 transition duration-300">
+                              <span>Read more</span>
+                              <BsArrowRight className='ml-2 mt-1 translate-x-0 group-hover:translate-x-2 transition-transform duration-300' />
+                            </button>
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </li>
+              </div>
             ))}
         </div>
       </div>

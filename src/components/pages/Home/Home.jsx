@@ -10,6 +10,9 @@ import Dashboard from "../Dashboard/Dashboard";
 import NoPage from "../NoPage/NoPage";
 import PrivateRoute from "../Dashboard/PrivateRoute";
 import AboutMe from "../../About Me/AboutMe";
+import Footer from "../../Footer/Footer";
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 export default function Home() {
   const [session, setSession] = useState(null);
@@ -25,6 +28,10 @@ export default function Home() {
       setSession(session);
     });
   }, []);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 })
+  }, [])
 
   const isAuth = localStorage.getItem(process.env.REACT_APP_LOCAL_STORAGE_KEY);
   return (
@@ -80,6 +87,7 @@ export default function Home() {
         </Route>
         <Route path="*" element={<NoPage />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }

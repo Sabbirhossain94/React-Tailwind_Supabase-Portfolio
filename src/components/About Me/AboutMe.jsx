@@ -3,9 +3,8 @@ import { BsLinkedin } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
 import { SiGmail } from "react-icons/si";
 import { Link, useLocation } from 'react-router-dom';
-import AnimatedPage from '../helpers/AnimatedPages';
 import Loader from '../helpers/Loader';
-import { certifications } from './certification';
+import { certifications } from '../../helpers/certification';
 import Footer from '../Footer/Footer';
 import { saveAs } from 'file-saver';
 import ScrollToTop from "../helpers/ScrollToTop"
@@ -43,41 +42,43 @@ function AboutMe() {
     return delay === 0 ? (
         <Loader />
     ) : (
-        <AnimatedPage>
-            <div className={`max-w-7xl xl:max-w-6xl mx-auto lg:px-8 ${params.pathname === "/about" ? "mt-32" : "mt-8"} `}>
-                <section className="text-gray-600 body-font ">
-                    <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center justify-center">
-                        <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-                            <h1 className="title-font sm:text-5xl text-3xl mb-4 font-medium text-zinc-800 dark:text-zinc-100">About Me</h1>
-                            <h1 className="title-font sm:text-3xl text-3xl mb-4 font-medium text-zinc-800 dark:text-zinc-100"><span className='text-sky-400 dark:text-teal-500'>Meet</span> Sabbir Hossain </h1>
-                            <p className="mb-4 leading-relaxed text-zinc-800 dark:text-zinc-400">With the expertise of a passionate, motivated and committed Web Application Developer, I am dedicated to assisting people and organizations in realizing their maximum potential. I have a wealth of expertise and a successful track record in problem-solving.</p>
-                            {params.pathname === "/about" &&
-                                <>
-                                    <p className="mb-4 leading-relaxed text-zinc-800 dark:text-zinc-400">
-                                        I have expertise in crafting dynamic user experiences using <span className='text-sky-400 dark:text-teal-500'>ReactJS</span> and <span className='text-sky-400 dark:text-teal-500'>NextJS</span>. I thrive on creating sleek and responsive designs, powered by modern CSS frameworks like <span className='text-sky-400 dark:text-teal-500'>TailwindCSS</span> and <span className='text-sky-400 dark:text-teal-500'>Ant Design</span>.With a keen eye for detail, I specialize in <span className='text-sky-400 dark:text-teal-500'>HTML5</span> and <span className='text-sky-400 dark:text-teal-500'>CSS3</span> to bring designs to life, while my <span className='text-sky-400 dark:text-teal-500'>GitHub</span> profile reflects my dedication to collaboration and version control.
-                                    </p>
-                                    <p className="mb-4 leading-relaxed text-zinc-800 dark:text-zinc-400">
-                                        Outside of coding, you'll often find me refining APIs and testing endpoints with <span className='text-sky-400 dark:text-teal-500'>Postman</span>, ensuring smooth communication between front and backend systems. Get in touch, and let's build something incredible!
-                                    </p>
-
-                                </>
-                            }
-                            <div className="flex justify-center">
-                                {params.pathname === "/" ?
+        <div>
+            <div className={`max-w-7xl px-4 sm:px-10 xl:px-24 mx-auto ${params.pathname === "/about" ? "mt-32" : "mt-20"} `}>
+                <section className="text-gray-600 body-font">
+                    <div className="mx-auto flex py-24 md:flex-row flex-col items-center justify-center">
+                            <div data-aos="fade-right" className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+                            <h1 className="title-font sm:text-5xl text-3xl mb-4 font-semibold text-zinc-800 dark:text-zinc-100">About Me</h1>
+                            <div className='mt-4'>
+                                <h1 className="title-font sm:text-3xl text-3xl mb-4 font-medium text-zinc-800 dark:text-zinc-100"><span className='text-sky-400 dark:text-teal-500'>Meet</span> Sabbir Hossain </h1>
+                                <p className="mb-4 leading-relaxed text-zinc-800 dark:text-zinc-400">With the expertise of a passionate, motivated and committed Web Application Developer, I am dedicated to assisting people and organizations in realizing their maximum potential. I have a wealth of expertise and a successful track record in problem-solving.</p>
+                                {params.pathname === "/about" &&
                                     <>
-                                        <Link to="/about">
-                                            <p className=" inline-flex items-center gap-2 justify-center rounded-md py-3 px-8 text-sm outline-offset-2 transition active:transition-none bg-zinc-100 font-medium text-zinc-900 hover:text-sky-400 hover:bg-zinc-200 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-900/50 dark:hover:text-teal-500 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-2 w-full">
-                                                Read More
-                                            </p>
-                                        </Link>
-                                    </> :
-                                    <button
-                                        onClick={handleCVDownload}
-                                        className=" inline-flex items-center gap-2 justify-center rounded-md py-3 px-8 text-sm outline-offset-2 transition active:transition-none bg-zinc-100 font-medium text-zinc-900 hover:text-sky-400 hover:bg-zinc-200 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-900/50 dark:hover:text-teal-500 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-2 w-full">
-                                        Download CV
-                                        <Download />
-                                    </button>
+                                        <p className="mb-4 leading-relaxed text-zinc-800 dark:text-zinc-400">
+                                            I have expertise in crafting dynamic user experiences using <span className='text-sky-400 dark:text-teal-500'>ReactJS</span> and <span className='text-sky-400 dark:text-teal-500'>NextJS</span>. I thrive on creating sleek and responsive designs, powered by modern CSS frameworks like <span className='text-sky-400 dark:text-teal-500'>TailwindCSS</span> and <span className='text-sky-400 dark:text-teal-500'>Ant Design</span>.With a keen eye for detail, I specialize in <span className='text-sky-400 dark:text-teal-500'>HTML5</span> and <span className='text-sky-400 dark:text-teal-500'>CSS3</span> to bring designs to life, while my <span className='text-sky-400 dark:text-teal-500'>GitHub</span> profile reflects my dedication to collaboration and version control.
+                                        </p>
+                                        <p className="mb-4 leading-relaxed text-zinc-800 dark:text-zinc-400">
+                                            Outside of coding, you'll often find me refining APIs and testing endpoints with <span className='text-sky-400 dark:text-teal-500'>Postman</span>, ensuring smooth communication between front and backend systems. Get in touch, and let's build something incredible!
+                                        </p>
+
+                                    </>
                                 }
+                                <div className="flex justify-center md:justify-start">
+                                    {params.pathname === "/" ?
+                                        <>
+                                            <Link to="/about">
+                                                <p className="inline-flex items-center gap-2 justify-center rounded-md py-3 px-24 md:px-8 text-sm outline-offset-2 transition active:transition-none bg-zinc-100 font-medium text-zinc-900 hover:text-sky-400 hover:bg-zinc-200/50 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-900/50 dark:hover:text-teal-500 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-2">
+                                                    Read More
+                                                </p>
+                                            </Link>
+                                        </> :
+                                        <button
+                                            onClick={handleCVDownload}
+                                            className="inline-flex items-center gap-2 justify-center rounded-md py-3 px-8 text-sm outline-offset-2 transition active:transition-none bg-zinc-100 font-medium text-zinc-900 hover:text-sky-400 hover:bg-zinc-200/50 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-900/50 dark:hover:text-teal-500 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-2 w-full">
+                                            Download CV
+                                            <Download />
+                                        </button>
+                                    }
+                                </div>
                             </div>
                             {params.pathname === "/" && <div className="mt-6 flex gap-2">
                                 <a href="https://www.linkedin.com/in/sabbir-hossain-b73726214/">
@@ -92,16 +93,16 @@ function AboutMe() {
                             </div>
                             }
                         </div>
-                        <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 flex items-center justify-center ">
-                            <img className="object-cover object-center rounded-full w-3/4 " alt="hero" src="./assets/me.jpg" />
+                            <div data-aos="fade-left" className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 flex items-center justify-center ">
+                            <img className="object-cover object-center rounded-full w-4/5 " alt="hero" src="./assets/me.jpg" />
                         </div>
                     </div>
                 </section>
                 {params.pathname === "/about" &&
                     <>
-                        <div className="rounded-2xl border border-zinc-100 p-5 w-10/12 md:w-11/12 xl:w-full mx-auto xl:mx-0 dark:border-zinc-700/40">
+                        <div data-aos="fade-up" className="rounded-2xl border border-zinc-200 p-5 mx-auto xl:mx-0 dark:border-zinc-700/40">
                             <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                                <Experience />
+                                <Experience className="text-white dark:text-slate-800 h-6 w-6" />
                                 <span className="ml-3 mt-1">
                                     Experience and Certifications
                                 </span>
@@ -142,9 +143,8 @@ function AboutMe() {
                     </>
                 }
             </div>
-            {params.pathname === "/about" && <Footer />}
             <ScrollToTop />
-        </AnimatedPage>
+        </div>
     )
 }
 

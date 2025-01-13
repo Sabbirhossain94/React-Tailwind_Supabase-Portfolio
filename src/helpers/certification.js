@@ -15,24 +15,24 @@ export const certifications = [
         Institution: "freeCodeCamp",
         certificate: "JS Algorithms and Data Structures",
         logo: "https://i.imgur.com/1FWhJeT.png",
-        Issued: "December 9.2020",
+        Issued: "December 9, 2020",
     },
     {
         Institution: "freeCodeCamp",
         certificate: "Responsive Web Design",
         logo: "https://i.imgur.com/1FWhJeT.png",
-        Issued: "February 3,2021",
+        Issued: "February 3, 2021",
     },
     {
         Institution: "freeCodeCamp",
         certificate: "Front End Development Libraries",
         logo: "https://i.imgur.com/1FWhJeT.png",
-        Issued: "March 27,2021",
+        Issued: "March 27, 2021",
     },
     {
         Institution: "freeCodeCamp",
         certificate: "Back End Development and APIs",
         logo: "https://i.imgur.com/1FWhJeT.png",
-        Issued: "June 12,2021",
+        Issued: "June 12, 2021",
     },
 ];

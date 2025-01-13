@@ -1,31 +1,28 @@
-import React from "react";
 import { WebDesign, Frontend, FullStack } from "../SVG/SvgComponents";
+import { useAOS } from "../../hooks/useAOS";
 
 export default function Services() {
+
+ 
+
   return (
-    <div className=" max-w-6xl mx-auto lg:px-8">
+    <div className="max-w-7xl mx-auto p-10 xl:p-24">
       <div className="flex flex-col items-center">
-        <h2 className="text-2xl text-center font-medium mb-12 tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-3xl">
+        <h2 data-aos="fade-up" className="text-center tracking-normal font-semibold mb-12 text-zinc-800 dark:text-zinc-100 text-3xl">
           Services
         </h2>
-        <div className="mx-auto grid grid-cols-1 grid-rows-3 gap-y-12 lg:grid-cols-2 xl:grid-cols-3 lg:grid-rows-1 gap-x-8">
-          <div className="py-4 shadow-lg relative border dark:border-zinc-700/90 rounded-xl h-64 w-64 md:h-80 md:w-80 flex flex-col items-center ">
-            <WebDesign />
-            <div className="flex justify-center items-center">
-              <span className="absolute top-[150px] md:top-[190px] dark:text-white">Web Design</span>
-            </div>
+        <div className="mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+          <div data-aos="fade-right" className="relative border dark:border-zinc-700/90 rounded-xl col-span-1 w-96 md:w-80 h-96 flex flex-col justify-center items-center">
+            <WebDesign className="w-20 h-20 text-sky-400 dark:text-teal-500" />
+            <span className="dark:text-white mt-4">Web Design</span>
           </div>
-          <div className="py-4 shadow-lg relative border dark:border-zinc-700/90 rounded-xl h-64 w-64 md:h-80 md:w-80 flex flex-col items-center ">
-            <Frontend />
-            <div className="flex justify-center items-center">
-              <span className="absolute top-[150px] md:top-[190px] dark:text-white">Frontend Development</span>
-            </div>
+          <div data-aos="fade-up" className="relative border dark:border-zinc-700/90 rounded-xl col-span-1 w-96 md:w-80 h-96 flex flex-col justify-center items-center">
+            <Frontend className="w-20 h-20 text-sky-400 dark:text-teal-500" />
+            <span className="dark:text-white mt-4">Frontend Development</span>
           </div>
-          <div className="py-4 shadow-lg relative border dark:border-zinc-700/90 rounded-xl h-64 w-64 md:h-80 md:w-80 flex flex-col items-center ">
-            <FullStack />
-            <div className="flex justify-center items-center">
-              <span className="absolute top-[150px] md:top-[190px] dark:text-white">Full Stack Development</span>
-            </div>
+          <div data-aos="fade-left" className="relative border dark:border-zinc-700/90 rounded-xl col-span-1 w-96 md:w-80 h-96 flex flex-col justify-center items-center">
+            <FullStack className="w-20 h-20 text-sky-400 dark:text-teal-500" />
+            <span className="dark:text-white mt-4">Full Stack Development</span>
           </div>
         </div>
       </div>
