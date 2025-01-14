@@ -1,9 +1,6 @@
-import { WebDesign, Frontend, FullStack } from "../SVG/SvgComponents";
-import { useAOS } from "../../hooks/useAOS";
+import { WebDesign, Frontend, FullStack } from "../../SVG/SvgComponents";
 
 export default function Services() {
-
- 
 
   return (
     <div className="max-w-7xl mx-auto p-10 xl:p-24">

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import TypeWriter from '../helpers/TypeWriter';
+import TypeWriter from '../../helpers/TypeWriter';
 
 function Hero() {
 

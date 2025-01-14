@@ -1,9 +1,8 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { portfolioClient } from "../../../services/portfolioClient";
 import AddProject from "./AddProject";
 import { Table, Modal, Image } from 'antd';
-import Footer from "../../Footer/Footer";
+import Footer from "../../../components/layout/common/Footer";
 import { sideBarContents } from "./SidebarContents";
 import './Table.css'
 import { Tooltip } from 'antd';

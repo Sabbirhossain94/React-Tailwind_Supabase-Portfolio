@@ -1,8 +1,7 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { emailService } from "../../../services/email";
-import toast from "react-hot-toast";
 import { Spinner } from "../../SVG/SvgComponents";
-import { useDarkMode } from "../../../hooks/useDarkMode";
+import toast from "react-hot-toast";
 
 export default function Contact() {
 

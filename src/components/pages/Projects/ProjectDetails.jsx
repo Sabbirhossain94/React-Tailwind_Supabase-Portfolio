@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { portfolioClient } from "../../services/portfolioClient";
+import { useEffect, useState } from "react";
+import { portfolioClient } from "../../../services/portfolioClient";
 import { TiTick } from "react-icons/ti";
 import { TfiHandPointRight } from "react-icons/tfi";
 
@@ -8,8 +8,6 @@ export default function ProjectDetails({ selectedProjectId }) {
   const [projectDetails, setProjectDetails] = useState([]);
   const [loading, setLoading] = useState(false);
   const storageUrl = process.env.REACT_APP_STORAGE_PROJECTS_PUBLIC_URL;
-
-
 
   useEffect(() => {
     

@@ -1,12 +1,11 @@
-import React from "react";
 import { Pagination, A11y, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { skillslist } from "../../../helpers/skills";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/bundle";
-import { skillslist } from "../../helpers/skills";
 
 export default function Skills() {
   return (

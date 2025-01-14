@@ -1,10 +1,7 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { portfolioClient } from "../../../services/portfolioClient";
-import ProjectDetails from "../../ProjectDetails/ProjectDetails";
 import { Modal } from 'antd';
-import ScrollToTop from ".././../helpers/ScrollToTop"
-import Loader from "../../helpers/Loader";
+import ProjectDetails from "./ProjectDetails";
 
 export default function Projects() {
 
@@ -55,10 +52,10 @@ export default function Projects() {
     <div>
       <main className="pt-[50px] bg-white dark:bg-slate-800">
         <div className="mx-auto max-w-7xl">
-          <div data-aos="fade-up" className="relative px-10 xl:px-24">
+          <div data-aos="fade-up" className="relative px-4 sm:px-10 xl:px-24">
             <div className="transition-opacity mt-16 sm:mt-20">
-              <ul className="mx-auto mt-16 grid grid-cols-1 gap-6 sm:mt-20 sm:px-0 md:mt-32 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-8 xl:gap-x-8">
-                {loading ? <Loader /> : allprojects.map((project) => (
+              <ul className="mx-auto mt-16 grid grid-cols-1 gap-6 sm:mt-20 sm:px-0 md:mt-32 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-8 xl:gap-x-8">
+                {allprojects.map((project) => (
                   <li
                     key={project.id}
                     className=" shadow-md hover:shadow-xl ring-1 scale-95 transition dark:highlight-white/5 group relative rounded-3xl bg-slate-100 p-6 hover:scale-100 duration-300 hover:bg-slate-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-900/50"

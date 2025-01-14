@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Spinner } from "../SVG/SvgComponents";
+import { Spinner } from "../../SVG/SvgComponents";
 import { BsArrowRight } from "react-icons/bs";
-import { allBlogs } from "../../services/allBlogs";
-import { blogCoverUrl, blogAppUrl } from "../../services/config";
+import { allBlogs } from "../../../services/allBlogs";
+import { blogCoverUrl, blogAppUrl } from "../../../services/config";
 import moment from "moment";
 
 export default function BlogFeed() {
@@ -24,8 +24,6 @@ export default function BlogFeed() {
   useEffect(() => {
     getAllBlogs();
   }, []);
-
-  console.log(allBlog)
 
   return (
     <section className="bg-white dark:bg-slate-800 p-10 xl:p-24 mx-auto max-w-7xl">

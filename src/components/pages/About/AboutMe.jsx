@@ -2,10 +2,10 @@ import { BsLinkedin } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
 import { SiGmail } from "react-icons/si";
 import { Link, useLocation } from 'react-router-dom';
-import { certifications } from '../../helpers/certification';
+import { certifications } from '../../../helpers/certification';
 import { saveAs } from 'file-saver';
-import { Download, Experience } from '../SVG/SvgComponents';
-import { portfolioClient } from '../../services/portfolioClient';
+import { Download, Experience } from '../../SVG/SvgComponents';
+import { portfolioClient } from '../../../services/portfolioClient';
 
 function AboutMe() {
     const params = useLocation();

@@ -1,4 +1,3 @@
-import React from "react";
 import { BsLinkedin } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
 import { SiGmail } from "react-icons/si";
