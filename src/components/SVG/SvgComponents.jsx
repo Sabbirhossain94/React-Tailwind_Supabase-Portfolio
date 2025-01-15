@@ -278,7 +278,7 @@ export const DarkThemeIcon = () => {
         <svg
             viewBox="0 0 24 24"
             aria-hidden="true"
-            className="stroke-teal-500 h-5 w-5 mb-1"
+            className="stroke-teal-500 h-6 w-6 mb-1"
             fill="#1e293b"
         >
             <path
@@ -299,7 +299,7 @@ export const LightThemeIcon = () => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-5 h-5"
+            className="w-6 h-6"
         >
             <path
                 d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"

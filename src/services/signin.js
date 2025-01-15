@@ -1,7 +1,7 @@
 import { portfolioClient } from "./portfolioClient";
 import toast from "react-hot-toast";
 
-export const signInUser = async (formData, setLoading) => {
+export const signInUser = async (formData, setLoading, navigate) => {
     try {
         setLoading(true);
         const { error } = await portfolioClient.auth.signInWithPassword({
@@ -15,5 +15,6 @@ export const signInUser = async (formData, setLoading) => {
         toast.error(error.message);
     } finally {
         setLoading(false);
+        navigate("/")
     }
 };

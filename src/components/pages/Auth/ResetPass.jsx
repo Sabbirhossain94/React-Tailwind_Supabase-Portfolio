@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { MdVisibility } from "react-icons/md";
 import { MdVisibilityOff } from "react-icons/md";
-import { resetPass } from "../../../services/resetPass";
+import { passwordUpdate } from "../../../services/updatePass";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Spinner from "../../helpers/Spinner";
 
@@ -15,6 +16,7 @@ function ResetPass() {
         confirmPassword: false
     })
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -23,7 +25,7 @@ function ResetPass() {
         } else {
             setLoading(true)
             try {
-                await resetPass(formData.newPassword)
+                await passwordUpdate(formData.newPassword, navigate)
             } catch (error) {
                 console.error(error)
             } finally {
@@ -36,14 +38,14 @@ function ResetPass() {
         <div className="h-screen flex items-center">
             <div className="mx-auto w-full px-6 md:px-0 md:max-w-lg">
                 <div className="bg-white dark:bg-slate-800 py-8 px-4 border border-zinc-200 dark:border-zinc-700/80 rounded-lg">
-                    <h2 className="text-center text-2xl font-bold tracking-tight dark:text-white text-slate-900">
+                    <h2 className="text-center text-2xl font-bold tracking-normal dark:text-white text-slate-900">
                         Reset Password
                     </h2>
                     <div className="mt-6 px-2">
                         <form
                             onSubmit={handleSubmit}
                         >
-                            <div>
+                            <div className="relative">
                                 <label
                                     htmlFor="password"
                                     className="block text-md font-medium dark:text-white text-slate-900"
@@ -87,7 +89,7 @@ function ResetPass() {
                             </div>
                             <div className="mt-6">
                                 <button className="flex items-center gap-2 w-full justify-center transition duration-300 bg-zinc-100 dark:bg-zinc-800 py-2 px-4 text-sm font-medium text-zinc-900 hover:text-sky-400 dark:text-white dark:hover:text-teal-500 shadow-sm hover:bg-zinc-200/50 dark:hover:bg-zinc-900/50 focus:outline-none focus:ring-2 focus:ring-zinc-300 dark:focus:ring-teal-500 rounded-md">
-                                    {loading ? <><Spinner />Processing...</> : "Sign In"}
+                                    {loading ? <><Spinner />Processing...</> : "Submit"}
                                 </button>
                             </div>
                         </form>

@@ -29,7 +29,7 @@ export default function BlogFeed() {
     <section className="bg-white dark:bg-slate-800 p-10 xl:p-24 mx-auto max-w-7xl">
       <div>
         <div className="mx-auto max-w-screen-sm text-center">
-          <h2 data-aos="fade-up" className="text-center font-semibold mb-12 tracking-normal text-zinc-800 dark:text-zinc-100 text-3xl">Recent Blogs</h2>
+          <h2 data-aos="fade-up" className="text-center font-semibold mb-12 tracking-normal text-zinc-800 dark:text-zinc-100 text-3xl">Blogs</h2>
         </div>
         {loading ? (
           <div className="h-96 flex justify-center items-center">
@@ -42,9 +42,9 @@ export default function BlogFeed() {
             <div className="grid gap-8 grid-cols-1 md:grid-cols-2 mx-auto">
 
               {allBlog.slice(0, 4).map((blog, index) => (
-                <div data-aos="flip-left" key={index} className="relative col-span-2 lg:col-span-1">
+                <div data-aos="zoom-in" key={index} className="relative col-span-2 lg:col-span-1">
                   <div
-                    className="flex flex-col sm:flex-row rounded-xl overflow-hidden border border-zinc-300 dark:border-zinc-100/10"
+                    className="flex flex-col sm:flex-row rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-700/40"
                   >
                     <div className="flex-shrink-0">
                       <img
@@ -67,7 +67,7 @@ export default function BlogFeed() {
                             {blog.introduction}
                           </p>
                           <div className="mt-6 flex items-center">
-                            <a href={blogAppUrl + 'blog/' + blog.slug}>
+                            <a href={blogAppUrl + 'blog/' + blog.slug} target="_blank">
                               <button className="bg-zinc-200 rounded-xl flex items-center group bg-sky-400/10 hover:bg-sky-400/20 dark:bg-teal-500/10 text-sky-400 dark:text-teal-500 text-md px-4  py-2 cursor-pointer dark:hover:bg-teal-500/30 transition duration-300">
                                 <span>Read more</span>
                                 <BsArrowRight className='ml-2 mt-1 translate-x-0 group-hover:translate-x-2 transition-transform duration-300' />

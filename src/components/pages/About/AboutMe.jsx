@@ -76,7 +76,7 @@ function AboutMe() {
                             </div>
                             }
                         </div>
-                        <div data-aos="fade-left" className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 flex items-center justify-center ">
+                        <div data-aos="zoom-in" className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 flex items-center justify-center ">
                             <img className="object-cover object-center rounded-full w-3/4" alt="hero" src="./assets/me.jpg" />
                         </div>
                     </div>

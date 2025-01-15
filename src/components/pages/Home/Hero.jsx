@@ -4,8 +4,8 @@ import TypeWriter from '../../helpers/TypeWriter';
 function Hero() {
 
     return (
-        <div className="py-44 mt-20 flex flex-col gap-10 lg:gap-0 lg:flex-row mx-auto max-w-7xl px-4 sm:px-10 xl:px-24 text-center md:text-left">
-            <div className='lg:w-1/2 flex flex-col justify-center items-center'>
+        <div className="py-36 mt-20 flex flex-col gap-10 lg:gap-0 lg:flex-row mx-auto max-w-7xl px-4 sm:px-10 xl:px-24 text-center md:text-left">
+            <div data-aos="fade-right" className='lg:w-1/2 flex flex-col justify-center items-center'>
                 <div className="mt-6 text-center lg:text-start">
                     <div className="top-0 order-last -mb-3 pt-3 ">
                         <h1 className="title-font text-3xl mb-4 font-semibold text-zinc-800 dark:text-zinc-100">Hello, I am <span className='text-sky-400 dark:text-teal-500'>Sabbir</span> </h1>
@@ -35,7 +35,7 @@ function Hero() {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-center lg:w-1/2'>
+            <div data-aos="zoom-in" className='flex justify-center lg:w-1/2'>
                 <img src="/assets/developer.png" className='w-full md:w-3/4 lg:w-full object-cover h-auto' />
             </div>
         </div>

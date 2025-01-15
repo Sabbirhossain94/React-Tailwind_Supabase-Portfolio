@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { portfolioClient } from "../../services/portfolioClient";
 import { Toaster } from "react-hot-toast";
-import Loader from "../helpers/Loader"
 import Home from "./Home/Home";
 import Projects from "./Projects/Projects";
 import Contact from "./Contact/Contact";
@@ -11,7 +10,8 @@ import Sign from "../pages/Auth/Sign";
 import ResetPass from "./Auth/ResetPass";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import NoPage from "../../components/pages/NoPage/NoPage";
-import PrivateRoute from "../../components/pages/Dashboard/PrivateRoute";
+import PrivateRoute from "./Auth/PrivateRoute";
+import AuthenticatedRoute from "./Auth/AuthenticatedRoute";
 import AboutMe from "./About/AboutMe";
 import Footer from "../../components/layout/common/Footer";
 import ScrollToTop from "../helpers/ScrollToTop";
@@ -20,9 +20,6 @@ import 'aos/dist/aos.css'
 
 export default function MainRouter() {
     const [session, setSession] = useState(null);
-    const [showTopNav, setShowTopNav] = useState(true);
-    const [, setShowSideNav] = useState(false);
-    const [delay, setDelay] = useState(0);
 
     useEffect(() => {
         portfolioClient.auth.getSession().then(({ data: { session } }) => {
@@ -34,14 +31,7 @@ export default function MainRouter() {
         });
     }, []);
 
-
-    setTimeout(() => {
-        setDelay(1);
-    }, 2000);
-
-    return delay === 0 ? (
-        <Loader />
-    ) : (
+    return (
         <>
             <Toaster />
             <Router>
@@ -70,33 +60,26 @@ export default function MainRouter() {
                             <Contact />
                         }
                     />
-                    <Route
-                        path="/signin"
-                        element={
-                            <Sign
-                                session={session}
-
-                                isAuth={isAuth}
-                            />
-                        }
-                    />
+                    <Route element={<AuthenticatedRoute isAuth={isAuth} />}>
+                        <Route
+                            path="/signin"
+                            element={<Sign />}
+                        />
+                    </Route>
+                    <Route element={<PrivateRoute isAuth={isAuth} />}>
                         <Route
                             path="/resetpassword"
-                            element={
-                                <ResetPass
-                                    session={session}
-
-                                    isAuth={isAuth}
-                                />
-                            }
+                            element={<ResetPass />}
                         />
-                    <Route element={<PrivateRoute session={session} isAuth={isAuth} />}>
+                    </Route>
+                    {/* <Route element={<PrivateRoute session={session} isAuth={isAuth} />}> */}
                         <Route
                             path="/dashboard"
                             exact
-                            element={<Dashboard session={session} funcTopNav={setShowTopNav} />}
+                            element={<Dashboard />
+                            }
                         />
-                    </Route>
+                    {/* </Route> */}
                     <Route path="*" element={<NoPage />} />
                 </Routes>
             </Router>

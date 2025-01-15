@@ -31,7 +31,7 @@ export const AnimatedScrollToTop = ({ children }) => {
       initial="initial"
       animate="animate"
       exit="exit"
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+      transition={{ duration: 0.2, ease: "easeInOut" }}
     >
       {children}
     </motion.div>

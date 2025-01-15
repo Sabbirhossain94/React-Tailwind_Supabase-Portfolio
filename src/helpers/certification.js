@@ -6,6 +6,12 @@ export const certifications = [
         Issued: "Aug 2023-Dec 2023",
     },
     {
+        Institution: "AlgoExpert",
+        certificate: "AlgoExpert Coding Interview Questions",
+        logo: "https://i.imgur.com/wZcehJh.png",
+        Issued: "May 19, 2023",
+    },
+    {
         Institution: "East West University",
         certificate: "Bachelor in CSE",
         logo: "https://i.imgur.com/ptq7E9Q.jpg",

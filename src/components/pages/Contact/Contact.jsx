@@ -40,7 +40,7 @@ export default function Contact() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-8">
 
                   {/* left section */}
-                  <div data-aos="fade-right" className="rounded-md flex justify-center relative overflow-hidden col-span-1">
+                  <div data-aos="zoom-in" className="rounded-md flex justify-center relative overflow-hidden col-span-1">
                     <img src="assets/contact.png" alt="contact" className="w-full h-auto object-cover aspect-auto" />
                   </div>
 

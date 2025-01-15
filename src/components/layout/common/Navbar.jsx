@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink, useLocation, Link, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { CloseIcon, DarkThemeIcon, MenuIcon, LightThemeIcon } from "../../../components/SVG/SvgComponents";
 import { navigation } from "../../../helpers/navigation";
 import { useDarkMode } from "../../../hooks/useDarkMode";
@@ -8,13 +8,14 @@ import { AnimatePresence } from "framer-motion";
 import { AiOutlineUser } from "react-icons/ai";
 import { Dropdown } from 'antd';
 import { menuItems } from "../../../helpers/userMenu";
+import { signOut } from "../../../services/signOut";
 
 export default function Navbar({ session }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const [openMenuIcon, setOpenMenuIcon] = useState(false);
   const { dark, setDark } = useDarkMode()
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     setOpenMenuIcon(false);
@@ -24,14 +25,18 @@ export default function Navbar({ session }) {
     navigate("/dashboard")
   }
 
-  const items = menuItems(session, handleDashboard)
+  const handleSignOut = async () => {
+    await signOut(navigate)
+  }
+
+  const items = menuItems(session, handleDashboard, handleSignOut)
 
   return (
-    <div className="fixed left-0 right-0 top-20 z-[2000] bg-white dark:bg-slate-800/50">
-      <nav className="mx-auto max-w-7xl px-4 py-2 sm:px-10 xl:px-24 bg-opacity-50 backdrop-blur-xl fixed -top-5 custom:-top-2 left-0 right-0">
-        <div className="flex h-12 mt-6 items-start justify-between">
+    <div className="fixed left-0 right-0 top-0 z-[2000] bg-white dark:bg-slate-800/50">
+      <nav className="mx-auto max-w-7xl px-4 sm:px-10 xl:px-24 bg-opacity-50 backdrop-blur-xl fixed -top-5 md:-top-5 left-0 right-0">
+        <div className="flex h-16 mt-6 items-center justify-between">
           <div className="flex gap-6">
-            <div className="flex-shrink-0 custom:hidden">
+            <div className="flex-shrink-0 md:hidden">
               <button className="rounded-md py-2 transition duration-300">
                 {openMenuIcon ? (
                   <CloseIcon setOpenMenuIcon={setOpenMenuIcon} />
@@ -45,7 +50,7 @@ export default function Navbar({ session }) {
             </div>
           </div>
           <div className="flex items-center justify-end">
-            <div className="hidden custom:block">
+            <div className="hidden md:block">
               <div className="flex items-center space-x-4">
                 {navigation.map((item, key) =>
                 (
@@ -73,17 +78,7 @@ export default function Navbar({ session }) {
                   </li>
                 )
                 )}
-                {!session ?
-                  <li
-                    className="list-none rounded-md p-0.5 transition duration-300"
-                  >
-                    <Link to="/signin">
-                      <button className="inline-flex items-center gap-2 justify-center rounded-md py-2 px-24 md:px-8 text-md outline-offset-2 transition duration-300 active:transition-none bg-zinc-100 font-medium text-zinc-900 hover:text-sky-400 hover:bg-zinc-200/50 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-900/50 dark:hover:text-teal-500 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group">
-                        Sign In
-                      </button>
-                    </Link>
-                  </li>
-                  :
+                {session &&
                   <li
                     className="list-none rounded-md mt-1 transition duration-300"
                   >
@@ -120,7 +115,7 @@ export default function Navbar({ session }) {
         <AnimatePresence>
           {openMenuIcon &&
             <AnimatedMenuBar>
-              <div className="space-y-4 px-2 py-4 w-full custom:hidden">
+              <div className="space-y-4 px-2 py-4 w-full md:hidden">
                 {navigation.map((item, key) =>
                 (
                   <li

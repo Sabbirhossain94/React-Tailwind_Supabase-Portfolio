@@ -11,9 +11,8 @@ import { Button, message, Popconfirm } from 'antd';
 import { Spin } from 'antd';
 import Spinner from "../../helpers/Spinner";
 
-export default function Sidebar({ funcTopNav }) {
+export default function Sidebar() {
 
-  funcTopNav(false);
   const [sideBarOpen, setSideBarOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
@@ -354,7 +353,6 @@ export default function Sidebar({ funcTopNav }) {
               <AddProject
                 isProjectModalOpen={isProjectModalOpen}
                 setIsProjectModalOpen={setIsProjectModalOpen}
-                funcTopNav={funcTopNav}
                 addProject={addProject}
                 setAddProject={setAddProject}
                 editProjectId={editProjectId}
