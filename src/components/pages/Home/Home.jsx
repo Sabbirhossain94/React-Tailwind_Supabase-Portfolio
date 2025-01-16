@@ -3,11 +3,8 @@ import Skills from "./Skills";
 import Services from "./Services";
 import Hero from "./Hero";
 import AboutMe from "../About/AboutMe";
-import useAOS from "../../../hooks/useAOS";
 
 function Home() {
-  useAOS();
-
   return (
     <div className="relative bg-white dark:bg-slate-800 overflow-hidden">
       <Hero />

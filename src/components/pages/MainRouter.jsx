@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { portfolioClient } from "../../services/config";
 import { Toaster } from "react-hot-toast";
-import { isAuth } from "../../services/config";
+import { useSession } from "../../hooks/useSession";
 import Home from "./Home/Home";
 import Projects from "./Projects/Projects";
 import Contact from "./Contact/Contact";
@@ -16,19 +16,12 @@ import AuthenticatedRoute from "./Auth/AuthenticatedRoute";
 import AboutMe from "./About/AboutMe";
 import Footer from "../../components/layout/common/Footer";
 import ScrollToTop from "../helpers/ScrollToTop";
+import useAOS from "../../hooks/useAOS";
 
 export default function MainRouter() {
-    const [session, setSession] = useState(null);
-
-    useEffect(() => {
-        portfolioClient.auth.getSession().then(({ data: { session } }) => {
-            setSession(session);
-        });
-
-        portfolioClient.auth.onAuthStateChange((_event, session) => {
-            setSession(session);
-        });
-    }, []);
+    
+    useAOS();
+    const { session } = useSession()
 
     return (
         <>
