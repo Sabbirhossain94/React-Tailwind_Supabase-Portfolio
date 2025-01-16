@@ -1,4 +1,4 @@
-import { blogClient } from "./blogClient";
+import { blogClient } from "./config";
 
 export const allBlogs = async () => {
     try {

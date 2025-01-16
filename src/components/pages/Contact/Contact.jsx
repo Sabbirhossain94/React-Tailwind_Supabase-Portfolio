@@ -67,7 +67,7 @@ export default function Contact() {
                             name="first_name"
                             id="first_name"
                             autoComplete="given-name"
-                            className="bg-zinc-100 dark:bg-slate-500/20 ring-sky-400 mt-[10px]  dark:text-white block w-full rounded-md py-3 px-4 shadow-sm"
+                            className="bg-zinc-100 transition duration-300 border border-zinc-100 dark:border-slate-500/20 focus:border-sky-400 dark:focus:border-teal-500 focus:outline-none dark:bg-slate-500/20 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm"
                             required
                           />
                         </div>
@@ -85,7 +85,7 @@ export default function Contact() {
                             name="last_name"
                             id="last_name"
                             autoComplete="family-name"
-                            className="bg-zinc-100 dark:bg-slate-500/20 ring-sky-400 mt-[10px]  dark:text-white block w-full rounded-md py-3 px-4 shadow-sm"
+                            className="bg-zinc-100 transition duration-300 border border-zinc-100 dark:border-slate-500/20 focus:border-sky-400 dark:focus:border-teal-500 focus:outline-none dark:bg-slate-500/20 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm"
                             required
                           />
                         </div>
@@ -103,7 +103,7 @@ export default function Contact() {
                             name="email"
                             type="email"
                             autoComplete="email"
-                            className="bg-zinc-100 dark:bg-slate-500/20 ring-sky-400 mt-[10px]  dark:text-white block w-full rounded-md py-3 px-4 shadow-sm"
+                            className="bg-zinc-100 transition duration-300 border border-zinc-100 dark:border-slate-500/20 focus:border-sky-400 dark:focus:border-teal-500 focus:outline-none dark:bg-slate-500/20 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm"
                             required
                           />
                         </div>
@@ -123,7 +123,7 @@ export default function Contact() {
                             name="phone"
                             id="phone"
                             autoComplete="tel"
-                            className="bg-zinc-100 dark:bg-slate-500/20 ring-sky-400 mt-[10px]  dark:text-white block w-full rounded-md py-3 px-4 shadow-sm"
+                            className="bg-zinc-100 transition duration-300 border border-zinc-100 dark:border-slate-500/20 focus:border-sky-400 dark:focus:border-teal-500 focus:outline-none dark:bg-slate-500/20 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm"
                             aria-describedby="phone-optional"
                           />
                         </div>
@@ -140,7 +140,7 @@ export default function Contact() {
                             type="text"
                             name="subject"
                             id="subject"
-                            className="bg-zinc-100 dark:bg-slate-500/20 ring-sky-400 mt-[10px]  dark:text-white block w-full rounded-md py-3 px-4 shadow-sm"
+                            className="bg-zinc-100 transition duration-300 border border-zinc-100 dark:border-slate-500/20 focus:border-sky-400 dark:focus:border-teal-500 focus:outline-none dark:bg-slate-500/20 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm"
                             required
                           />
                         </div>
@@ -159,7 +159,7 @@ export default function Contact() {
                             id="message"
                             name="message"
                             rows="4"
-                            className="bg-zinc-100 resize-none dark:bg-slate-500/20 ring-sky-400 mt-[10px]  dark:text-white block w-full rounded-md py-3 px-4 shadow-sm"
+                            className="resize-none bg-zinc-100 transition duration-300 border border-zinc-100 dark:border-slate-500/20 focus:border-sky-400 dark:focus:border-teal-500 focus:outline-none dark:bg-slate-500/20 mt-[10px] dark:text-white block w-full rounded-md py-3 px-4 shadow-sm"
                             aria-describedby="message-max"
                             required
                           ></textarea>

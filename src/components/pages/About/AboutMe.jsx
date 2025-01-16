@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { certifications } from '../../../helpers/certification';
 import { saveAs } from 'file-saver';
 import { Download, Experience } from '../../SVG/SvgComponents';
-import { portfolioClient } from '../../../services/portfolioClient';
+import { portfolioClient } from "../../../services/config";
 
 function AboutMe() {
     const params = useLocation();

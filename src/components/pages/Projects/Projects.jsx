@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { portfolioClient } from "../../../services/portfolioClient";
+import { portfolioClient } from "../../../services/config";
 import { Modal } from 'antd';
 import ProjectDetails from "./ProjectDetails";
 
@@ -13,7 +13,6 @@ export default function Projects() {
   const [loading, setLoading] = useState(false)
 
   const getProjects = async () => {
-
     setLoading(true)
     try {
       let { data, error } = await portfolioClient.from("projects").select("*");
@@ -27,12 +26,11 @@ export default function Projects() {
     } finally {
       setLoading(false)
     }
-
   };
+
   useEffect(() => {
     getProjects();
   }, []);
-
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -59,7 +57,7 @@ export default function Projects() {
                   <li
                     data-aos="zoom-in"
                     key={project.id}
-                    className=" shadow-md hover:shadow-xl ring-1 scale-95 transition dark:highlight-white/5 group relative rounded-3xl bg-slate-100 p-6 hover:scale-100 duration-300 hover:bg-slate-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-900/50"
+                    className="shadow-md hover:shadow-xl ring-1 scale-95 transition dark:highlight-white/5 group relative rounded-3xl bg-slate-100 p-6 hover:scale-100  duration-300 hover:bg-slate-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-900/50"
                   >
                     <div className="rounded-lg aspect-[672/400] transform overflow-hidden shadow-[0_2px_8px_rgba(15,23,42,0.08)] dark:bg-slate-700">
                       <div
@@ -67,7 +65,7 @@ export default function Projects() {
                         <img
                           alt="error"
                           src={`${storageUrl + project.image}`}
-                          className={` rounded-md absolute h-full w-full`}
+                          className="rounded-md absolute h-full w-full"
                           style={{
                             color: "transparent",
                             objectFit: "cover",
@@ -89,7 +87,7 @@ export default function Projects() {
                           href={project.livelink}
                           target="_blank"
                           rel="noreferrer"
-                          className="px-2 py-1 rounded-md bg-sky-200/50 dark:bg-zinc-700 group-hover:cursor-pointer w-full transition duration-300 pr-2  dark:border-white group-hover:dark:border-sky-500 group-hover:border-sky-500 flex-none text-[0.8125rem] leading-6 text-zinc-500 group-hover:text-sky-500 dark:group-hover:text-teal-500 dark:text-zinc-300"
+                          className="px-2 py-[1px] rounded-md bg-sky-200/50 dark:bg-zinc-700 group-hover:cursor-pointer w-full transition duration-300 pr-2  dark:border-white hover:dark:border-sky-500 hover:border-sky-500 flex-none text-[0.8125rem] leading-6 text-zinc-500 hover:text-sky-500 dark:hover:text-teal-500 dark:text-zinc-300"
                         >
                           Live Demo
                         </a>
@@ -97,12 +95,12 @@ export default function Projects() {
                           href={project.githublink}
                           target="_blank"
                           rel="noreferrer"
-                          className="px-2 py-1 ml-2 rounded-md bg-sky-200/50 dark:bg-zinc-700 group-hover:cursor-pointer w-full pr-2 dark:border-white group-hover:dark:border-sky-500 group-hover:border-sky-500 flex-none text-[0.8125rem] leading-6 text-zinc-500 group-hover:text-sky-500 dark:group-hover:text-teal-500 dark:text-zinc-300"
+                          className="px-2 py-[1px] ml-2 rounded-md bg-sky-200/50 dark:bg-zinc-700 group-hover:cursor-pointe transition duration-300r w-full pr-2 dark:border-white hover:dark:border-sky-500 hover:border-sky-500 flex-none text-[0.8125rem] leading-6 text-zinc-500 hover:text-sky-500 dark:hover:text-teal-500 dark:text-zinc-300"
                         >
                           Github
                         </a>
                         <span
-                          className="px-2 py-1 rounded-md bg-sky-200/50 dark:bg-zinc-700 group-hover:cursor-pointer w-full ml-2 flex-none text-[0.8125rem] leading-6 text-zinc-500 group-hover:text-sky-500 dark:group-hover:text-teal-500 dark:text-zinc-300"
+                          className="px-2 py-[1px] rounded-md bg-sky-200/50 dark:bg-zinc-700 hover:cursor-pointer w-full ml-2 transition duration-300 flex-none text-[0.8125rem] leading-6 text-zinc-500 hover:text-sky-500 dark:hover:text-teal-500 dark:text-zinc-300"
                           onClick={() => {
                             handleProjectDetailsModal(project.id)
                           }}
@@ -113,7 +111,7 @@ export default function Projects() {
                     </div>
                   </li>
                 ))}
-                <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null} width={800}
+                <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null} width={800} zIndex={3000}
                 >
                   <ProjectDetails
                     setModal={setModal}

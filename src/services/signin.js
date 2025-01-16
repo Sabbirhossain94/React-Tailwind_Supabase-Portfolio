@@ -1,4 +1,4 @@
-import { portfolioClient } from "./portfolioClient";
+import { portfolioClient } from "./config";
 import toast from "react-hot-toast";
 
 export const signInUser = async (formData, setLoading, navigate) => {

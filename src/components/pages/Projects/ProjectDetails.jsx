@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { portfolioClient } from "../../../services/portfolioClient";
+import { portfolioClient } from "../../../services/config";
 import { TiTick } from "react-icons/ti";
 import { TfiHandPointRight } from "react-icons/tfi";
 
@@ -83,7 +83,7 @@ export default function ProjectDetails({ selectedProjectId }) {
                   <div className="font-medium text-md text-gray-500 text-left">
                     {projectDetails && projectDetails?.features?.split(".").map((item, key) => (
                       <div key={key} className="flex flex-row">
-                        <TiTick className="mt-3 text-teal-500" />
+                        <span><TiTick className="mt-3 text-teal-500 text-lg" /></span>
                         <li className="list-none ml-1 mt-2">{item}</li>
                       </div>
                     ))}

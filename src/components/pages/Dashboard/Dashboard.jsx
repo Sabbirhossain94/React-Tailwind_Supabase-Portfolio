@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { portfolioClient } from "../../../services/portfolioClient";
+import { portfolioClient } from "../../../services/config";
 import AddProject from "./AddProject";
 import { Table, Modal, Image } from 'antd';
 import Footer from "../../../components/layout/common/Footer";
