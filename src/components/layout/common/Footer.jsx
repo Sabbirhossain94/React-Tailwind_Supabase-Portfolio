@@ -5,7 +5,7 @@ import { SiGmail } from "react-icons/si";
 export default function Footer() {
   return (
     <footer className="mt-32">
-      <div className="mx-auto max-w-7xl lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-10 xl:px-24">
         <div className="border-t border-zinc-200/50 pt-10 pb-16 dark:border-zinc-700/40">
           <div className="relative px-4 sm:px-8 md:px-16 lg:px-12">
             <div className="mx-auto max-w-7xl lg:max-w-5xl">

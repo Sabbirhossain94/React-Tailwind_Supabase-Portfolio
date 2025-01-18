@@ -10,11 +10,11 @@ export const signInUser = async (formData, setLoading, navigate) => {
         });
         if (error) throw error;
         toast.success("Successfully logged in!");
+        navigate("/")
     } catch (error) {
         console.error(error);
         toast.error(error.message);
     } finally {
         setLoading(false);
-        navigate("/")
     }
 };

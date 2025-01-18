@@ -72,7 +72,7 @@ export default function Sign() {
                 <input
                   required
                   id="email"
-                  className="mt-2 block w-full dark:text-gray-400 appearance-none bg-zinc-100 dark:bg-slate-500/20 dark:border-gray-200/20 px-3 py-2 placeholder:text-zinc-500 dark:placeholder:text-gray-500 shadow-sm sm:text-sm rounded-md"
+                  className="bg-zinc-100 transition duration-300 border border-zinc-100 dark:border-slate-500/20 focus:border-sky-400 dark:focus:border-teal-500 focus:outline-none dark:bg-slate-500/20 mt-[10px] dark:text-white block w-full rounded-md py-1 px-4 shadow-sm placeholder:text-gray-400 dark:placeholder:text-gray-500"
                   type="email"
                   placeholder="Your email"
                   value={formData.email}
@@ -89,7 +89,7 @@ export default function Sign() {
                 <input
                   required
                   id="password"
-                  className="mt-2 block w-full dark:text-gray-400 appearance-none bg-zinc-100 dark:bg-slate-500/20 px-3 py-2 placeholder:text-zinc-500 dark:placeholder:text-gray-500 shadow-sm sm:text-sm rounded-md"
+                  className="bg-zinc-100 transition duration-300 border border-zinc-100 dark:border-slate-500/20 focus:border-sky-400 dark:focus:border-teal-500 focus:outline-none dark:bg-slate-500/20 mt-[10px] dark:text-white block w-full rounded-md py-1 px-4 shadow-sm placeholder:text-gray-400 dark:placeholder:text-gray-500"
                   type={showVisibility ? "text" : "password"}
                   placeholder="Your password"
                   value={formData.password}

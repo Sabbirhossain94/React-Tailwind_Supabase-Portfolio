@@ -6,7 +6,7 @@ import AboutMe from "../About/AboutMe";
 
 function Home() {
   return (
-    <div className="relative bg-white dark:bg-slate-800 overflow-hidden">
+    <div className="relative bg-white dark:bg-slate-800 overflow-hidden min-h-screen">
       <Hero />
       <AboutMe />
       <Services />

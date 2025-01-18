@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { projectStorageUrl } from "../../../services/config";
 import { projectsData } from "../../../services/projects/fetchProjects";
 import ProjectDetailsModal from "./ProjectDetailsModal";
+import { LeftGradient } from "../../helpers/Gradient";
 
 export default function Projects() {
 
@@ -28,7 +29,8 @@ export default function Projects() {
   }
 
   return (
-    <main className="pt-[50px] bg-white dark:bg-slate-800 min-h-screen">
+    <main className="pt-[50px] bg-white dark:bg-slate-800 min-h-screen relative">
+      <LeftGradient/>
       <ProjectDetailsModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
