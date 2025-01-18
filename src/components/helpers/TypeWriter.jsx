@@ -13,7 +13,7 @@ function TypeWriter() {
             words={[
                 "Front End Developer",
                 "Full Stack Developer",
-                "javaScript Developer",
+                "JavaScript Developer",
             ]}
         />
     )

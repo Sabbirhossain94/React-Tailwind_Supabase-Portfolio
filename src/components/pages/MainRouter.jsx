@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { portfolioClient } from "../../services/config";
 import { Toaster } from "react-hot-toast";
 import { useSession } from "../../hooks/useSession";
+import { useDelay } from "../../hooks/useDelay";
 import Home from "./Home/Home";
 import Projects from "./Projects/Projects";
 import Contact from "./Contact/Contact";
@@ -17,13 +16,15 @@ import AboutMe from "./About/AboutMe";
 import Footer from "../../components/layout/common/Footer";
 import ScrollToTop from "../helpers/ScrollToTop";
 import useAOS from "../../hooks/useAOS";
+import Intro from "../layout/common/Intro";
 
 export default function MainRouter() {
-    
-    useAOS();
-    const { session } = useSession()
 
-    return (
+    useAOS();
+    const { session } = useSession();
+    const { showIntro } = useDelay()
+
+    return showIntro ? <Intro /> : (
         <>
             <Toaster />
             <Router>

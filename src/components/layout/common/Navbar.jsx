@@ -37,7 +37,7 @@ export default function Navbar({ session }) {
         <div className="flex h-16 mt-6 items-center justify-between">
           <div className="flex gap-6">
             <div className="flex-shrink-0 md:hidden">
-              <button className="rounded-md py-2 transition duration-300">
+              <button className="rounded-md py-1 transition duration-300">
                 {openMenuIcon ? (
                   <CloseIcon setOpenMenuIcon={setOpenMenuIcon} />
                 ) : (
