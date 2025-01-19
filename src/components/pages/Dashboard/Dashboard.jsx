@@ -1,9 +1,8 @@
-import React from "react";
 import { useState, useEffect } from "react";
-import { portfolioClient } from "../../../server/portfolioClient";
+import { portfolioClient } from "../../../services/config";
 import AddProject from "./AddProject";
 import { Table, Modal, Image } from 'antd';
-import Footer from "../../Footer/Footer";
+import Footer from "../../../components/layout/common/Footer";
 import { sideBarContents } from "./SidebarContents";
 import './Table.css'
 import { Tooltip } from 'antd';
@@ -12,9 +11,8 @@ import { Button, message, Popconfirm } from 'antd';
 import { Spin } from 'antd';
 import Spinner from "../../helpers/Spinner";
 
-export default function Sidebar({ funcTopNav }) {
+export default function Sidebar() {
 
-  funcTopNav(false);
   const [sideBarOpen, setSideBarOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
@@ -355,7 +353,6 @@ export default function Sidebar({ funcTopNav }) {
               <AddProject
                 isProjectModalOpen={isProjectModalOpen}
                 setIsProjectModalOpen={setIsProjectModalOpen}
-                funcTopNav={funcTopNav}
                 addProject={addProject}
                 setAddProject={setAddProject}
                 editProjectId={editProjectId}

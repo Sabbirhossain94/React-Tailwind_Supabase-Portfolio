@@ -1,6 +1,5 @@
-import React from "react";
 import { useEffect, useState, useRef, useCallback } from "react";
-import { portfolioClient } from "../../../server/portfolioClient";
+import { portfolioClient } from "../../../services/config";
 import { Attachments } from "../../SVG/SvgComponents";
 import { message } from 'antd';
 

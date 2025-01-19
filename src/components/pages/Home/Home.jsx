@@ -1,85 +1,27 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import App from "../../../App";
-import { portfolioClient } from "../../../server/portfolioClient";
-import Projects from "../Projects/Projects";
-import Contact from "../Contact/Contact";
-import Navbar from "../../Navbar/Navbar";
-import Sign from "../Authentication/Sign";
-import Dashboard from "../Dashboard/Dashboard";
-import NoPage from "../NoPage/NoPage";
-import PrivateRoute from "../Dashboard/PrivateRoute";
-import AboutMe from "../../About Me/AboutMe";
+import BlogFeed from "./BlogFeed";
+import Skills from "./Skills";
+import Services from "./Services";
+import Hero from "./Hero";
+import AboutMe from "../About/AboutMe";
+import { AnimatePresence } from "framer-motion";
+import { AnimatedHome } from "../../helpers/AnimatedItems";
 
-export default function Home() {
-  const [session, setSession] = useState(null);
-  const [showTopNav, setShowTopNav] = useState(true);
-  const [, setShowSideNav] = useState(false);
-
-  useEffect(() => {
-    portfolioClient.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    portfolioClient.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  }, []);
-
-  const isAuth = localStorage.getItem(process.env.REACT_APP_LOCAL_STORAGE_KEY);
+function Home() {
   return (
-    <Router>
-      {showTopNav && <Navbar session={session} />}
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <App
-              session={session}
-              funcTopNav={setShowTopNav}
-              funcSideNav={setShowSideNav}
-            />
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <AboutMe funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />
-          }
-        />
-        <Route
-          path="/projects"
-          element={
-            <Projects funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <Contact funcTopNav={setShowTopNav} funcSideNav={setShowSideNav} />
-          }
-        />
-        <Route
-          path="/sign"
-          element={
-            <Sign
-              session={session}
-              funcTopNav={setShowTopNav}
-              funcSideNav={setShowSideNav}
-              isAuth={isAuth}
-            />
-          }
-        />
-        <Route element={<PrivateRoute session={session} isAuth={isAuth} />}>
-          <Route
-            path="/dashboard"
-            exact
-            element={<Dashboard session={session} funcTopNav={setShowTopNav} />}
-          />
-        </Route>
-        <Route path="*" element={<NoPage />} />
-      </Routes>
-    </Router>
+    <AnimatePresence>
+      <AnimatedHome>
+        <div className="relative bg-white dark:bg-slate-800 overflow-hidden min-h-screen">
+          <Hero />
+          <AboutMe />
+          <Services />
+          <Skills />
+          <BlogFeed />
+        </div>
+      </AnimatedHome>
+    </AnimatePresence>
   );
 }
+
+export default Home;
+
+

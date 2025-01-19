@@ -3,10 +3,25 @@ module.exports = {
   darkMode: "class",
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'custom': '920px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       fontFamily: {
         'sans': ['Poppins'],
       }
+    },
+    backgroundSize: {
+      '6rem-4rem': '2rem 2rem',
+      '16px-16px': '16px 16px'
+    },
+    backgroundImage: {
+      'radial-dots': 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
     },
   },
   plugins: [require("tailwind-scrollbar")],
