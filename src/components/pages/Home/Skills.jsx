@@ -32,7 +32,7 @@ export default function Skills() {
                   slidesPerView: 5,
                 },
               }}
-              // autoplay={{ delay: 1000 }}
+              autoplay={{ delay: 1000 }}
               pagination={{
                 clickable: true,
                 el: ".swiper-custom-pagination",

@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { useSession } from "../../hooks/useSession";
-import { useDelay } from "../../hooks/useDelay";
+import { useIntro } from "../../hooks/useIntro";
+import { useDarkMode } from "../../hooks/useDarkMode";
 import Home from "./Home/Home";
 import Projects from "./Projects/Projects";
 import Contact from "./Contact/Contact";
@@ -22,62 +23,63 @@ export default function MainRouter() {
 
     useAOS();
     const { session } = useSession();
-    const { showIntro } = useDelay()
-
-    return showIntro ? <Intro /> : (
-        <>
-            <Toaster />
-            <Router>
-                <Navbar session={session} />
-                <Routes>
-                    <Route
-                        exact
-                        path="/"
-                        element={<Home />}
-                    />
-                    <Route
-                        path="/about"
-                        element={
-                            <AboutMe />
-                        }
-                    />
-                    <Route
-                        path="/projects"
-                        element={
-                            <Projects />
-                        }
-                    />
-                    <Route
-                        path="/contact"
-                        element={
-                            <Contact />
-                        }
-                    />
-                    <Route element={<AuthenticatedRoute session={session} />}>
+    const { showIntro } = useIntro()
+   
+    return showIntro ? <Intro />
+        : (
+            <>
+                <Toaster />
+                <Router>
+                    <Navbar session={session} />
+                    <Routes>
                         <Route
-                            path="/signin"
-                            element={<Sign />}
-                        />
-                    </Route>
-                    <Route element={<PrivateRoute session={session} />}>
-                        <Route
-                            path="/resetpassword"
-                            element={<ResetPass />}
-                        />
-                    </Route>
-                    <Route element={<PrivateRoute session={session} />}>
-                        <Route
-                            path="/dashboard"
                             exact
-                            element={<Dashboard />
+                            path="/"
+                            element={<Home />}
+                        />
+                        <Route
+                            path="/about"
+                            element={
+                                <AboutMe />
                             }
                         />
-                    </Route>
-                    <Route path="*" element={<NoPage />} />
-                </Routes>
-            </Router>
-            <ScrollToTop />
-            <Footer />
-        </>
-    );
+                        <Route
+                            path="/projects"
+                            element={
+                                <Projects />
+                            }
+                        />
+                        <Route
+                            path="/contact"
+                            element={
+                                <Contact />
+                            }
+                        />
+                        <Route element={<AuthenticatedRoute session={session} />}>
+                            <Route
+                                path="/signin"
+                                element={<Sign />}
+                            />
+                        </Route>
+                        <Route element={<PrivateRoute session={session} />}>
+                            <Route
+                                path="/resetpassword"
+                                element={<ResetPass />}
+                            />
+                        </Route>
+                        <Route element={<PrivateRoute session={session} />}>
+                            <Route
+                                path="/dashboard"
+                                exact
+                                element={<Dashboard />
+                                }
+                            />
+                        </Route>
+                        <Route path="*" element={<NoPage />} />
+                    </Routes>
+                </Router>
+                <ScrollToTop />
+                <Footer />
+            </>
+        );
 }

@@ -10,7 +10,7 @@ export default function Services() {
         <div className="flex flex-col items-center">
           <h2
             data-aos="fade-up"
-            className="text-center tracking-normal font-semibold mb-12 text-zinc-800 dark:text-zinc-100 text-3xl">
+            className="text-center capitalize tracking-normal font-bold mb-12 text-zinc-800 dark:text-zinc-100 text-3xl">
             Services
           </h2>
           <div className="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10">

@@ -34,8 +34,8 @@ export default function Contact() {
         <LeftGradient />
         <div className="mx-auto max-w-7xl px-4 sm:px-10 xl:px-24">
           <div className="relative ">
-            <h4 className="text-warm-gray-900 lg:hidden text-center dark:border-sky-500 text-lg font-medium dark:text-white">Send me a message</h4>
-            <h2 className="text-warm-gray-900 lg:hidden text-center dark:border-sky-500 text-4xl font-medium dark:text-white">Contact Me</h2>
+            <h4 className="text-warm-gray-900 lg:hidden text-center dark:border-sky-500 text-lg font-medium dark:text-white">Get in touch</h4>
+            <h2 className="text-warm-gray-900 lg:hidden text-center dark:border-sky-500 text-4xl font-semibold dark:text-white">Contact</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-8">
 
               {/* left section */}
