@@ -30,21 +30,25 @@ export default function Contact() {
 
   return (
     <div className="bg-white dark:bg-slate-800 mt-32">
-      <div className="mt-[50px] relative bg-white dark:bg-slate-800">
+      <div className="relative bg-white dark:bg-slate-800">
         <LeftGradient />
-        <div className="mx-auto max-w-7xl px-4 sm:px-10 xl:px-24">
-          <div className="relative ">
-            <h4 className="text-warm-gray-900 lg:hidden text-center dark:border-sky-500 text-lg font-medium dark:text-white">Get in touch</h4>
-            <h2 className="text-warm-gray-900 lg:hidden text-center dark:border-sky-500 text-4xl font-semibold dark:text-white">Contact</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-8">
+        <div className="mx-auto max-w-7xl px-6 sm:px-10 xl:px-24">
+          <div className="relative">
+            <div data-aos="fade-up">
+              <h4 className="text-warm-gray-900 lg:hidden text-center dark:border-sky-500 text-lg font-medium dark:text-white">Get in touch</h4>
+              <h2 className="text-warm-gray-900 lg:hidden text-center dark:border-sky-500 text-4xl font-semibold dark:text-white">Contact</h2>
+            </div>
 
-              {/* left section */}
-              <div data-aos="zoom-in" className="rounded-md flex justify-center relative overflow-hidden col-span-1">
-                <img src="assets/contact.png" alt="contact" className="w-full h-auto object-cover aspect-auto" />
-              </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-10 mt-16">
+
+              {/* Contact form ,left section */}
+              <picture data-aos="zoom-in" className="rounded-md flex justify-center relative col-span-1">
+                <source media="(max-width: 1024px)" srcSet="assets/contact_new.png" />
+                <img src="assets/contact.png" alt="contact" className="w-full h-auto object-cover" />
+              </picture>
 
               {/* Contact form ,right section */}
-              <div data-aos="fade-left" className="dark:bg-slate-800 lg:py-10 px-4 lg:px-0 col-span-1">
+              <div data-aos={window.innerWidth < 640 ? "fade-up" : "fade-left"} className="lg:py-10 mt-10 col-span-1">
                 <h3 className="text-warm-gray-900 hidden lg:block dark:border-sky-500 text-xl font-medium dark:text-white">
                   Send me a message
                 </h3>

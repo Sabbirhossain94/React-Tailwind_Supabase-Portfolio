@@ -29,7 +29,7 @@ export default function BlogFeed() {
   return (
     <div className="relative py-20">
       <RightGradient />
-      <section className="px-10 xl:px-24 mx-auto max-w-7xl border">
+      <section className="px-4 sm:px-10 xl:px-24 mx-auto max-w-7xl">
         <div>
           <div className="mx-auto max-w-screen-sm text-center">
             <h2 data-aos="fade-up" className="text-center font-semibold mb-12 tracking-normal text-zinc-800 dark:text-zinc-100 text-3xl">Blogs</h2>
@@ -70,7 +70,7 @@ export default function BlogFeed() {
                               {blog.introduction}
                             </p>
                             <div className="mt-6 flex items-center">
-                              <a href={blogAppUrl + 'blog/' + blog.slug} target="_blank">
+                              <a href={blogAppUrl + 'blog/' + blog.slug} target="_blank" rel="noreferrer">
                                 <button className="bg-zinc-200 rounded-xl flex items-center group bg-sky-400/10 hover:bg-sky-400/20 dark:bg-teal-500/10 text-sky-400 dark:text-teal-500 text-md px-4  py-2 cursor-pointer dark:hover:bg-teal-500/30 transition duration-300">
                                   <span>Read more</span>
                                   <BsArrowRight className='ml-2 mt-1 translate-x-0 group-hover:translate-x-2 transition-transform duration-300' />
@@ -89,6 +89,7 @@ export default function BlogFeed() {
             <a
               href={blogAppUrl}
               target="_blank"
+              rel="noreferrer"
               className="inline-flex items-center gap-2 justify-center rounded-md py-3 px-8 text-sm outline-offset-2 transition active:transition-none bg-zinc-100 font-medium text-zinc-900 hover:text-sky-400 hover:bg-zinc-200/50 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-900/50 dark:hover:text-teal-500 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-2 w-[200px]">
               Show All
             </a>

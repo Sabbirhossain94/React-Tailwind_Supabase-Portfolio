@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { TiTick } from "react-icons/ti";
-import { TfiHandPointRight } from "react-icons/tfi";
 import { Modal } from 'antd';
 import Spinner from "../../../components/helpers/Spinner"
 import { projectStorageUrl } from "../../../services/config";

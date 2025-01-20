@@ -1,6 +1,7 @@
 import { BsLinkedin } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
 import { SiGmail } from "react-icons/si";
+import { FaSkype } from "react-icons/fa";
 import { Link, useLocation } from 'react-router-dom';
 import { certifications } from '../../../helpers/certification';
 import { Download, Experience } from '../../SVG/SvgComponents';
@@ -17,7 +18,7 @@ function AboutMe() {
     return (
         <div className={`relative ${params.pathname === "/" && "py-0 lg:py-20"}`}>
             <LeftGradient />
-            <div className={`max-w-7xl px-4 sm:px-10 xl:px-24 mx-auto ${params.pathname === "/about" ? "mt-32" : "mt-0"}`}>
+            <div className={`max-w-7xl px-4 sm:px-10 xl:px-24 mx-auto ${params.pathname === "/about" ? "mt-16" : "mt-0"}`}>
                 <section className="text-gray-600 body-font">
                     <div data-aos="fade-right" className="mx-auto flex py-24 flex-col gap-8 lg:flex-row items-center justify-center">
                         <div className="lg:flex-grow lg:w-1/2 flex flex-col lg:text-left lg:items-start mb-16 lg:mb-0 items-center text-center">
@@ -54,13 +55,16 @@ function AboutMe() {
                                 </div>
                             </div>
                             {params.pathname === "/" && <div className="mt-6 flex gap-2">
-                                <a href="https://www.linkedin.com/in/sabbir-hossain-b73726214/">
+                                <a href="https://www.linkedin.com/in/sabbir-hossain-b73726214/" target="_blank" rel="noreferrer">
                                     <BsLinkedin className="cursor-pointer text-xl text-gray-500 hover:text-sky-400 dark:hover:text-teal-400 scale-100 hover:scale-105 transition duration-300" />
                                 </a>
-                                <a href="https://github.com/Sabbirhossain97">
+                                <a href="https://github.com/Sabbirhossain97" target="_blank" rel="noreferrer">
                                     <AiFillGithub className="cursor-pointer text-xl text-gray-500 hover:text-sky-400 dark:hover:text-teal-400 ml-4 scale-100 hover:scale-105 transition duration-300" />
                                 </a>
-                                <a href="mailto:sabbirhossainbd199@gmail.com">
+                                <a href="skype:live:sabbirshawon1994?chat" target="_blank" rel="noreferrer">
+                                    <FaSkype className="cursor-pointer text-xl text-gray-500 hover:text-sky-400 dark:hover:text-teal-400 ml-4 scale-100 hover:scale-105 transition duration-300" />
+                                </a>
+                                <a href="mailto:sabbirhossainbd199@gmail.com" target="_blank" rel="noreferrer">
                                     <SiGmail className="cursor-pointer text-xl text-gray-500 hover:text-sky-400 dark:hover:text-teal-400 ml-4 scale-100 hover:scale-105 transition duration-300" />
                                 </a>
                             </div>
