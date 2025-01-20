@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { useSession } from "../../hooks/useSession";
 import { useIntro } from "../../hooks/useIntro";
-import { useDarkMode } from "../../hooks/useDarkMode";
 import Home from "./Home/Home";
 import Projects from "./Projects/Projects";
 import Contact from "./Contact/Contact";

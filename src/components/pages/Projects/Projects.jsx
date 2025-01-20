@@ -40,7 +40,7 @@ export default function Projects() {
       <div className="mx-auto max-w-7xl">
         <div data-aos="fade-up" className="relative px-4 sm:px-10 xl:px-24">
           <div className="transition-opacity mt-16 sm:mt-20">
-            <ul className="mx-auto mt-16 grid grid-cols-1 gap-6 sm:mt-20 sm:px-0 md:mt-32 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-8 xl:gap-x-8">
+            <ul className="mx-auto mt-32 grid grid-cols-1 gap-6 sm:px-0 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-8 xl:gap-x-8">
               {allprojects.map((project, index) => (
                 <li
                   data-aos="zoom-in"

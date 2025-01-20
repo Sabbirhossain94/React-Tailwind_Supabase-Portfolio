@@ -35,17 +35,15 @@ export default function Navbar({ session }) {
     <div className="fixed left-0 right-0 top-0 z-[2000] bg-white dark:bg-slate-800/50">
       <nav className="mx-auto max-w-7xl px-4 sm:px-10 xl:px-24 bg-opacity-50 backdrop-blur-xl fixed -top-5 md:-top-5 left-0 right-0">
         <div className="flex h-16 mt-6 items-center justify-between">
-          <div className="flex gap-6">
-            <div className="flex-shrink-0 md:hidden">
-              <button className="rounded-md py-1 transition duration-300">
-                {openMenuIcon ? (
-                  <CloseIcon setOpenMenuIcon={setOpenMenuIcon} />
-                ) : (
-                  <MenuIcon setOpenMenuIcon={setOpenMenuIcon} />
-                )}
-              </button>
+          <div className="flex items-center gap-4">
+            <div className="md:hidden">
+              {openMenuIcon ? (
+                <CloseIcon setOpenMenuIcon={setOpenMenuIcon} />
+              ) : (
+                <MenuIcon setOpenMenuIcon={setOpenMenuIcon} />
+              )}
             </div>
-            <div className="flex items-center">
+            <div>
               <h1 className="font-poppins flex gap-1 font-semibold whitespace-nowrap tracking-[1px] dark:text-white text-xl sm:text-2xl">
                 <span className="text-sky-400 dark:text-teal-500">{`{`}</span>
                 <span >{`SH`}</span>
@@ -105,7 +103,7 @@ export default function Navbar({ session }) {
               <button
                 type="button"
                 onClick={() => setDark(!dark)}
-                className="rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300"
+                className="rounded-md px-3 py-1 transition duration-300"
               >
                 {dark ? (
                   <DarkThemeIcon />
@@ -116,7 +114,7 @@ export default function Navbar({ session }) {
             </div>
           </div>
         </div>
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {openMenuIcon &&
             <AnimatedMenuBar>
               <div className="space-y-4 px-2 py-4 w-full md:hidden">

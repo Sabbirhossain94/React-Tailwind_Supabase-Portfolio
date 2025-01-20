@@ -12,7 +12,7 @@ export default function Skills() {
   return (
     <div className="relative py-44">
       <LeftGradient/>
-      <div className="max-w-7xl mx-auto px-10 xl:px-24">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 xl:px-24">
         <div className="">
           <h2 data-aos="fade-up" className="text-center font-semibold mb-4 tracking-normal text-zinc-800 dark:text-zinc-100 text-3xl">
             Skills
@@ -24,6 +24,7 @@ export default function Skills() {
               breakpoints={{
                 320: {
                   slidesPerView: 3,
+                  spaceBetween: 30,
                 },
                 640: {
                   slidesPerView: 4,
