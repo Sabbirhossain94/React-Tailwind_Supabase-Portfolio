@@ -6,9 +6,7 @@
   "dependencies": {
     "@emailjs/browser": "^3.7.0",
     "@supabase/supabase-js": "^2.0.0-rc.10",
-    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "antd": "^5.6.2",
     "aos": "^2.3.4",
     "file-saver": "^2.0.5",
@@ -18,14 +16,10 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.12.0",
-    "react-router": "^6.9.0",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "react-simple-typewriter": "^4.0.5",
-    "react-transition-group": "^4.4.5",
-    "swiper": "^9.1.0",
-    "typed.js": "^2.0.12",
-    "web-vitals": "^2.1.4"
+    "swiper": "^9.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -52,8 +46,6 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.12",
-    "postcss": "^8.4.17",
     "tailwind-scrollbar": "^3.0.0",
     "tailwindcss": "^3.1.8"
   }
