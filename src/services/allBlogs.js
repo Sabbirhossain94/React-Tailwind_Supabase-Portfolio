@@ -5,6 +5,7 @@ export const allBlogs = async () => {
         let { data, error } = await blogClient
             .from("blogs")
             .select("*")
+            .order('id', { ascending: false })
         if (error) {
             throw error;
         }
