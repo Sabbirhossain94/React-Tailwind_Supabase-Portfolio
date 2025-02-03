@@ -22,7 +22,7 @@ export default function Navbar({ session }) {
   }, [location.pathname]);
 
   const handleDashboard = () => {
-    navigate("/dashboard")
+    navigate("/dashboard/projects")
   }
 
   const handleSignOut = async () => {
