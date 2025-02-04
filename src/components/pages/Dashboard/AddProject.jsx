@@ -1,13 +1,15 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { portfolioClient } from "../../../services/config";
-import { Attachments } from "../../SVG/SvgComponents";
 import { message } from 'antd';
+import { TagsInput } from "react-tag-input-component";
+import { loadCoverImage } from "../../../services/dashboard/loadCoverImage";
+import AttachImage from "./AttachImage";
+import { useSession } from "../../../hooks/useSession";
 
-export default function AddProject({ funcTopNav, addProject, setAddProject, editProjectId, isProjectModalOpen, setIsProjectModalOpen, action, loading, previewImage, setPreviewImage, setLoading }) {
-  funcTopNav(false);
+export default function AddProject({ addProject, setAddProject, editProjectId, isProjectModalOpen, setIsProjectModalOpen, action, loading, previewImage, setPreviewImage, setLoading }) {
   const formData = useRef();
+  const { session } = useSession();
   const [sendImage, setSendImage] = useState(null);
-  const [userInfo, setUserInfo] = useState(null)
   const date = new Date().toLocaleDateString();
 
   const handleSubmit = async (e) => {
@@ -26,15 +28,15 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
       const { error } = await portfolioClient
         .from("projects")
         .insert({
-          user_id: userInfo.id,
+          user_id: session.user.id,
           title: addProject.title,
           image: sendImage,
           githublink: addProject.githublink,
           livelink: addProject.livelink,
           project_type: addProject.project_type,
           features: addProject.features,
-          technologies: addProject.technologies,
-          design_source: addProject.design_source,
+          technologies: JSON.stringify(addProject.technologies),
+          design_source: JSON.stringify(addProject.design_source),
           inserted_at: date,
         })
         .single();
@@ -63,22 +65,13 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
     }
   };
 
-  const getUser = async () => {
-    const { data: { user } } = await portfolioClient.auth.getUser();
-    if (user) {
-      setUserInfo(user)
-    }
-  }
-
-  useEffect(() => {
-    getUser()
-  }, [])
-
   const loadProjectCoverImage = async (image) => {
-    const { data } = await portfolioClient.storage
-      .from("projects")
-      .download(`Thumbnail/${image}`);
-    setPreviewImage(URL.createObjectURL(data));
+    try {
+      let data = await loadCoverImage(image);
+      setPreviewImage(URL.createObjectURL(data));
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   //when updating project fields will be pre-loaded
@@ -98,8 +91,8 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
           githublink: projectInfo?.githublink,
           livelink: projectInfo?.livelink,
           project_type: projectInfo?.project_type,
-          features: projectInfo?.features,
-          technologies: projectInfo?.technologies,
+          features: JSON.parse(projectInfo?.features),
+          technologies: JSON.parse(projectInfo?.technologies),
           design_source: projectInfo?.design_source
         });
         loadProjectCoverImage(projectInfo?.image);
@@ -122,7 +115,7 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
       const { error } = await portfolioClient
         .from("projects")
         .update({
-          user_id: userInfo.id,
+          user_id: session.user.id,
           title: addProject?.title,
           image: sendImage ? sendImage : addProject?.image,
           githublink: addProject?.githublink,
@@ -143,7 +136,6 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
       console.log(error)
     }
   };
-
 
   const downloadImage = async (path) => {
     try {
@@ -183,16 +175,33 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
     }
   };
 
+  const handleTechnologies = (tags) => {
+    setAddProject((prev) => ({
+      ...prev,
+      technologies: tags,
+    }));
+  };
+
+  const handleFeatures = (tags) => {
+    setAddProject((prev) => ({
+      ...prev,
+      features: tags,
+    }));
+  };
+
   return (
     <div>
       <div
         className={`mx-auto mt-[20px] rounded-lg `}
       >
+        <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
+          {action === "create" ? 'Add Project Details' : 'Update Project Details'}
+        </h3>
         <form ref={formData} onSubmit={handleSubmit}>
           <div className="mb-6">
             <label
               htmlFor="title"
-              className="block mb-2 text-sm font-medium text-gray-900 "
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-zinc-400"
             >
               Title
             </label>
@@ -201,7 +210,7 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
               id="title"
               value={addProject?.title}
               onChange={(e) => setAddProject({ ...addProject, title: e.target.value })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-zinc-100 w-full p-2.5 text-gray-900 dark:text-zinc-400 text-sm rounded-lg transition duration-300 border border-zinc-100 dark:border-slate-500/20 focus:border-sky-400 dark:focus:border-teal-500 focus:outline-none dark:bg-slate-500/20"
               required
             />
           </div>
@@ -209,7 +218,7 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
           <div className="mb-6">
             <label
               htmlFor="github"
-              className="block mb-2 text-sm font-medium text-gray-900 "
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-zinc-400"
             >
               Github link
             </label>
@@ -218,14 +227,14 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
               id="github"
               value={addProject?.githublink}
               onChange={(e) => setAddProject({ ...addProject, githublink: e.target.value })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-zinc-100 w-full p-2.5 text-gray-900 dark:text-zinc-400 text-sm rounded-lg transition duration-300 border border-zinc-100 dark:border-slate-500/20 focus:border-sky-400 dark:focus:border-teal-500 focus:outline-none dark:bg-slate-500/20"
               required
             />
           </div>
           <div className="mb-6">
             <label
               htmlFor="live"
-              className="block mb-2 text-sm font-medium text-gray-900 "
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-zinc-400"
             >
               Live link
             </label>
@@ -234,29 +243,29 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
               id="live"
               value={addProject?.livelink}
               onChange={(e) => setAddProject({ ...addProject, livelink: e.target.value })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-zinc-100 w-full p-2.5 text-gray-900 dark:text-zinc-400 text-sm rounded-lg transition duration-300 border border-zinc-100 dark:border-slate-500/20 focus:border-sky-400 dark:focus:border-teal-500 focus:outline-none dark:bg-slate-500/20"
               required
             />
           </div>
           <div className="mb-6">
             <label
               htmlFor="project_type"
-              className="block mb-2 text-sm font-medium text-gray-900 "
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-zinc-400"
             >
               Project Type
             </label>
             <input
               type="text"
-              id="live"
+              id="project_type"
               value={addProject?.project_type}
               onChange={(e) => setAddProject({ ...addProject, project_type: e.target.value })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-zinc-100 w-full p-2.5 text-gray-900 dark:text-zinc-400 text-sm rounded-lg transition duration-300 border border-zinc-100 dark:border-slate-500/20 focus:border-sky-400 dark:focus:border-teal-500 focus:outline-none dark:bg-slate-500/20"
               required
             />
           </div>
           <div className="mb-6">
             <label
-              htmlFor="project_type"
+              htmlFor="design_source"
               className={`block mb-2 text-sm font-medium ${addProject.project_type === "Design" ? "text-gray-900" : "text-gray-300 "} `}
             >
               Design Source
@@ -267,91 +276,58 @@ export default function AddProject({ funcTopNav, addProject, setAddProject, edit
               value={addProject?.design_source}
               placeholder="https://www.figma.com/file/"
               onChange={(e) => setAddProject({ ...addProject, design_source: e.target.value })}
-              className={`${addProject.project_type === "Design" ? "bg-gray-50 cursor-default" : "cursor-not-allowed bg-gray-300"}  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+              className={`${addProject.project_type === "Design" ? "bg-gray-50 cursor-default" : "cursor-not-allowed bg-zinc-300 dark:bg-slate-600/20 dark:border-slate-600/20"} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500`}
               disabled={addProject.project_type === "Design" ? false : true}
             />
           </div>
           <div className="mb-6">
             <label
-              htmlFor="project_type"
-              className="block mb-2 text-sm font-medium text-gray-900 "
+              htmlFor="project_features"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-zinc-400"
             >
               Project Features
             </label>
-            <textarea
-              type="text"
-              id="live"
+            <TagsInput
+              id="project_features"
               value={addProject?.features}
-              onChange={(e) => setAddProject({ ...addProject, features: e.target.value })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
-
+              onChange={handleFeatures}
+              name="technologies"
+              classNames={{
+                tag: "text-black dark:bg-zinc-800 dark:text-gray-300",
+                input: "text-zinc-900 dark:text-zinc-400 p-1",
+              }}
+              placeHolder="Enter Features..."
             />
           </div>
           <div className="mb-6">
             <label
-              htmlFor="project_type"
-              className="block mb-2 text-sm font-medium text-gray-900 "
+              htmlFor="technologies"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-zinc-400"
             >
               Technologies Used
             </label>
-            <textarea
-              type="text"
-              id="live"
+            <TagsInput
+              id="technologies"
               value={addProject?.technologies}
-              onChange={(e) => setAddProject({ ...addProject, technologies: e.target.value })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required
+              onChange={handleTechnologies}
+              name="technologies"
+              classNames={{
+                tag: "text-black dark:bg-zinc-800 dark:text-gray-300",
+                input: "text-zinc-900 dark:text-zinc-400 p-1",
+              }}
+              placeHolder="Enter Technologies..."
             />
           </div>
-          <div className="mb-6">
-            <div>
-              {previewImage ? (
-                <>
-                  <img
-                    src={
-                      previewImage
-                        ? previewImage
-                        : "https://i.imgur.com/W2AT377.jpg"
-                    }
-                    alt=""
-                    className="avatar image ring-1 flex justify-center"
-                  />
-                  <div className="flex flex-row">
-                    <button
-                      onClick={() => {
-                        setPreviewImage(null);
-                      }}
-                      className=" mt-[25px]  flex justify-center rounded-md border border-transparent bg-blue-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                      {action === "create" ? "Cancel" : "Change"}
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <div className=" sm:border-gray-200 sm:pt-5">
-                  <div className="mt-1 sm:mt-0">
-                    <label htmlFor="file-upload" className="relative rounded-md font-medium text-sky-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-sky-700">
-                      <div className="flex w-full justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6 cursor-pointer">
-                        <div className="space-y-1 text-center">
-                          <Attachments />
-                          <span>Attach an image</span>
-                          <input id="file-upload"
-                            type="file"
-                            accept="image/*"
-                            onChange={uploadImage}
-                            className="hidden" />
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
+          <AttachImage
+            previewImage={previewImage}
+            setPreviewImage={setPreviewImage}
+            action={action}
+            uploadImage={uploadImage}
+          />
           <div className="flex flex-col items-center mb-4">
             <button
               type="submit"
-              className="bg-gray-100 border border-gray-300 hover:bg-gray-200 focus:outline-none font-medium rounded-md text-sm w-full px-5 py-2.5 text-center "
+              className="bg-gray-100 border dark:text-zinc-400 border-gray-300 hover:bg-gray-200 dark:border-transparent transition duration-300 dark:bg-zinc-900/50 dark:hover:bg-zinc-900 focus:outline-none font-medium rounded-md text-sm w-full px-5 py-2.5 text-center "
             >
               {action === "create" ? "Submit" : "Update"}
             </button>
